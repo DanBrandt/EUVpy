@@ -23,7 +23,12 @@ from urllib.request import urlretrieve
 from math import log10, floor
 from scipy import stats
 import seaborn as sns
-import scipy.optimize as opt
+# import scipy.optimize as opt
+#-----------------------------------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Local imports
+from empiricalModels.models.SOLOMON import solomon
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -1282,6 +1287,76 @@ def readCLS(filename):
     print('F3.2: ' + str(np.nanmean([element[4] for element in precisionVals])) + ' sfu') # 11
     return times, data
 
+def band_info(bin_boundaries_left, bin_boundaries_right, solomon=False):
+    """
+    Given a two array-likes of wavelength bin boundaries, return the indices of those corresponding only to wavelength
+    ranges, rather than individual lines, and also return the wavelength boundaries themselves.
+    :param bin_boundaries_left: array-like
+        The left-sided wavelength band boundaries. May either be in nm or Angstroms.
+    :param bin_boundaries_right: array-like
+        The right-sided wavelength band boundaries. May either be in nm or Angstroms. Units should match those of
+        bin_boundaries_left.
+    :param solomon: boolean
+        If True, does the same thing, but accounts for overlapping bands in the solomon bins. Default is False.
+    :return sortInds: array-like
+        The indices of the wavelength ranges only.
+    :return xPosSorted: array-like
+        The values of the wavelength ranges themselves, for the purposes of making spectral stair plots.
+    """
+    if not solomon:
+        # Individual wavelength lines should have the same value for the left and right boundaries, so find the indices where
+        # that is NOT true:
+        bandInds = np.where(np.asarray(bin_boundaries_left) != np.asarray(bin_boundaries_right))[0]
+        # Append the right-most boundary to ensure that the resulting boundary values are 'closed' on both sides.
+        xPos = np.append(np.asarray(bin_boundaries_left)[bandInds],
+                         np.asarray(bin_boundaries_right)[-1])
+        # Sort the indices:
+        sortInds = np.argsort(xPos)
+        # Return the sorted boundary values for ease of plotting:
+        xPosSorted = xPos[sortInds]
+        return sortInds[:-1], xPosSorted
+    else:
+        xPosSolomonInitial = 0.5 * (bin_boundaries_left + bin_boundaries_right)
+        xPosSolomon = np.append(xPosSolomonInitial, 1130.)
+        bandWidths = np.append(bin_boundaries_right, 1130.) - np.append(bin_boundaries_left, bin_boundaries_right[-1])
+        # Constrain the bins; i.e. for the overlapping bins, we will want to sum everything in there together:
+        xPosSolomonNew = []
+        j = 0
+        for i in range(len(xPosSolomon) - 1):
+            if xPosSolomon[i] != xPosSolomon[i + 1]:
+                xPosSolomonNew.append(xPosSolomon[i])
+                j += 1
+        xPosSolomon = np.asarray(xPosSolomonNew)
+        sortIndsSolomon = np.argsort(xPosSolomon)
+        # The edges of the bins are what we want:
+        xPosSortedSolomon = np.array([0.5, 4, 8, 18, 32, 70, 155, 224, 290, 320, 540, 650, 798, 913, 975, 987,
+                                      1027])
+        return sortIndsSolomon[:-1], xPosSortedSolomon
+
+def solomonRebin(solomonIrr):
+    """
+    Given some irradiance in the Solomon Bins, do a simple rebinning procedure to simply sum the irradiance in the
+    overlapping bins, so that the resulting spectra can be plotted rather easily.
+    :param solomonIrr: numpy array
+        An array of irradiance in the Solomon Bins. Rows are observations and columns are wavelength bins.
+    :return solomonIrr_for_plotting: numpy array
+        The rebinned irradiance.
+    """
+    solomonTable = solomon.solomonBands
+    # sortIndsSolomon, xPosSortedSolomon = band_info(solomonTable['short'], solomonTable['long'], solomon=True)
+    xPosSolomonInitial = 0.5 * (solomonTable['short'] + solomonTable['long'])
+    xPosSolomon = np.append(xPosSolomonInitial, 1130.)
+    goodInds = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 16, 20, 21])  # badInds: 12, 14, 15, 17, 18
+    solomonIrr_for_plotting = solomonIrr[:, goodInds]
+    j = 0
+    for i in range(len(xPosSolomon)-1):
+        if xPosSolomon[i] != xPosSolomon[i+1]:
+            # Do nothing
+            j += 1
+            pass
+        else:
+            solomonIrr_for_plotting[:, j] += solomonIrr[:, i]
+    return solomonIrr_for_plotting
 ########################################################################################################################
 # TODO: Python versions of Liying Qian's Wavelength Rebinning Code from here: https://download.hao.ucar.edu/pub/lqian/tlsm/idl/
 

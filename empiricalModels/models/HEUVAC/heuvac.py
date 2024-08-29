@@ -120,15 +120,27 @@ def heuvac(F107, F107A, torr=True, statsFiles=None):
         The solar EUV irradiance in different wavelength bins returend from HEUVAC.
     """
     if torr==True:
-        heuvacFlux = np.zeros((len(F107), 37))
-        heuvacIrr = np.zeros((len(F107), 37))
+        if type(F107) == np.ndarray:
+            heuvacFlux = np.zeros((len(F107), 37))  # Columns represent each wavelength band 37 (59).
+            heuvacIrr = np.zeros((len(F107), 37))
+        else:
+            heuvacFlux = np.zeros((1, 37))
+            heuvacIrr = np.zeros((1, 37))
+            F107 = np.array([F107])
+            F107A = np.array([F107A])
     else:
-        heuvacFlux = np.zeros((len(F107), 106))
-        heuvacIrr = np.zeros((len(F107), 106))
+        if type(F107) == np.ndarray:
+            heuvacFlux = np.zeros((len(F107), 106))  # Columns represent each wavelength band 37 (59).
+            heuvacIrr = np.zeros((len(F107), 106))
+        else:
+            heuvacFlux = np.zeros((1, 106))
+            heuvacIrr = np.zeros((1, 106))
+            F107 = np.array([F107])
+            F107A = np.array([F107A])
     if not statsFiles:
         # Loop across all the F10.7 values:
         os.chdir(directory)
-        for i in tqdm(range(len(F107))):
+        for i in tqdm(range(heuvacIrr.shape[0])):
             # Write the input file and run HEUVAC:
             writeInputFile(F107[i], F107A[i])
             # Run base HEUVAC:
@@ -158,13 +170,13 @@ def heuvac(F107, F107A, torr=True, statsFiles=None):
         sigmaFileHEUVAC = statsFiles[1]  # '../../../experiments/sigma_EUVAC.pkl'
         STDHeuvacResids = tools.toolbox.loadPickle(sigmaFileHEUVAC)
         os.chdir(directory)
-        # Loop across all of the F10.7 values:
+        # Loop across all the F10.7 values:
         for i in tqdm(range(len(F107))):
             # Write the input file and run HEUVAC:
             writeInputFile(F107[i], F107A[i])
             P_n = []
             A_j_vals = []
-            # Loop across all of the bands to obtain perturbations:
+            # Loop across all the bands to obtain perturbations:
             for j in range(37):
                 # Percentage perturbation:
                 P_j = np.random.normal(0, 1.0)
