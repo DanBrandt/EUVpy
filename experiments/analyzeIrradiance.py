@@ -118,15 +118,16 @@ if __name__=="__main__":
     # Make a chart of different wavelength resolutions laid on top of each other:
     fig, ax = plt.subplots(figsize=(18, 6), nrows=2, ncols=1, sharex=True)
     # EUVAC:
-    EUVACBandInds = np.where(np.subtract(euv_data_59['long'], euv_data_59['short']) != 0)[0]
+    euv_data_37 = read_euv_csv_file(euv_folder + 'euv.csv', band=False)
+    EUVACBandInds = np.where(np.subtract(euv_data_37['long'], euv_data_37['short']) != 0)[0]
     #xEUVAC = np.concatenate((euv_data_59['short'], np.array([euv_data_59['long'][-1]])), axis=-1)
     for i in EUVACBandInds:
-        ax[0].axvspan(euv_data_59['short'][i], euv_data_59['long'][i], ymin=0.5, ymax=1, color='tab:green')
-        ax[0].vlines(x=[euv_data_59['short'][i], euv_data_59['long'][i]], ymin=0, ymax=1, color='k')
-    EUVACLineInds = np.where(np.subtract(euv_data_59['long'], euv_data_59['short']) == 0)[0]
-    ax[0].vlines(x=euv_data_59['short'][EUVACLineInds], ymin=-1, ymax=0, color='r')
+        ax[0].axvspan(euv_data_37['short'][i], euv_data_37['long'][i], ymin=0.5, ymax=1, color='tab:green')
+        ax[0].vlines(x=[euv_data_37['short'][i], euv_data_37['long'][i]], ymin=0, ymax=1, color='k')
+    EUVACLineInds = np.where(np.subtract(euv_data_37['long'], euv_data_37['short']) == 0)[0]
+    ax[0].vlines(x=euv_data_37['short'][EUVACLineInds], ymin=-1, ymax=0, color='r')
     ax[0].axhline(y=0, linewidth=2, color='gray')
-    ax[0].set_xlim([solomonTable['short'][0], euv_data_59['long'][-1]])
+    ax[0].set_xlim([solomonTable['short'][0], euv_data_37['long'][-1]])
     ax[0].set_ylim([-1, 1])
     ax[0].set_ylabel('EUVAC Bins', rotation='horizontal', labelpad=90, fontsize=25)
     plt.setp(ax[0].get_yticklabels(), visible=False)
