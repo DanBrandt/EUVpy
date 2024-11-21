@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from datetime import timedelta
 import matplotlib.cm as cm
 import os, os.path
+import csv
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -410,5 +411,63 @@ def gitmNEUVAC(f107times, f107, f107b):
         output.write(' '+str(lastTime.year)+' '+numStr(lastTime.month)+' '+numStr(lastTime.day)+'  0  0  0 '+lastLine_joined+'\n')
 
     print('Wrote NEUVAC EUV irradiances to the following file: '+outfile)
+    return outfile
+
+def aetherFile(tableFile='../NEUVAC/neuvac_table.txt'):
+    """
+    Take the NEUVAC coefficients in the 59 wavelength bins and put them into a .csv file in a format for use by the
+    Aether model.
+    :param tableFile: str
+        The location of the NEUVAC table file to convert. Default is the 59-bin table file in the EUVpy repo.
+    :return outfile: str
+        The location of the .csv file for use by the Aether.
+    """
+    # Open the table file and read in the data:
+    neuvacTable = []
+    with open(tableFile) as neuvacFile:
+        contents = neuvacFile.readlines()
+        i = 0
+        for line in contents:
+            if i > 17:
+                neuvacTable.append([float(element) for element in line.split(' ')])
+            i += 1
+    neuvacTable = np.asarray(neuvacTable)
+
+    # Open the Aether .csv file and rewrite the relevant rows with the correct coefficients:
+    aetherfilename_old = '../NEUVAC/irradiances/euv_59_reference.csv'
+    aetherfilename = '../NEUVAC/irradiances/euv_59_aether.csv'
+    with open(aetherfilename_old) as inF:
+        fileLines = inF.readlines()
+        reader = csv.reader(inF.readlines())
+    lineOrder = [2, 4, 6, 7, 3, 5]
+    with open(aetherfilename, 'w') as outF:
+        writer = csv.writer(outF)
+        i = 0
+        line_number = 1
+        for line in fileLines:
+            if line_number in [5, 6, 7, 8, 9, 10]:
+                row_data = list(neuvacTable[:, lineOrder[i]])
+                row_data_strings = [str(element) for element in row_data]
+                if line_number == 5:
+                    preceding_str = ['NEUV_S1','','','1','slope'] # A_i
+                elif line_number == 6:
+                    preceding_str = ['NEUV_S2', '', '', '1', 'slope'] # C_i
+                elif line_number == 7:
+                    preceding_str = ['NEUV_S3', '', '', '1', 'slope'] # E_i
+                elif line_number == 8:
+                    preceding_str = ['NEUV_l1', '', '', '1', 'ints'] # F_i
+                elif line_number == 9:
+                    preceding_str = ['NEUV_P1', '', '', '1', 'powers'] # B_i
+                else:
+                    preceding_str = ['NEUV_P2', '', '', '1', 'powers'] # D_i
+                row_to_write = preceding_str + row_data_strings + ['from GITM']
+                writer.writerow(row_to_write)
+                i += 1
+            else:
+                writer.writerow(line.replace('\n','').split(','))
+            line_number += 1
+
+    outfile = aetherfilename
+    print('Wrote NEUVAC coefficients in Aether format to :' + outfile)
     return outfile
 #-----------------------------------------------------------------------------------------------------------------------
