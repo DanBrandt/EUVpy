@@ -2,7 +2,7 @@
 # by the Aether model.
 
 # Local imports
-from NEUVAC import neuvac
+from src.EUVpy.NEUVAC import neuvac
 
 # Convert the table file:
 tableFilename = '../NEUVAC/neuvac_table.txt'

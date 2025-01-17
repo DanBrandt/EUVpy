@@ -7,11 +7,11 @@ matplotlib.use('Qt5Agg')
 import numpy as np
 
 # Local imports
-from tools import toolbox
-from NEUVAC import neuvac
-from empiricalModels.models.EUVAC import euvac
-from empiricalModels.models.HEUVAC import heuvac
-from empiricalModels.models.SOLOMON import solomon
+from src.EUVpy.tools import toolbox
+from src.EUVpy.NEUVAC import neuvac
+from src.EUVpy.empiricalModels.models.EUVAC import euvac
+from src.EUVpy.empiricalModels.models.HEUVAC import heuvac
+from src.EUVpy.empiricalModels.models.SOLOMON import solomon
 
 # Global Plotting Settings:
 import matplotlib.pylab as pylab

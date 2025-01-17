@@ -2,8 +2,8 @@
 # Global Ionosphere Thermosphere Model
 
 # Local imports
-from tools import processIndices
-from NEUVAC import neuvac
+from src.EUVpy.tools import processIndices
+from src.EUVpy.NEUVAC import neuvac
 
 # Get some F10.7 for the entirety of 2022
 f107times, f107, f107a, f107b = processIndices.getCLSF107('2022-01-01', '2023-01-01', truncate=False)

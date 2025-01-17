@@ -8,11 +8,11 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 
 # Local imports
-from tools import processIndices
-from NEUVAC import neuvac
-from empiricalModels.models.EUVAC import euvac
-from empiricalModels.models.HEUVAC import heuvac
-from empiricalModels.models.SOLOMON import solomon
+from src.EUVpy.tools import processIndices
+from src.EUVpy.NEUVAC import neuvac
+from src.EUVpy.empiricalModels.models.EUVAC import euvac
+from src.EUVpy.empiricalModels.models.HEUVAC import heuvac
+from src.EUVpy.empiricalModels.models.SOLOMON import solomon
 
 # Get some F10.7 for the entirety of 2018
 f107times, f107, f107a, f107b = processIndices.getCLSF107('2018-01-01', '2018-12-31', truncate=False)

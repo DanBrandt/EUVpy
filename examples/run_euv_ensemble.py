@@ -6,8 +6,8 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 
 # Local imports
-from tools import processIndices
-from tools.spectralAnalysis import irradiance_ensemble
+from src.EUVpy.tools import processIndices
+from src.EUVpy.tools.spectralAnalysis import irradiance_ensemble
 
 # Global Plotting Settings:
 import matplotlib.pylab as pylab

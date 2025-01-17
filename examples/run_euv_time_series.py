@@ -4,13 +4,13 @@
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Qt5Agg')
-from tools import processIndices
+from src.EUVpy.tools import processIndices
 # import numpy as np
 
 # Local imports
-from NEUVAC import neuvac
-from empiricalModels.models.EUVAC import euvac
-from empiricalModels.models.HEUVAC import heuvac
+from src.EUVpy.NEUVAC import neuvac
+from src.EUVpy.empiricalModels.models.EUVAC import euvac
+from src.EUVpy.empiricalModels.models.HEUVAC import heuvac
 
 # Global Plotting Settings:
 import matplotlib.pylab as pylab
@@ -36,7 +36,7 @@ euvacFlux, euvacIrr, _, _, _ = euvac.euvac(f107, f107a)
 
 # Just plot the irradiance in the 10th wavelength band:
 ind = 11
-mids = 0.5*(euvac.euvacTable[:, 1] + euvac.euvacTable[:, 2] )
+mids = 0.5*(euvac.euvacTable[:, 1] + euvac.euvacTable[:, 2])
 plt.figure(figsize=(12, 8))
 plt.plot(f107times, neuvacIrradiance[:, ind], label='NEUVAC', color='tab:orange')
 plt.plot(f107times, euvacIrr[:, ind], label='EUVAC', color='tab:green')
