@@ -1,0 +1,17 @@
+csaps
+matplotlib
+netCDF4
+numpy
+pandas
+pygam
+scikit_learn
+scipy
+seaborn
+tqdm
+sphinx
+myst_parser
+sphinx_rtd_theme
+pytest
+
+[dev]
+PyQt5
