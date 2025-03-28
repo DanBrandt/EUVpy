@@ -10,6 +10,7 @@ import sys, csaps
 import matplotlib
 matplotlib.use('Qt5Agg')
 import urllib.request
+from pathlib import Path
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -124,9 +125,13 @@ def getCLSF107(dateStart, dateEnd, truncate=True):
     """
     dateTimeStart = datetime.strptime(dateStart, '%Y-%m-%d')
     dateTimeEnd = datetime.strptime(dateEnd, '%Y-%m-%d')
+    euvpy_app_folder = Path.home().joinpath(".euvpy")
+    if not euvpy_app_folder.exists():
+        euvpy_app_folder.mkdir(exist_ok=True)
     # 1: Check if there is ALREADY a F10.7 file present:
-    fname = '../solarIndices/F107/radio_flux_adjusted_observation.txt'
-    if os.path.isfile(fname):
+    #fname = '../solarIndices/F107/radio_flux_adjusted_observation.txt'
+    fname = euvpy_app_folder.joinpath("radio_flux_adjusted_observation.txt")
+    if fname.exists():
         # Read in the file:
         times, data = readCLS(fname)
         # Check if the ending date exceeds the ending date in the file. If so, redownloading the file:
@@ -143,10 +148,11 @@ def getCLSF107(dateStart, dateEnd, truncate=True):
     F107 = data[:, 2]
     F107A = rollingAverage(F107, window_length=81, impute_edges=True)
     F107B = rollingAverage(F107, window_length=54, impute_edges=True, center=False)
+    print(f'\n\nlen(F107) = {len(F107)}, len(F107B) = {len(F107B)}, len(F107B) = {len(F107B)}')
     # Extract the values in the desired time range:
     goodInds = np.where((np.asarray(times) >= dateTimeStart) & (np.asarray(times) <= dateTimeEnd))[0]
     # Truncation:
-    if truncate:
+    if truncate and len(goodInds) >= 2*81:
         goodInds = goodInds[:-81]
     return np.asarray(times)[goodInds], np.asarray(F107)[goodInds], np.asarray(F107A)[goodInds], np.asarray(F107B)[goodInds]
 

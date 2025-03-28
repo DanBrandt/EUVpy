@@ -23,3 +23,6 @@ src/EUVpy/tools/myIrrFISM2.pkl
 src/EUVpy/tools/myIrrUncFISM2.pkl
 src/EUVpy/tools/myTimesFISM1.pkl
 src/EUVpy/tools/myTimesFISM2.pkl
+*.egg-info
+__pycache__
+*/*.pyc
