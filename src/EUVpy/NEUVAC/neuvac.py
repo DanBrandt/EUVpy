@@ -13,12 +13,17 @@ from datetime import timedelta
 import matplotlib.cm as cm
 import os, os.path
 import csv
+import pathlib
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local imports:
-from src.EUVpy import tools
+from EUVpy import tools
+#-----------------------------------------------------------------------------------------------------------------------
 
+#-----------------------------------------------------------------------------------------------------------------------
+# Directory management:
+here = pathlib.Path(__file__).parent.resolve()
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -142,11 +147,11 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
     # Gather the model parameters:
     if tableFile is None:
         if bands == 'SOLOMON':
-            tableFile = '../NEUVAC/neuvac_table_stan_bands.txt'
+            tableFile = '../data/neuvac_table_stan_bands.txt'
         else:
-            tableFile = '../NEUVAC/neuvac_table.txt'
+            tableFile = '../data/neuvac_table.txt'
     neuvacTable = []
-    with open(tableFile) as neuvacFile:
+    with open(here.joinpath(tableFile)) as neuvacFile: # open(tableFile)
         contents = neuvacFile.readlines()
         i = 0
         for line in contents:
@@ -175,9 +180,9 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
     else:
         # Include statistical data for calculating uncertainties via perturbations:
         corMatFile = statsFiles[0] #'../../experiments/corMat.pkl'
-        corMat = src.EUVpy.tools.toolbox.loadPickle(corMatFile)
+        corMat = EUVpy.tools.toolbox.loadPickle(corMatFile)
         sigmaFile = statsFiles[1] #'../../experiments/sigma_NEUVAC.pkl'
-        STDNeuvacResids = src.EUVpy.tools.toolbox.loadPickle(sigmaFile)
+        STDNeuvacResids = EUVpy.tools.toolbox.loadPickle(sigmaFile)
         # Loop across the F10.7 (and F10.7A) values:
         nTimes = len(f107)
         nWaves = solarFlux.shape[1]
@@ -222,7 +227,7 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
                 k += 1
 
         # Generate a correlation matrix of the perturbations (to compare to the input correlation matrix as a sanity check):
-        cc2 = src.EUVpy.tools.toolbox.mycorrelate2d(savedPerts, normalized=True)
+        cc2 = EUVpy.tools.toolbox.mycorrelate2d(savedPerts, normalized=True)
 
         # Visualize the original correlation matrix alongside the correlation matrix from the perturbations (sanity check):
         # cmap = cm.bwr
@@ -297,7 +302,7 @@ def neuvacFit(f107Data, irrTimes, irrData, wavelengths, label=None, constrain=Fa
     f107SubsetNearest = []
     f107ASubsetNearest = []
     for i in range(len(irrTimesSubset)):
-        coLocatedInfo = src.EUVpy.tools.toolbox.find_nearest(f107TimesSubset, irrTimesSubset[i])
+        coLocatedInfo = EUVpy.tools.toolbox.find_nearest(f107TimesSubset, irrTimesSubset[i])
         f107TimesSubsetNearest.append(f107TimesSubset[coLocatedInfo[0]])
         f107SubsetNearest.append(f107Subset[coLocatedInfo[0]])
         f107ASubsetNearest.append(f107ASubset[coLocatedInfo[0]])

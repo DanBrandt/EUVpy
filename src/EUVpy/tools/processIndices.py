@@ -15,7 +15,7 @@ from pathlib import Path
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local imports:
-from src.EUVpy.tools.toolbox import uniformSample, imputeData, rollingAverage, rollingStd, savePickle
+from EUVpy.tools.toolbox import uniformSample, imputeData, rollingAverage, rollingStd, savePickle
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------

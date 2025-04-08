@@ -18,9 +18,9 @@ heuvacStatsFiles = ['../experiments/corMatHEUVAC.pkl', '../experiments/sigma_HEU
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local Imports
-from src.EUVpy.NEUVAC import neuvac
-from src.EUVpy.empiricalModels.models.EUVAC import euvac
-from src.EUVpy.empiricalModels.models.HEUVAC import heuvac
+from EUVpy.NEUVAC import neuvac
+from EUVpy.empiricalModels.models.EUVAC import euvac
+from EUVpy.empiricalModels.models.HEUVAC import heuvac
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -10,8 +10,8 @@ from tqdm import tqdm
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local Imports:
-from src.EUVpy.tools import spectralAnalysis
-from src.EUVpy import tools
+from EUVpy.tools import spectralAnalysis
+from EUVpy import tools
 
 #-----------------------------------------------------------------------------------------------------------------------
 

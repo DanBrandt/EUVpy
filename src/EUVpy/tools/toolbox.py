@@ -28,7 +28,7 @@ import seaborn as sns
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local imports
-from src.EUVpy.empiricalModels.models.SOLOMON import solomon
+from EUVpy.empiricalModels.models.SOLOMON import solomon
 
 
 #-----------------------------------------------------------------------------------------------------------------------
