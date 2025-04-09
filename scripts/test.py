@@ -16,11 +16,22 @@ if __name__ == '__main__':
 
     # Call the model in the EUVAC bins:
     neuvacIrr, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='EUVAC')
-
     # Integrals:
     from scipy.integrate import simpson
     all_ints = []
     for i in range(neuvacIrr.shape[1]):
         all_ints.append(simpson(neuvacIrr[:, i]))
+
+    # Call the model in the GITM bins and compute integrals:
+    neuvacIrrG, _, _, _ = neuvac.neuvacEUV(f107, f107b)
+    all_ints_g = []
+    for j in range(neuvacIrrG.shape[1]):
+        all_ints_g.append(simpson(neuvacIrrG[:, j]))
+
+    # Call the model in the SOLOMON bands and compute integrals:
+    neuvacIrrS, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='SOLOMON')
+    all_ints_s = []
+    for k in range(neuvacIrrS.shape[1]):
+        all_ints_s.append(simpson(neuvacIrrS[:, k]))
 
     sys.exit(0)
