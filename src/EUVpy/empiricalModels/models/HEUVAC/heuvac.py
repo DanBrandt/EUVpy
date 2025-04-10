@@ -8,12 +8,13 @@
 import numpy as np
 import os
 from tqdm import tqdm
+import pathlib
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Unchangeable filenames (lines 167-169 in HEUVAC-Driver.for), where HEUVAC outputs are stored:
 topDir = os.getcwd()
-directory = '../empiricalModels/models/HEUVAC/'
+directory = '../src/empiricalModels/models/HEUVAC/'
 torrFluxFile = 'Torr-37-bins.txt'
 userFluxFile = 'flux-User-bins-10A.txt'
 userIonizationFile = 'XS-User-bins-10A.txt'
@@ -23,6 +24,11 @@ userIonizationFile = 'XS-User-bins-10A.txt'
 # Local Imports:
 from EUVpy import tools
 import EUVpy.tools.spectralAnalysis
+#-----------------------------------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Directory management:
+here = pathlib.Path(__file__).parent.resolve()
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -65,7 +71,7 @@ def getTorr(fluxFile):
             if i > 0:
                 wavs[j] = float(line.split()[1])
                 fluxes[j] = float(line.split()[-1])
-                irrs[j] = src.EUVpy.tools.spectralAnalysis.spectralIrradiance(fluxes[j], wavs[j])
+                irrs[j] = EUVpy.tools.spectralAnalysis.spectralIrradiance(fluxes[j], wavs[j])
                 j += 1
             i += 1
     # The arrays will have values from largest to smallest - they should be flipped before being returned:
@@ -139,7 +145,7 @@ def heuvac(F107, F107A, torr=True, statsFiles=None):
             F107A = np.array([F107A])
     if not statsFiles:
         # Loop across all the F10.7 values:
-        os.chdir(directory)
+        os.chdir(here) # (directory)
         for i in tqdm(range(heuvacIrr.shape[0])):
             # Write the input file and run HEUVAC:
             writeInputFile(F107[i], F107A[i])
@@ -166,10 +172,10 @@ def heuvac(F107, F107A, torr=True, statsFiles=None):
         savedPerts = np.zeros_like(heuvacIrr)
         # Include statistical data for calculating uncertainties via perturbations:
         corMatFile = statsFiles[0]  # '../../../experiments/corMatEUVAC.pkl'
-        corMatHEUVAC = src.EUVpy.tools.toolbox.loadPickle(corMatFile)
+        corMatHEUVAC = EUVpy.tools.toolbox.loadPickle(corMatFile)
         sigmaFileHEUVAC = statsFiles[1]  # '../../../experiments/sigma_EUVAC.pkl'
-        STDHeuvacResids = src.EUVpy.tools.toolbox.loadPickle(sigmaFileHEUVAC)
-        os.chdir(directory)
+        STDHeuvacResids = EUVpy.tools.toolbox.loadPickle(sigmaFileHEUVAC)
+        os.chdir(here) #(directory)
         # Loop across all the F10.7 values:
         for i in tqdm(range(len(F107))):
             # Write the input file and run HEUVAC:

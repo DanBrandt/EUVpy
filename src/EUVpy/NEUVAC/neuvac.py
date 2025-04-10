@@ -24,6 +24,7 @@ from EUVpy import tools
 #-----------------------------------------------------------------------------------------------------------------------
 # Directory management:
 here = pathlib.Path(__file__).parent.resolve()
+install_dir = here.parent.parent.parent
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -440,13 +441,13 @@ def aetherFile(tableFile='../NEUVAC/neuvac_table.txt'):
     neuvacTable = np.asarray(neuvacTable)
 
     # Open the Aether .csv file and rewrite the relevant rows with the correct coefficients:
-    aetherfilename_old = '../NEUVAC/irradiances/euv_59_reference.csv'
-    aetherfilename = '../NEUVAC/irradiances/euv_59_aether.csv'
-    with open(aetherfilename_old) as inF:
+    aetherfilename_old = '../data/euv_59_reference.csv' # '../NEUVAC/irradiances/euv_59_reference.csv'
+    aetherfilename = '../data/euv_59_aether.csv' # '../NEUVAC/irradiances/euv_59_aether.csv'
+    with open(here.joinpath(aetherfilename_old)) as inF:
         fileLines = inF.readlines()
         reader = csv.reader(inF.readlines())
     lineOrder = [2, 4, 6, 7, 3, 5]
-    with open(aetherfilename, 'w') as outF:
+    with open(here.joinpath(aetherfilename), 'w') as outF:
         writer = csv.writer(outF)
         i = 0
         line_number = 1
@@ -473,7 +474,7 @@ def aetherFile(tableFile='../NEUVAC/neuvac_table.txt'):
                 writer.writerow(line.replace('\n','').split(','))
             line_number += 1
 
-    outfile = aetherfilename
-    print('Wrote NEUVAC coefficients in Aether format to :' + outfile)
+    outfile = str(here.parent.joinpath(outfile[3:])) # aetherfilename
+    print('Wrote NEUVAC coefficients in Aether format to: ' + outfile)
     return outfile
 #-----------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,8 @@
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Top-level Imports
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 import numpy as np
 import math, pickle, os
@@ -23,13 +25,12 @@ from urllib.request import urlretrieve
 from math import log10, floor
 from scipy import stats
 import seaborn as sns
-# import scipy.optimize as opt
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local imports
 from EUVpy.empiricalModels.models.SOLOMON import solomon
-
+#-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
 
