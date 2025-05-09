@@ -1,3 +1,0 @@
-[submodule "src/EUVpy/empiricalModels/models/HEUVAC"]
-	path = src/EUVpy/empiricalModels/models/HEUVAC
-	url = https://github.com/DanBrandt/HEUVAC.git
