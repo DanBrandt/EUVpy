@@ -152,7 +152,7 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
         else:
             tableFile = '../data/neuvac_table.txt'
     neuvacTable = []
-    with open(here.joinpath(tableFile)) as neuvacFile: # open(tableFile)
+    with open(here.parent.joinpath(tableFile)) as neuvacFile: # open(tableFile)
         contents = neuvacFile.readlines()
         i = 0
         for line in contents:
@@ -181,9 +181,9 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
     else:
         # Include statistical data for calculating uncertainties via perturbations:
         corMatFile = statsFiles[0] #'../../experiments/corMat.pkl'
-        corMat = EUVpy.tools.toolbox.loadPickle(corMatFile)
+        corMat = tools.toolbox.loadPickle(corMatFile)
         sigmaFile = statsFiles[1] #'../../experiments/sigma_NEUVAC.pkl'
-        STDNeuvacResids = EUVpy.tools.toolbox.loadPickle(sigmaFile)
+        STDNeuvacResids = tools.toolbox.loadPickle(sigmaFile)
         # Loop across the F10.7 (and F10.7A) values:
         nTimes = len(f107)
         nWaves = solarFlux.shape[1]
@@ -228,7 +228,7 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
                 k += 1
 
         # Generate a correlation matrix of the perturbations (to compare to the input correlation matrix as a sanity check):
-        cc2 = EUVpy.tools.toolbox.mycorrelate2d(savedPerts, normalized=True)
+        cc2 = tools.toolbox.mycorrelate2d(savedPerts, normalized=True)
 
         # Visualize the original correlation matrix alongside the correlation matrix from the perturbations (sanity check):
         # cmap = cm.bwr
@@ -303,7 +303,7 @@ def neuvacFit(f107Data, irrTimes, irrData, wavelengths, label=None, constrain=Fa
     f107SubsetNearest = []
     f107ASubsetNearest = []
     for i in range(len(irrTimesSubset)):
-        coLocatedInfo = EUVpy.tools.toolbox.find_nearest(f107TimesSubset, irrTimesSubset[i])
+        coLocatedInfo = tools.toolbox.find_nearest(f107TimesSubset, irrTimesSubset[i])
         f107TimesSubsetNearest.append(f107TimesSubset[coLocatedInfo[0]])
         f107SubsetNearest.append(f107Subset[coLocatedInfo[0]])
         f107ASubsetNearest.append(f107ASubset[coLocatedInfo[0]])
@@ -399,7 +399,7 @@ def gitmNEUVAC(f107times, f107, f107b):
         return open(path, 'w')
 
     out_dir = 'irradiances/'
-    outfile = out_dir + 'neuvac_euv_'+str(f107times[0])[:10]+'_to_'+str(f107times[-1])[:10]+'.txt'
+    outfile = str(here.joinpath(out_dir)) + '/neuvac_euv_'+str(f107times[0])[:10]+'_to_'+str(f107times[-1])[:10]+'.txt'
     with safe_open_w(outfile) as output:
         # Write the header information:
         output.write("#START\n")
@@ -474,7 +474,7 @@ def aetherFile(tableFile='../NEUVAC/neuvac_table.txt'):
                 writer.writerow(line.replace('\n','').split(','))
             line_number += 1
 
-    outfile = str(here.parent.joinpath(outfile[3:])) # aetherfilename
+    outfile = str(here.parent.joinpath(aetherfilename[3:])) # aetherfilename
     print('Wrote NEUVAC coefficients in Aether format to: ' + outfile)
     return outfile
 #-----------------------------------------------------------------------------------------------------------------------

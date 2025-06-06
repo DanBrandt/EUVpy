@@ -1,5 +1,6 @@
 .idea/
 src/EUVpy/empiricalModels/irradiances
+src/EUVpy/NEUVAC/irradiances/
 measurements
 src/EUVpy/solarIndices
 src/EUVpy/experiments/myIrrFISM1.pkl

@@ -7,7 +7,7 @@ matplotlib.use('Qt5Agg')
 
 # Local imports
 from src.EUVpy.tools import processIndices
-from src.EUVpy.tools.spectralAnalysis import irradiance_ensemble
+from src.EUVpy.tools import ensemble
 
 # Global Plotting Settings:
 import matplotlib.pylab as pylab
@@ -24,7 +24,7 @@ f107times, f107, f107a, f107b = processIndices.getCLSF107('2014-08-01', '2014-10
 
 # Run the NEUVAC ensemble - do so with the version of NEUVAC in the EUVAC bins...
 iterations = 50 # Number of ensemble members to generate
-ensemble_NeuvacIrr, ensemble_average_NeuvacIrr, ensemble_stddev_NeuvacIrr = irradiance_ensemble(f107, f107b,
+ensemble_NeuvacIrr, ensemble_average_NeuvacIrr, ensemble_stddev_NeuvacIrr = ensemble.irradiance_ensemble(f107, f107b,
                                                                                                 iterations=iterations,
                                                                                                 model='NEUVAC-E')
 
