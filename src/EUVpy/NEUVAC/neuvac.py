@@ -454,23 +454,23 @@ def aetherFile(tableFile='../data/neuvac_table.txt'):
         for line in fileLines:
             if line_number in [5, 6, 7, 8, 9, 10]:
                 row_data = list(neuvacTable[:, lineOrder[i]])
-                # row_data_strings = [str(element) for element in row_data]
-                row_data_strings = []
-                for element in row_data:
-                    row_data_strings.append(str(element))
-                    row_data_strings.append('')
+                row_data_strings = [" "+f"{element:.4e}" for element in row_data]
+                # row_data_strings = []
+                # for element in row_data:
+                #     row_data_strings.append(str(element))
+                #     row_data_strings.append('')
                 if line_number == 5:
-                    preceding_str = ['','NEUV_S1','','','1','slope',''] # A_i
+                    preceding_str = [' NEUV_S1','','',f"{1:.4e}",'slope'] # A_i
                 elif line_number == 6:
-                    preceding_str = ['','NEUV_S2', '', '', '1', 'slope',''] # C_i
+                    preceding_str = [' NEUV_S2', '', '', f"{1:.4e}", 'slope'] # C_i
                 elif line_number == 7:
-                    preceding_str = ['','NEUV_S3', '', '', '1', 'slope',''] # E_i
+                    preceding_str = [' NEUV_S3', '', '', f"{1:.4e}", 'slope'] # E_i
                 elif line_number == 8:
-                    preceding_str = ['','NEUV_l1', '', '', '1', 'ints',''] # F_i
+                    preceding_str = [' NEUV_l1', '', '', f"{1:.4e}", 'ints'] # F_i
                 elif line_number == 9:
-                    preceding_str = ['','NEUV_P1', '', '', '1', 'powers',''] # B_i
+                    preceding_str = [' NEUV_P1', '', '', f"{1:.4e}", 'powers'] # B_i
                 else:
-                    preceding_str = ['','NEUV_P2', '', '', '1', 'powers',''] # D_i
+                    preceding_str = [' NEUV_P2', '', '', f"{1:.4e}", 'powers'] # D_i
                 row_to_write = preceding_str + row_data_strings + ['from GITM']
                 writer.writerow(row_to_write)
                 i += 1
