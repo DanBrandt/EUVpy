@@ -420,7 +420,7 @@ def gitmNEUVAC(f107times, f107, f107b):
     print('Wrote NEUVAC EUV irradiances to the following file: '+outfile)
     return outfile
 
-def aetherFile(tableFile='../data/neuvac_table.txt'):
+def aetherFile(tableFile=str(here.parent.joinpath('data/neuvac_table.txt'))):
     """
     Take the NEUVAC coefficients in the 59 wavelength bins and put them into a .csv file in a format for use by the
     Aether model.
