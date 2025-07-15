@@ -51,7 +51,9 @@ and allows the user to download the F10.7 index at will.
 * `gfortran` (`$sudo apt-get install gfortran`)
 
 You can obtain `EUVpy` with a simple git clone command, and the relevant modules 
-may then be loaded as usual. If running it proves difficult, then you may wish to install the modules in the 
+may then be loaded as usual.
+
+If running it proves difficult, then you may wish to install the modules in the 
 `requirements.txt` file. In Linux, this may be done with the command:
 > pip install -r requirements.txt
 
@@ -62,10 +64,11 @@ EUVpy contains modules for **4** different EUV irradiance models. These models i
 * HEUVAC
 * SOLOMON
 
-**A note about running HEUVAC in particular:** The base code of HEUVAC is in Fortran, written by Dr. Phil Richards. In
-order to run it on a Unix-based OS, the script compile.sh should be run first. This requires gfortran, so if that is 
-not installed on your system, please install it first. When this is completed, navigate (via terminal) to the directory
-empiricalModels/models/HEUVAC and do the following:
+**A note about running HEUVAC in particular:** The base code of HEUVAC is in Fortran, written by Dr. Phil Richards. To 
+ensure it runs properly, the following should be done *after* cloning EUVpy:
+> git submodule update --init --recursive --remote
+
+Then, navigate (via terminal) to the directory empiricalModels/models/HEUVAC and do the following:
 
 > . compile.sh
 
