@@ -128,7 +128,8 @@ setup(
         "sphinx",
         "myst_parser",
         "sphinx_rtd_theme",
-        "pytest"
+        "pytest",
+        "pyqt5"
     ],  # Optional
 
     # List additional groups of dependencies here (e.g. development
