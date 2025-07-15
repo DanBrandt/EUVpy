@@ -148,9 +148,9 @@ def neuvacEUV(f107, f107a, bands=None, tableFile=None, statsFiles=None):
     # Gather the model parameters:
     if tableFile is None:
         if bands == 'SOLOMON':
-            tableFile = '../data/neuvac_table_stan_bands.txt'
+            tableFile = 'data/neuvac_table_stan_bands.txt'
         else:
-            tableFile = '../data/neuvac_table.txt'
+            tableFile = 'data/neuvac_table.txt'
     neuvacTable = []
     with open(here.parent.joinpath(tableFile)) as neuvacFile: # open(tableFile)
         contents = neuvacFile.readlines()

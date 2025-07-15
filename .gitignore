@@ -1,6 +1,6 @@
 .idea/
-src/EUVpy/empiricalModels/models/HEUVAC/*.o
-src/EUVpy/empiricalModels/models/HEUVAC/*.exe
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/*.o
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/*.exe
 src/EUVpy/empiricalModels/irradiances
 src/EUVpy/NEUVAC/irradiances/
 measurements
