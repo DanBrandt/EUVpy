@@ -96,9 +96,12 @@ def readCLS(filename):
         for line in allLines:
             if i >= 25:
                 elements = line.split()
-                data[j, :] = np.array([float(elements[5]), float(elements[9]), float(elements[13]), float(elements[17]), float(elements[21])])
-                times.append( datetime(int(elements[0]), int(elements[1]), int(elements[2]), 12) )
-                precisionVals.append( [float(elements[6]), float(elements[10]), float(elements[14]), float(elements[18]), float(elements[22])] )
+                try:
+                    data[j, :] = np.array([float(elements[5]), float(elements[9]), float(elements[13]), float(elements[17]), float(elements[21])])
+                    times.append( datetime(int(elements[0]), int(elements[1]), int(elements[2]), 12) )
+                    precisionVals.append( [float(elements[6]), float(elements[10]), float(elements[14]), float(elements[18]), float(elements[22])] )
+                except:
+                    raise Exception
                 j += 1
             i += 1
     # Print the precision:
@@ -110,7 +113,7 @@ def readCLS(filename):
     # print('F3.2: ' + str(np.nanmean([element[4] for element in precisionVals])) + ' sfu') # 11
     return times, data
 
-def getCLSF107(dateStart, dateEnd, truncate=True):
+def getCLSF107(dateStart, dateEnd, truncate=True, rewrite=True):
     """
     Obtains Sun-Earth distance adjusted, flare-corrected F10.7 data from Collecte Localisation Satellites. Downloads the
     most recent measurements to a file. Reads the file and extracts the F10.7 values between two dates. Note that if the
@@ -122,6 +125,8 @@ def getCLSF107(dateStart, dateEnd, truncate=True):
         The ending date in YYYY-MM-DD format.
     :param truncate: bool
         Controls whether to truncate the data to exclude the most recent 81 days. Defaults is True.
+    :param rewrite: bool
+        Controls whether an existing CLS file is rewritten. Defualt is True.
     """
     dateTimeStart = datetime.strptime(dateStart, '%Y-%m-%d')
     dateTimeEnd = datetime.strptime(dateEnd, '%Y-%m-%d')
@@ -131,7 +136,7 @@ def getCLSF107(dateStart, dateEnd, truncate=True):
     # 1: Check if there is ALREADY a F10.7 file present:
     #fname = '../solarIndices/F107/radio_flux_adjusted_observation.txt'
     fname = euvpy_app_folder.joinpath("radio_flux_adjusted_observation.txt")
-    if fname.exists():
+    if fname.exists() and rewrite == False:
         # Read in the file:
         times, data = readCLS(fname)
         # Check if the ending date exceeds the ending date in the file. If so, redownloading the file:

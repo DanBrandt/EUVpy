@@ -8,18 +8,24 @@
 import numpy as np
 import os
 from tqdm import tqdm
+<<<<<<< HEAD
 from pathlib import Path
 import EUVpy.empiricalModels.models.HEUVAC as emp
 
+=======
+import pathlib
+>>>>>>> 5eba1dd7809a3d06e0e6c69d68051ba33ec4c55d
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
+# Directory management:
+here = pathlib.Path(__file__).parent.resolve()
 # Unchangeable filenames (lines 167-169 in HEUVAC-Driver.for), where HEUVAC outputs are stored:
 topDir = os.getcwd()
-directory = Path(emp.__file__).parent
-torrFluxFile = directory / 'HEUVAC' / 'Torr-37-bins.txt'
-userFluxFile = directory / 'HEUVAC' / 'flux-User-bins-10A.txt'
-userIonizationFile = directory / 'HEUVAC' / 'XS-User-bins-10A.txt'
+directory = str(here.joinpath('srcHeuvac')) # '../empiricalModels/models/HEUVAC/'
+torrFluxFile = here.joinpath('srcHeuvac','Torr-37-bins.txt')
+userFluxFile = here.joinpath('srcHeuvac','flux-User-bins-10A.txt')
+userIonizationFile = here.joinpath('srcHeuvac','XS-User-bins-10A.txt')
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
