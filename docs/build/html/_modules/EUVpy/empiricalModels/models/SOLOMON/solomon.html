@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.empiricalModels.models.SOLOMON.solomon &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.empiricalModels.models.SOLOMON.solomon</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.empiricalModels.models.SOLOMON.solomon</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Code for computing solar irradiance according to Solomon and Qian 2005.</span>
+<span class="c1"># Reference: Solomon, S. C. and Qian, L. (2005) Solar extreme-ultraviolet irradiance for general circulation models,</span>
+<span class="c1"># Journal of Geophysical Research: Space Physics, 110, A10, 10.1029/2005JA011160</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Top-level imports:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Local imports:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.tools.spectralAnalysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectralIrradiance</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Global Variable:</span>
+<span class="c1"># solomonTable = np.array([</span>
+<span class="c1">#         [1, 0.5, 4, 5.010e1, 0, 2.948e2, 5.010e1, 6.240e-1, 3.188e4, 7.847e5],</span>
+<span class="c1">#         [2, 4, 8, 1.0e4, 0, 7.6e3, 1.0e4, 3.710e-1, 3.643e4, 8.968e5],</span>
+<span class="c1">#         [3, 8, 18, 2.0e-6, 0, 4.6e5, 2.0e6, 2.0e-1, 5.485e6, 1.046e8],</span>
+<span class="c1">#         [4, 18, 32, 7.600e6, 7.470e5, 9.220e5, 2.850e7, 6.247e-2, 6.317e6, 9.234e7],</span>
+<span class="c1">#         [5, 32, 70, 1.659e8, 6.623e7, 4.293e6, 5.326e8, 1.343e-2, 3.710e8, 1.475e9],</span>
+<span class="c1">#         [6, 70, 155, 4.012e8, 1.662e8, 5.678e6, 1.270e9, 9.182e-3, 1.023e9, 3.752e9],</span>
+<span class="c1">#         [7, 155, 224, 2.078e9, 1.510e8, 6.273e7, 5.612e9, 1.433e-2, 2.953e9, 1.144e10],</span>
+<span class="c1">#         [8, 224, 290, 1.724e9, 3.310e8, 9.834e7, 4.342e9, 2.575e-2, 4.927e9, 1.436e10],</span>
+<span class="c1">#         [9, 290, 320, 6.793e9, 2.220e9, 4.286e7, 8.380e9, 7.059e-3, 6.942e9, 1.234e10],</span>
+<span class="c1">#         [10, 320, 540, 2.750e9, 5.469e8, 1.080e8, 2.861e9, 1.458e-2, 6.486e9, 1.591e10],</span>
+<span class="c1">#         [11, 540, 650, 5.035e9, 2.969e9, 1.590e7, 4.830e9, 5.857e-3, 3.499e9, 6.213e9],</span>
+<span class="c1">#         [12, 650, 798, 1.562e9, 6.938e8, 8.208e6, 1.459e9, 5.719e-3, 1.869e9, 2.631e9],</span>
+<span class="c1">#         [13, 650, 798, 1.264e9, 6.690e8, 5.445e5, 1.142e9, 3.680e-3, 1.136e9, 1.540e+09],</span>
+<span class="c1">#         [14, 798, 913, 3.011e9, 3.011e9, 0, 2.364e9, 5.310e-3, 3.494e9, 5.868e9],</span>
+<span class="c1">#         [15, 798, 913, 4.661e9, 4.213e9, 0, 3.655e9, 5.261e-3, 5.138e9, 8.562e9],</span>
+<span class="c1">#         [16, 798, 913, 1.020e9, 1.020e9, 0, 8.448e8, 5.437e-3, 1.306e9, 2.157e9],</span>
+<span class="c1">#         [17, 913, 975, 5.441e8, 4.187e8, 0, 3.818e8, 4.915e-3, 8.343e8, 1.373e9],</span>
+<span class="c1">#         [18, 913, 975, 1.483e9, 1.307e9, 0, 1.028e9, 4.955e-3, 1.866e9, 2.862e9],</span>
+<span class="c1">#         [19, 913, 975, 8.642e8, 8.440e8, 0, 7.156e8, 4.422e-3, 6.840e8, 1.111e9],</span>
+<span class="c1">#         [20, 975, 987, 6.056e9, 3.671e9, 0, 4.482e9, 3.950e-3, 4.139e9, 6.801e9],</span>
+<span class="c1">#         [21, 987, 1027, 5.569e9, 4.984e9, 0, 4.419e9, 5.021e-3, 6.274e9, 1.019e10],</span>
+<span class="c1">#         [22, 1027, 1050, 6.309e9, 5.796e9, 0, 4.235e9, 4.825e-3, 4.389e9, 7.153e9]</span>
+<span class="c1">#     ])</span>
+
+<span class="n">solomonTable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">5.010e+01</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">2.948e+02</span><span class="p">,</span> <span class="mf">5.010e+01</span><span class="p">,</span> <span class="mf">6.240e-01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.000e+04</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">7.600e+03</span><span class="p">,</span> <span class="mf">1.000e+04</span><span class="p">,</span> <span class="mf">3.710e-01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.000e+06</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">4.600e+05</span><span class="p">,</span> <span class="mf">2.000e+06</span><span class="p">,</span> <span class="mf">2.000e-01</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">7.600e+06</span><span class="p">,</span> <span class="mf">7.470e+05</span><span class="p">,</span> <span class="mf">9.220e+05</span><span class="p">,</span> <span class="mf">2.850e+07</span><span class="p">,</span> <span class="mf">6.247e-02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">1.659e+08</span><span class="p">,</span> <span class="mf">6.623e+07</span><span class="p">,</span> <span class="mf">4.293e+06</span><span class="p">,</span> <span class="mf">5.326e+08</span><span class="p">,</span> <span class="mf">1.343e-02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">15.5</span><span class="p">,</span> <span class="mf">4.012e+08</span><span class="p">,</span> <span class="mf">1.662e+08</span><span class="p">,</span> <span class="mf">5.678e+06</span><span class="p">,</span> <span class="mf">1.270e+09</span><span class="p">,</span> <span class="mf">9.182e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mf">15.5</span><span class="p">,</span> <span class="mf">22.4</span><span class="p">,</span> <span class="mf">2.078e+09</span><span class="p">,</span> <span class="mf">1.510e+08</span><span class="p">,</span> <span class="mf">6.273e+07</span><span class="p">,</span> <span class="mf">5.612e+09</span><span class="p">,</span> <span class="mf">1.433e-02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">22.4</span><span class="p">,</span> <span class="mf">29.0</span><span class="p">,</span> <span class="mf">1.724e+09</span><span class="p">,</span> <span class="mf">3.310e+08</span><span class="p">,</span> <span class="mf">9.834e+07</span><span class="p">,</span> <span class="mf">4.342e+09</span><span class="p">,</span> <span class="mf">2.575e-02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mf">29.0</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">6.793e+09</span><span class="p">,</span> <span class="mf">2.220e+09</span><span class="p">,</span> <span class="mf">4.286e+07</span><span class="p">,</span> <span class="mf">8.380e+09</span><span class="p">,</span> <span class="mf">7.059e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mf">32.0</span><span class="p">,</span> <span class="mf">54.0</span><span class="p">,</span> <span class="mf">2.750e+09</span><span class="p">,</span> <span class="mf">5.469e+08</span><span class="p">,</span> <span class="mf">1.080e+08</span><span class="p">,</span> <span class="mf">2.861e+09</span><span class="p">,</span> <span class="mf">1.458e-02</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mf">54.0</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">,</span> <span class="mf">5.035e+09</span><span class="p">,</span> <span class="mf">2.969e+09</span><span class="p">,</span> <span class="mf">1.590e+07</span><span class="p">,</span> <span class="mf">4.830e+09</span><span class="p">,</span> <span class="mf">5.857e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">1.562e+09</span><span class="p">,</span> <span class="mf">6.938e+08</span><span class="p">,</span> <span class="mf">8.208e+06</span><span class="p">,</span> <span class="mf">1.459e+09</span><span class="p">,</span> <span class="mf">5.719e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mf">65.0</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">1.264e+09</span><span class="p">,</span> <span class="mf">6.690e+08</span><span class="p">,</span> <span class="mf">5.445e+05</span><span class="p">,</span> <span class="mf">1.142e+09</span><span class="p">,</span> <span class="mf">3.680e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">3.011e+09</span><span class="p">,</span> <span class="mf">3.011e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">2.364e+09</span><span class="p">,</span> <span class="mf">5.310e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">4.661e+09</span><span class="p">,</span> <span class="mf">4.213e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">3.655e+09</span><span class="p">,</span> <span class="mf">5.261e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">1.020e+09</span><span class="p">,</span> <span class="mf">1.020e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">8.448e+08</span><span class="p">,</span> <span class="mf">5.437e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">,</span> <span class="mf">5.441e+08</span><span class="p">,</span> <span class="mf">4.187e+08</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">3.818e+08</span><span class="p">,</span> <span class="mf">4.915e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">,</span> <span class="mf">1.483e+09</span><span class="p">,</span> <span class="mf">1.307e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">1.028e+09</span><span class="p">,</span> <span class="mf">4.955e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mf">91.3</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">,</span> <span class="mf">8.642e+08</span><span class="p">,</span> <span class="mf">8.440e+08</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">7.156e+08</span><span class="p">,</span> <span class="mf">4.422e-03</span> <span class="p">],</span>
+    <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">,</span> <span class="mf">98.7</span><span class="p">,</span> <span class="mf">6.056e+09</span><span class="p">,</span> <span class="mf">3.671e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">4.482e+09</span><span class="p">,</span> <span class="mf">3.950e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mf">98.7</span><span class="p">,</span> <span class="mf">102.7</span><span class="p">,</span> <span class="mf">5.569e+09</span><span class="p">,</span> <span class="mf">4.984e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">4.419e+09</span><span class="p">,</span> <span class="mf">5.021e-03</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mf">102.7</span><span class="p">,</span> <span class="mf">105.0</span><span class="p">,</span> <span class="mf">6.309e+09</span><span class="p">,</span> <span class="mf">5.796e+09</span><span class="p">,</span> <span class="mf">0.000e+00</span><span class="p">,</span> <span class="mf">4.235e+09</span><span class="p">,</span> <span class="mf">4.825e-03</span><span class="p">]</span>
+    <span class="p">])</span>
+
+<span class="n">solomonBands</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="n">solomonTable</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="n">solomonTable</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+<span class="p">}</span>
+<span class="n">solomonBandWidths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mf">6.9</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">22.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">,</span> <span class="mf">14.8</span><span class="p">,</span> <span class="mf">14.8</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mf">11.5</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span>
+                              <span class="mf">6.2</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.3</span> <span class="p">,</span> <span class="mf">16.</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">/</span><span class="mf">10.</span>
+<span class="c1"># The tables above are in units of Angstroms - source is Table A1 from Solomon and Qian 2005.</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="solomon">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.SOLOMON.solomon.html#EUVpy.empiricalModels.models.SOLOMON.solomon.solomon">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">solomon</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;HFG&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the solar EUV irradiance in 23 standard bands.</span>
+<span class="sd">    :param F107: ndarray</span>
+<span class="sd">        Values of the F10.7 solar flux.</span>
+<span class="sd">    :param F107A: ndarray</span>
+<span class="sd">        Values of the 81-day averaged solar flux, centered on the present day.</span>
+<span class="sd">    :param model: str</span>
+<span class="sd">        Either &#39;HFG&#39; or &#39;EUVAC&#39;. Controls whether or not the empirical EUV data returned corresponds to the HFG model or</span>
+<span class="sd">        the EUVAC model.</span>
+<span class="sd">    :return solomonFlux: ndarray</span>
+<span class="sd">        Values of the solar radiant flux in 23 distinct wavelength bands. Units of photon/m^2/s</span>
+<span class="sd">    :return solomonIrr: ndarray</span>
+<span class="sd">        Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Instantiate the output data:</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">F107</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107</span><span class="p">])</span>
+        <span class="n">F107A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107A</span><span class="p">])</span>
+        <span class="n">solomonFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">solomonTable</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">solomonIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">solomonTable</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solomonFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="n">solomonTable</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">solomonIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="n">solomonTable</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="c1"># Calculate the model coefficients (for every F107, F107A pair):</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="mf">0.0138</span><span class="o">*</span><span class="p">(</span><span class="n">F107</span> <span class="o">-</span> <span class="mf">71.5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.005</span><span class="o">*</span><span class="p">(</span><span class="n">F107</span> <span class="o">-</span> <span class="n">F107A</span> <span class="o">+</span> <span class="mf">3.9</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="mf">0.5943</span><span class="o">*</span><span class="p">(</span><span class="n">F107</span> <span class="o">-</span> <span class="mf">71.5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.381</span><span class="o">*</span><span class="p">(</span><span class="n">F107</span> <span class="o">-</span> <span class="n">F107A</span> <span class="o">+</span> <span class="mf">3.9</span><span class="p">)</span>
+
+    <span class="c1"># Compute P:</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">F107</span>  <span class="o">+</span> <span class="n">F107A</span><span class="p">)</span>
+
+    <span class="c1"># Loop across every F107, F107A pair:</span>
+    <span class="c1"># for i in range(len(F107)):</span>
+    <span class="c1"># Loop across every bin and fill in the data:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">solomonIrr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">waves</span> <span class="o">=</span> <span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">wavel</span> <span class="o">=</span> <span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="c1"># dwav = wavel - waves</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">waves</span> <span class="o">+</span> <span class="n">wavel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;EUVAC&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">prod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span> <span class="o">-</span> <span class="mf">80.</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prod</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">P</span> <span class="o">-</span> <span class="mf">80.</span><span class="p">))</span>
+            <span class="n">flux</span> <span class="o">=</span> <span class="p">(</span><span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">prod</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0e4</span> <span class="c1"># convert from ph cm^-2 s^-1 to photon m^-2 s^-1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flux</span> <span class="o">=</span> <span class="p">(</span><span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">r1</span><span class="o">*</span><span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">r2</span><span class="o">*</span><span class="n">solomonTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1.0e4</span> <span class="c1"># Units of photon m^-2 s^-1</span>
+        <span class="n">irradiance</span> <span class="o">=</span> <span class="n">spectralIrradiance</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">mid</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">solomonFlux</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+        <span class="n">solomonIrr</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">irradiance</span><span class="p">)</span>
+
+    <span class="c1"># mins = [np.nanmin(element) for element in solomonIrr.T]</span>
+    <span class="c1"># np.where(np.asarray(mins) &lt; 0)</span>
+    <span class="c1"># 0, 1, 2, 3, 7 (EUVAC)</span>
+    <span class="c1"># 0, 1, 2, 3, 4, 7, 9 (HFG)</span>
+
+    <span class="k">return</span> <span class="n">solomonFlux</span><span class="p">,</span> <span class="n">solomonIrr</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

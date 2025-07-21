@@ -89,6 +89,7 @@ def solomon(F107, F107A, model='HFG'):
     :return solomonIrr: ndarray
         Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2
     """
+
     # Instantiate the output data:
     if type(F107) == list or type(F107) != np.ndarray:
         F107 = np.array([F107])

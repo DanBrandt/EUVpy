@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.empiricalModels.models.EUVAC.euvac &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.empiricalModels.models.EUVAC.euvac</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.empiricalModels.models.EUVAC.euvac</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Code for computing solar irradiance according to the EUVAC model.</span>
+<span class="c1"># Reference: Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic calculations,</span>
+<span class="c1"># Journal of Geophysical Research, 99, A5, 8981-8991, 1994</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Top-level imports:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Local Imports:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectralAnalysis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Constants</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.62607015e-34</span> <span class="c1"># Planck&#39;s constant in SI units of J s</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">299792458</span> <span class="c1"># Speed of light in m s^-1</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Global variables:</span>
+<span class="n">euvacTable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">1.200</span><span class="p">,</span> <span class="mf">1.0017e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mf">0.450</span><span class="p">,</span> <span class="mf">7.1250e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">4.800</span><span class="p">,</span> <span class="mf">1.3375e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mf">3.100</span><span class="p">,</span> <span class="mf">1.9450e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mf">256.32</span><span class="p">,</span> <span class="mf">256.32</span><span class="p">,</span> <span class="mf">0.460</span><span class="p">,</span> <span class="mf">2.7750e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">284.15</span><span class="p">,</span> <span class="mf">284.15</span><span class="p">,</span> <span class="mf">0.210</span><span class="p">,</span> <span class="mf">1.3768e-1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mf">1.679</span><span class="p">,</span> <span class="mf">2.6467e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mf">303.31</span><span class="p">,</span> <span class="mf">303.31</span><span class="p">,</span> <span class="mf">0.800</span><span class="p">,</span> <span class="mf">2.5000e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mf">303.78</span><span class="p">,</span> <span class="mf">303.78</span><span class="p">,</span> <span class="mf">6.900</span><span class="p">,</span> <span class="mf">3.3333e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mf">0.965</span><span class="p">,</span> <span class="mf">2.2450e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mf">368.07</span><span class="p">,</span> <span class="mf">368.07</span><span class="p">,</span> <span class="mf">0.650</span><span class="p">,</span> <span class="mf">6.5917e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mf">0.314</span><span class="p">,</span> <span class="mf">3.6542e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mf">0.383</span><span class="p">,</span> <span class="mf">7.4083e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mf">465.22</span><span class="p">,</span> <span class="mf">465.22</span><span class="p">,</span> <span class="mf">0.290</span><span class="p">,</span> <span class="mf">7.4917e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">0.285</span><span class="p">,</span> <span class="mf">2.0225e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mf">0.452</span><span class="p">,</span> <span class="mf">8.7583e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mf">554.37</span><span class="p">,</span> <span class="mf">554.37</span><span class="p">,</span> <span class="mf">0.720</span><span class="p">,</span> <span class="mf">3.2667e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mf">584.33</span><span class="p">,</span> <span class="mf">584.33</span><span class="p">,</span> <span class="mf">1.270</span><span class="p">,</span> <span class="mf">5.1583e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mf">0.357</span><span class="p">,</span> <span class="mf">3.6583e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mf">609.76</span><span class="p">,</span> <span class="mf">609.76</span><span class="p">,</span> <span class="mf">0.530</span><span class="p">,</span> <span class="mf">1.6175e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mf">629.73</span><span class="p">,</span> <span class="mf">629.73</span><span class="p">,</span> <span class="mf">1.590</span><span class="p">,</span> <span class="mf">3.3250e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mf">0.342</span><span class="p">,</span> <span class="mf">1.1800e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mf">0.230</span><span class="p">,</span> <span class="mf">4.2667e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mf">703.36</span><span class="p">,</span> <span class="mf">703.36</span><span class="p">,</span> <span class="mf">0.360</span><span class="p">,</span> <span class="mf">3.0417e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mf">0.141</span><span class="p">,</span> <span class="mf">4.7500e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="mf">765.15</span><span class="p">,</span> <span class="mf">765.15</span><span class="p">,</span> <span class="mf">0.170</span><span class="p">,</span> <span class="mf">3.8500e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mf">770.41</span><span class="p">,</span> <span class="mf">770.41</span><span class="p">,</span> <span class="mf">0.260</span><span class="p">,</span> <span class="mf">1.2808e-2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mf">789.36</span><span class="p">,</span> <span class="mf">789.36</span><span class="p">,</span> <span class="mf">0.702</span><span class="p">,</span> <span class="mf">3.2750e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mf">0.758</span><span class="p">,</span> <span class="mf">4.7667e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mf">1.625</span><span class="p">,</span> <span class="mf">4.8167e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mf">3.537</span><span class="p">,</span> <span class="mf">5.6750e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">950</span><span class="p">,</span> <span class="mf">3.000</span><span class="p">,</span> <span class="mf">4.9833e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mf">977.02</span><span class="p">,</span> <span class="mf">977.02</span><span class="p">,</span> <span class="mf">4.400</span><span class="p">,</span> <span class="mf">3.9417e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">34</span><span class="p">,</span> <span class="mi">950</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">1.475</span><span class="p">,</span> <span class="mf">4.4167e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mf">1025.72</span><span class="p">,</span> <span class="mf">1025.72</span><span class="p">,</span> <span class="mf">3.500</span><span class="p">,</span> <span class="mf">5.1833e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mf">1031.91</span><span class="p">,</span> <span class="mf">1031.91</span><span class="p">,</span> <span class="mf">2.100</span><span class="p">,</span> <span class="mf">5.2833e-3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1050</span><span class="p">,</span> <span class="mf">2.467</span><span class="p">,</span> <span class="mf">4.3750e-3</span><span class="p">]</span>
+    <span class="p">])</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Functions:</span>
+<div class="viewcode-block" id="refSpec">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.EUVAC.euvac.html#EUVpy.empiricalModels.models.EUVAC.euvac.refSpec">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">refSpec</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the standard solar flux in 37 bands from the F74113 Spectrum (pp. 584-585 in Schunk and Nagy).</span>
+<span class="sd">    Source 2: Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic</span>
+<span class="sd">    calculations, Journal of Geophysical Research, 99, A5, 8981-8992, 1994.</span>
+<span class="sd">    Source 3: Heroux, L. and Hinteregger, H. E., Aeronomical Reference Spectrum for Solar UV Below 2000 A, Journal of</span>
+<span class="sd">    Geophysical Research, 83, A11, 1978.</span>
+<span class="sd">    :param: i: int</span>
+<span class="sd">        The index for the wavelength. Must be between 0 and 37.</span>
+<span class="sd">    :return: F74113_i: float</span>
+<span class="sd">        The reference solar flux in units of photons/m^2/s^.</span>
+<span class="sd">    :return: A_i: float</span>
+<span class="sd">        The scaling factor for the wavelength interval.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lookUpIdx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">euvacTable</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">F74113_i</span> <span class="o">=</span> <span class="n">euvacTable</span><span class="p">[</span><span class="n">lookUpIdx</span><span class="p">,</span> <span class="mi">3</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1e13</span><span class="p">)</span> <span class="c1"># Multiply by 1e13 to obtain photons m^-2 s^-1.</span>
+    <span class="n">A_i</span> <span class="o">=</span> <span class="n">euvacTable</span><span class="p">[</span><span class="n">lookUpIdx</span><span class="p">,</span> <span class="mi">4</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">F74113_i</span><span class="p">,</span> <span class="n">A_i</span></div>
+
+
+<div class="viewcode-block" id="euvac">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.EUVAC.euvac.html#EUVpy.empiricalModels.models.EUVAC.euvac.euvac">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">euvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the solar flux from F10.7, according to the EUVAC model. Return the solar flux across 37 wavelength</span>
+<span class="sd">    bands in units of photons m^-2 s^-1.</span>
+<span class="sd">    :param F107: ndarray</span>
+<span class="sd">        Values of the F10.7 solar flux.</span>
+<span class="sd">    :param F107A: ndarray</span>
+<span class="sd">        Values of the 81-day averaged solar flux, centered on the present day.</span>
+<span class="sd">    :param statsFiles: list</span>
+<span class="sd">        A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second</span>
+<span class="sd">        element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.</span>
+<span class="sd">    :return: euvacFlux: ndarray</span>
+<span class="sd">        Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s</span>
+<span class="sd">    :return euvacIrr: ndarray</span>
+<span class="sd">        Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="n">F107A</span> <span class="o">+</span> <span class="n">F107</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">euvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">37</span><span class="p">))</span> <span class="c1"># Columns represent each wavelength band 37 (59).</span>
+        <span class="n">euvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">37</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">euvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+        <span class="n">euvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">P</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">statsFiles</span><span class="p">:</span>
+        <span class="c1"># Loop across the F10.7 values</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">euvacIrr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># Loop across all the bands:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+                <span class="c1"># Compute the flux:</span>
+                <span class="n">wav</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">euvacTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">euvacTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">F74113_i</span><span class="p">,</span> <span class="n">A_i</span> <span class="o">=</span> <span class="n">refSpec</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">fluxFactor</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">A_i</span> <span class="o">*</span> <span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mf">80.</span><span class="p">))</span>
+                <span class="n">photonFlux</span> <span class="o">=</span> <span class="p">(</span><span class="n">F74113_i</span><span class="p">)</span> <span class="o">*</span> <span class="n">fluxFactor</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">photonFlux</span><span class="p">[</span><span class="n">photonFlux</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">photonFlux</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">photonFlux</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">euvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">photonFlux</span>
+                <span class="n">irrRes</span> <span class="o">=</span> <span class="n">spectralAnalysis</span><span class="o">.</span><span class="n">spectralIrradiance</span><span class="p">(</span><span class="n">photonFlux</span><span class="p">,</span> <span class="n">wavelength</span><span class="o">=</span><span class="n">wav</span><span class="p">)</span>
+                <span class="n">euvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">irrRes</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">euvacFlux</span><span class="p">,</span> <span class="n">euvacIrr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">perturbedEuvIrradiance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">euvacIrr</span><span class="p">)</span>
+        <span class="n">savedPerts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">euvacIrr</span><span class="p">)</span>
+        <span class="c1"># Include statistical data for calculating uncertainties via perturbations:</span>
+        <span class="n">corMatFile</span> <span class="o">=</span> <span class="n">statsFiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># &#39;../../../experiments/corMatEUVAC.pkl&#39;</span>
+        <span class="n">corMatEUVAC</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">EUVpy</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">loadPickle</span><span class="p">(</span><span class="n">corMatFile</span><span class="p">)</span>
+        <span class="n">sigmaFileEUVAC</span> <span class="o">=</span> <span class="n">statsFiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># &#39;../../../experiments/sigma_EUVAC.pkl&#39;</span>
+        <span class="n">STDEuvacResids</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">EUVpy</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">loadPickle</span><span class="p">(</span><span class="n">sigmaFileEUVAC</span><span class="p">)</span>
+        <span class="c1"># Loop over the F10.7 values</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">euvacIrr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">P_n</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># Loop across all the bands:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+                <span class="c1"># Percentage perturbation:</span>
+                <span class="n">P_j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="n">P_n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P_j</span><span class="p">)</span>
+                <span class="n">P_1</span> <span class="o">=</span> <span class="n">P_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># Normalized Correlated Perturbation:</span>
+                <span class="n">C_j1</span> <span class="o">=</span> <span class="n">corMatEUVAC</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>  <span class="c1"># Only consider correlation with the first wavelength bin</span>
+                <span class="n">N_j</span> <span class="o">=</span> <span class="n">C_j1</span> <span class="o">*</span> <span class="n">P_1</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">C_j1</span><span class="p">)</span> <span class="o">*</span> <span class="n">P_j</span>
+                <span class="c1"># Actual Normalized Correlated Perturbation:</span>
+                <span class="n">A_j</span> <span class="o">=</span> <span class="n">STDEuvacResids</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">N_j</span>
+                <span class="c1"># Compute the flux:</span>
+                <span class="n">wav</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">euvacTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">euvacTable</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="c1"># dWav = euvacTable[j, 2] - euvacTable[j, 1]</span>
+                <span class="c1"># if dWav == 0:</span>
+                <span class="c1">#     dWav = None</span>
+                <span class="n">F74113_i</span><span class="p">,</span> <span class="n">A_i</span> <span class="o">=</span> <span class="n">refSpec</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">fluxFactor</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">A_i</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mf">80.</span><span class="p">))</span>
+                <span class="c1"># if fluxFactor &lt; 0.8:</span>
+                    <span class="c1"># fluxFactor = 0.8</span>
+                <span class="n">photonFlux</span> <span class="o">=</span> <span class="p">(</span><span class="n">F74113_i</span><span class="p">)</span><span class="o">*</span><span class="n">fluxFactor</span>
+                <span class="c1"># If P-80 is negative, set the flux to ZERO.</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">photonFlux</span><span class="p">[</span><span class="n">photonFlux</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">photonFlux</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">photonFlux</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">euvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">photonFlux</span>
+                <span class="n">irrRes</span> <span class="o">=</span> <span class="n">spectralAnalysis</span><span class="o">.</span><span class="n">spectralIrradiance</span><span class="p">(</span><span class="n">photonFlux</span><span class="p">,</span> <span class="n">wavelength</span><span class="o">=</span><span class="n">wav</span><span class="p">)</span>
+                <span class="n">euvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">irrRes</span>
+                <span class="n">perturbedEuvIrradiance</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">irrRes</span> <span class="o">+</span> <span class="n">A_j</span>
+                <span class="n">savedPerts</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_j</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Generate a correlation matrix of the perturbations:</span>
+        <span class="n">cc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">37</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">iW1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">iW2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+                <span class="n">cc</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">EUVpy</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">get_cc</span><span class="p">(</span><span class="n">savedPerts</span><span class="p">[:,</span> <span class="n">iW1</span><span class="p">],</span> <span class="n">savedPerts</span><span class="p">[:,</span> <span class="n">iW2</span><span class="p">])</span>
+                <span class="n">cc2</span><span class="p">[</span><span class="n">iW1</span><span class="p">,</span> <span class="n">iW2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span>
+
+        <span class="k">return</span> <span class="n">euvacFlux</span><span class="p">,</span> <span class="n">euvacIrr</span><span class="p">,</span> <span class="n">perturbedEuvIrradiance</span><span class="p">,</span> <span class="n">savedPerts</span><span class="p">,</span> <span class="n">cc2</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

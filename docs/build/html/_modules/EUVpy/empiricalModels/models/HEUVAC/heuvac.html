@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.empiricalModels.models.HEUVAC.heuvac &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.empiricalModels.models.HEUVAC.heuvac</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.empiricalModels.models.HEUVAC.heuvac</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Run HEUVAC</span>
+<span class="c1"># HEUVAC was composed by Dr. Phil Chamberlin in 2006:</span>
+<span class="c1"># Richards, Philip G., Thomas N. Woods, and William K. Peterson. &quot;HEUVAC: A new high resolution solar EUV proxy model.&quot;</span>
+<span class="c1"># Advances in Space Research 37.2 (2006): 315-322.</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Top-level Imports:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Directory management:</span>
+<span class="n">here</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="c1"># Unchangeable filenames (lines 167-169 in HEUVAC-Driver.for), where HEUVAC outputs are stored:</span>
+<span class="n">topDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">directory</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;srcHeuvac&#39;</span><span class="p">))</span> <span class="c1"># &#39;../empiricalModels/models/HEUVAC/&#39;</span>
+<span class="n">torrFluxFile</span> <span class="o">=</span> <span class="n">here</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;srcHeuvac&#39;</span><span class="p">,</span><span class="s1">&#39;Torr-37-bins.txt&#39;</span><span class="p">)</span>
+<span class="n">userFluxFile</span> <span class="o">=</span> <span class="n">here</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;srcHeuvac&#39;</span><span class="p">,</span><span class="s1">&#39;flux-User-bins-10A.txt&#39;</span><span class="p">)</span>
+<span class="n">userIonizationFile</span> <span class="o">=</span> <span class="n">here</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;srcHeuvac&#39;</span><span class="p">,</span><span class="s1">&#39;XS-User-bins-10A.txt&#39;</span><span class="p">)</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Local Imports:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Helper Functions:</span>
+<div class="viewcode-block" id="writeInputFile">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.writeInputFile">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">writeInputFile</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write the formatted input file for running HEUVAC.</span>
+<span class="sd">    :param F107: float</span>
+<span class="sd">        A single value of F10.7.</span>
+<span class="sd">    :param F107A: float</span>
+<span class="sd">        A single value for the 81-day averaged F10.7, centered on the current day.</span>
+<span class="sd">    :return:</span>
+<span class="sd">        Returns nothing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;HEUVAC-scratch.TXT&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heuvacFile</span><span class="p">:</span>
+        <span class="n">heuvacFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">heuvacFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">F107A</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">heuvacFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># We manually keep the 10 Angstrom bin width (the highest resolution of HEUVAC)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="getTorr">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.getTorr">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">getTorr</span><span class="p">(</span><span class="n">fluxFile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the output file from HEUVAC in the Torr bins.</span>
+<span class="sd">    :param fluxFile: str</span>
+<span class="sd">        The filename where the HEUVAC fluxes in the Torr bins have been output.</span>
+<span class="sd">    :return wav: ndarray</span>
+<span class="sd">        The wavelength bin centers for the Torr bins (Angstroms).</span>
+<span class="sd">    :return flux: ndarray</span>
+<span class="sd">        The HEUVAC flux in the Torr bins (W/m2/nm).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+    <span class="n">fluxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+    <span class="n">irrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fluxFile</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="n">fileData</span> <span class="o">=</span> <span class="n">myFile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileData</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">wavs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">fluxes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">irrs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spectralAnalysis</span><span class="o">.</span><span class="n">spectralIrradiance</span><span class="p">(</span><span class="n">fluxes</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">wavs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># The arrays will have values from largest to smallest - they should be flipped before being returned:</span>
+    <span class="n">wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">wavs</span><span class="p">)</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
+    <span class="n">irr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">irrs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">irr</span></div>
+
+
+<div class="viewcode-block" id="getFlux">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.getFlux">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">getFlux</span><span class="p">(</span><span class="n">userFile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the output file from HEUVAC in the Torr bins.</span>
+<span class="sd">    :param userFile: str</span>
+<span class="sd">        The filename where the HEUVAC fluxes in the user-defined bins have been output.</span>
+<span class="sd">    :return wav: ndarray</span>
+<span class="sd">        The wavelength bin centers for the Torr bins (Angstroms).</span>
+<span class="sd">    :return flux: ndarray</span>
+<span class="sd">        The HEUVAC flux in the user-defined bins (ph/cm2/s).</span>
+<span class="sd">    :return: irr</span>
+<span class="sd">        The HEUVAC irradiance in the user-defined bins (W/m2/nm).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span>
+    <span class="n">irr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">userFile</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="n">fileData</span> <span class="o">=</span> <span class="n">myFile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileData</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">wav</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">flux</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+                <span class="n">irr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">wav</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="n">irr</span></div>
+
+
+<div class="viewcode-block" id="heuvac">
+<a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.heuvac">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">heuvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">torr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Call the HEUVAC Fortran code for each F10.7, F10.7A pair.</span>
+<span class="sd">    :param F107: arraylike</span>
+<span class="sd">        The values of [daily] F10.7.</span>
+<span class="sd">    :param F107A: arraylike</span>
+<span class="sd">        The values of 81-day averaged F10.7, centered on the current day.</span>
+<span class="sd">    :param torr: bool</span>
+<span class="sd">        Controls whether or not the binned data returned is in the 37 standard Torr et al bins or in the high-resolution</span>
+<span class="sd">        10 Angstrom-wide bins (the standard high resolution of HEUVAC). Default is True.</span>
+<span class="sd">    :return heuvacWav: ndarray</span>
+<span class="sd">        The bin center wavelengths for the HEUVAC data.</span>
+<span class="sd">    :return heuvacFlux: ndarray</span>
+<span class="sd">        The solar EUV flux in different wavelength bins returned from HEUVAC.</span>
+<span class="sd">    :return heuvacIrr: ndarray</span>
+<span class="sd">        The solar EUV irradiance in different wavelength bins returend from HEUVAC.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">torr</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="n">heuvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">37</span><span class="p">))</span>  <span class="c1"># Columns represent each wavelength band 37 (59).</span>
+            <span class="n">heuvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">37</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">heuvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+            <span class="n">heuvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+            <span class="n">F107</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107</span><span class="p">])</span>
+            <span class="n">F107A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107A</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="n">heuvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">106</span><span class="p">))</span>  <span class="c1"># Columns represent each wavelength band 37 (59).</span>
+            <span class="n">heuvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">),</span> <span class="mi">106</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">heuvacFlux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">106</span><span class="p">))</span>
+            <span class="n">heuvacIrr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">106</span><span class="p">))</span>
+            <span class="n">F107</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107</span><span class="p">])</span>
+            <span class="n">F107A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107A</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">statsFiles</span><span class="p">:</span>
+        <span class="c1"># Loop across all the F10.7 values:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">heuvacIrr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="c1"># Write the input file and run HEUVAC:</span>
+            <span class="n">writeInputFile</span><span class="p">(</span><span class="n">F107</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">F107A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="c1"># Run base HEUVAC:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;./HEUVAC.exe&#39;</span><span class="p">)</span>
+            <span class="c1"># Read in the fluxes in the Torr bins (37 bins) and the user-specified bins:</span>
+            <span class="n">torrWav</span><span class="p">,</span> <span class="n">torrFlux</span><span class="p">,</span> <span class="n">torrIrr</span> <span class="o">=</span> <span class="n">getTorr</span><span class="p">(</span><span class="n">torrFluxFile</span><span class="p">)</span>
+            <span class="n">userWav</span><span class="p">,</span> <span class="n">userFlux</span><span class="p">,</span> <span class="n">userIrr</span> <span class="o">=</span> <span class="n">getFlux</span><span class="p">(</span><span class="n">userFluxFile</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">torr</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">heuvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">torrFlux</span>
+                <span class="n">irrRes</span> <span class="o">=</span> <span class="n">torrIrr</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>  <span class="c1"># Convert to W/m^2</span>
+                <span class="n">heuvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">irrRes</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">heuvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">userFlux</span>
+                <span class="n">heuvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">userIrr</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>  <span class="c1"># Convert to W/m^2</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">topDir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">torr</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">heuvacWav</span> <span class="o">=</span> <span class="n">torrWav</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">heuvacWav</span> <span class="o">=</span> <span class="n">userWav</span>
+        <span class="k">return</span> <span class="n">heuvacWav</span><span class="p">,</span> <span class="n">heuvacFlux</span><span class="p">,</span> <span class="n">heuvacIrr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">perturbedEuvIrradiance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">heuvacIrr</span><span class="p">)</span>
+        <span class="n">savedPerts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">heuvacIrr</span><span class="p">)</span>
+        <span class="c1"># Include statistical data for calculating uncertainties via perturbations:</span>
+        <span class="n">corMatFile</span> <span class="o">=</span> <span class="n">statsFiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># &#39;../../../experiments/corMatEUVAC.pkl&#39;</span>
+        <span class="n">corMatHEUVAC</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">loadPickle</span><span class="p">(</span><span class="n">corMatFile</span><span class="p">)</span>
+        <span class="n">sigmaFileHEUVAC</span> <span class="o">=</span> <span class="n">statsFiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># &#39;../../../experiments/sigma_EUVAC.pkl&#39;</span>
+        <span class="n">STDHeuvacResids</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">loadPickle</span><span class="p">(</span><span class="n">sigmaFileHEUVAC</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+        <span class="c1"># Loop across all the F10.7 values:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">))):</span>
+            <span class="c1"># Write the input file and run HEUVAC:</span>
+            <span class="n">writeInputFile</span><span class="p">(</span><span class="n">F107</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">F107A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">P_n</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">A_j_vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># Loop across all the bands to obtain perturbations:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+                <span class="c1"># Percentage perturbation:</span>
+                <span class="n">P_j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="n">P_n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P_j</span><span class="p">)</span>
+                <span class="n">P_1</span> <span class="o">=</span> <span class="n">P_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># Normalized Correlated Perturbation:</span>
+                <span class="n">C_j1</span> <span class="o">=</span> <span class="n">corMatHEUVAC</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                <span class="n">N_j</span> <span class="o">=</span> <span class="n">C_j1</span> <span class="o">*</span> <span class="n">P_1</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">C_j1</span><span class="p">)</span> <span class="o">*</span> <span class="n">P_j</span>
+                <span class="c1"># Actual Normalized Correlated Perturbation:</span>
+                <span class="n">A_j</span> <span class="o">=</span> <span class="n">STDHeuvacResids</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">N_j</span>
+                <span class="n">A_j_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A_j</span><span class="p">)</span>
+                <span class="n">savedPerts</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_j</span>
+
+            <span class="c1"># Run base HEUVAC:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;./HEUVAC.exe&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Read in the fluxes in the Torr bins (37 bins) and the user-specified bins:</span>
+            <span class="n">torrWav</span><span class="p">,</span> <span class="n">torrFlux</span><span class="p">,</span> <span class="n">torrIrr</span> <span class="o">=</span> <span class="n">getTorr</span><span class="p">(</span><span class="n">torrFluxFile</span><span class="p">)</span>
+            <span class="n">userWav</span><span class="p">,</span> <span class="n">userFlux</span><span class="p">,</span> <span class="n">userIrr</span> <span class="o">=</span> <span class="n">getFlux</span><span class="p">(</span><span class="n">userFluxFile</span><span class="p">)</span>
+
+            <span class="c1"># Collect the flux and irradiance into their respective arrays:</span>
+            <span class="k">if</span> <span class="n">torr</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+                <span class="n">heuvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">torrFlux</span>
+                <span class="n">irrRes</span> <span class="o">=</span> <span class="n">torrIrr</span><span class="o">*</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span> <span class="c1"># Convert to W/m^2</span>
+                <span class="n">heuvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">irrRes</span>
+                <span class="n">perturbedIrr</span> <span class="o">=</span> <span class="n">irrRes</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A_j_vals</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">perturbedIrr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="n">perturbedIrr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">perturbedIrr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">perturbedEuvIrradiance</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">perturbedIrr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">heuvacFlux</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">userFlux</span>
+                <span class="n">heuvacIrr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">userIrr</span><span class="o">*</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span> <span class="c1"># Convert to W/m^2</span>
+                <span class="c1"># TODO: Add perturbation functionality for variable bin widths</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">topDir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">torr</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+            <span class="n">heuvacWav</span> <span class="o">=</span> <span class="n">torrWav</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">heuvacWav</span> <span class="o">=</span> <span class="n">userWav</span>
+
+        <span class="c1"># Generate a correlation matrix of the perturbations:</span>
+        <span class="n">cc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">37</span><span class="p">,</span> <span class="mi">37</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">iW1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">iW2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">37</span><span class="p">):</span>
+                <span class="n">cc</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">get_cc</span><span class="p">(</span><span class="n">savedPerts</span><span class="p">[:,</span> <span class="n">iW1</span><span class="p">],</span> <span class="n">savedPerts</span><span class="p">[:,</span> <span class="n">iW2</span><span class="p">])</span>
+                <span class="n">cc2</span><span class="p">[</span><span class="n">iW1</span><span class="p">,</span> <span class="n">iW2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span>
+
+    <span class="k">return</span> <span class="n">heuvacWav</span><span class="p">,</span> <span class="n">heuvacFlux</span><span class="p">,</span> <span class="n">heuvacIrr</span><span class="p">,</span> <span class="n">perturbedEuvIrradiance</span><span class="p">,</span> <span class="n">savedPerts</span><span class="p">,</span> <span class="n">cc2</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

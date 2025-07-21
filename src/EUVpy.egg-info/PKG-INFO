@@ -31,6 +31,7 @@ Requires-Dist: sphinx
 Requires-Dist: myst_parser
 Requires-Dist: sphinx_rtd_theme
 Requires-Dist: pytest
+Requires-Dist: pyqt5
 Provides-Extra: dev
 Requires-Dist: PyQt5; extra == "dev"
 

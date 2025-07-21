@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.tools.EUV.fism2_process &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.tools.EUV.fism2_process</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.tools.EUV.fism2_process</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Function to parse input arguments</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="parse_args_fism">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.parse_args_fism">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_args_fism</span><span class="p">():</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Download and process FISM data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-start&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span> <span class="o">=</span> <span class="s1">&#39;start date as YYYYMMDD&#39;</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-end&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span> <span class="o">=</span> <span class="s1">&#39;end date as YYYYMMDD&#39;</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-euvfile&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;EUV file that provides wavelength bins&#39;</span><span class="p">,</span>
+                        <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;euv_59.csv&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-fismfile&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;FISM file to convert&#39;</span><span class="p">,</span>
+                        <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-gitm&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Write out GITM-style file&#39;</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-flare&#39;</span><span class="p">,</span> \
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Download and process FISM flare data&#39;</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">args</span></div>
+
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Take string time YYYYMMDD.HHMM and convert to datetime</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="convert_ymdhm_to_dt">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_ymdhm_to_dt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_ymdhm_to_dt</span><span class="p">(</span><span class="n">ymdhm</span><span class="p">):</span>
+
+    <span class="n">year</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">mo</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">da</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ymdhm</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">11</span><span class="p">):</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ymdhm</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">13</span><span class="p">):</span>
+            <span class="n">mi</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mi</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span>
+        <span class="n">mi</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span>
+        
+    <span class="n">time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">mo</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">da</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">hr</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">mi</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span></div>
+
+
+<span class="c1"># ----------------------------------------------------------------------</span>
+<span class="c1"># Function to download FISM2 data.</span>
+<span class="c1"># Need call to be in form:</span>
+<span class="c1"># https://lasp.colorado.edu/lisird/latis/dap/fism_daily_hr.csv?&amp;time&gt;=2020-01-01T00:00:00.000Z&amp;time&lt;=2020-01-31T00:00:00.000Z</span>
+<span class="c1"># ----------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="download_fism2">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.download_fism2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_fism2</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">isFlare</span><span class="p">):</span>
+
+    <span class="n">sStart</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;.000Z&#39;</span>
+    <span class="n">sEnd</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;.000Z&#39;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">isFlare</span><span class="p">):</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://lasp.colorado.edu/lisird/latis/dap/fism_flare_hr.csv&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s1">&#39;https://lasp.colorado.edu/lisird/latis/dap/fism_daily_hr.csv&#39;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">site</span> <span class="o">+</span> <span class="s1">&#39;?&amp;time&gt;=&#39;</span> <span class="o">+</span> <span class="n">sStart</span> <span class="o">+</span> <span class="s1">&#39;?&amp;time&lt;=&#39;</span> <span class="o">+</span> <span class="n">sEnd</span>
+    
+    <span class="n">ymdS</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ymdE</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;.fism_raw_&#39;</span> <span class="o">+</span> <span class="n">ymdS</span> <span class="o">+</span> <span class="s1">&#39;_to_&#39;</span> <span class="o">+</span> <span class="n">ymdE</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span>
+
+    <span class="n">command</span> <span class="o">=</span> <span class="s1">&#39;curl &quot;&#39;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">&#39;&quot; &gt; &#39;</span> <span class="o">+</span> <span class="n">filename</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running Command : &quot;</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">filename</span></div>
+
+    
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># Convert yearday (YYYYDDD) to date time</span>
+<span class="c1">#   - center the day at 12 UT.</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="convert_time">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_time">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_time</span><span class="p">(</span><span class="n">yearday</span><span class="p">):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">yearday</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">doy</span> <span class="o">=</span> <span class="n">yearday</span> <span class="o">-</span> <span class="n">year</span> <span class="o">*</span> <span class="mf">1000.0</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="n">doy</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span></div>
+
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># Convert seconds since 1970 to date time</span>
+<span class="c1">#   - center the day at 12 UT.</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="convert_time_seconds">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_time_seconds">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_time_seconds</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="n">seconds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span></div>
+
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># read euv file - this determines the wavelength bins</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="read_euv_csv_file">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.read_euv_csv_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_euv_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="n">fpin</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">iFound</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fpin</span><span class="p">:</span>
+        <span class="n">aline</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">aline</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Short&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()):</span>
+                <span class="n">short</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">short</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="n">iFound</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Long&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()):</span>
+                <span class="n">long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="n">iFound</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iFound</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">break</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="n">short</span><span class="p">,</span>
+                   <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="n">long</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">band</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="n">diffs</span> <span class="o">=</span> <span class="n">long</span> <span class="o">-</span> <span class="n">short</span>
+        <span class="n">bandInds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">diffs</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="n">short</span><span class="p">[</span><span class="n">bandInds</span><span class="p">],</span>
+                       <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="n">long</span><span class="p">[</span><span class="n">bandInds</span><span class="p">]}</span>
+    <span class="k">return</span> <span class="n">wavelengths</span></div>
+
+    
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># read fism2 csv file</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="read_fism_csv_file">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.read_fism_csv_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_fism_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+
+    <span class="n">fpin</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">header</span> <span class="o">=</span> <span class="n">fpin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="nb">vars</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="n">isSeconds</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;.*seconds.*&#39;</span><span class="p">,</span><span class="nb">vars</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">isSeconds</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Read in a 1d time array and 1d wavelength array</span>
+    <span class="c1"># read in all of the irradiance and uncertainty data as</span>
+    <span class="c1"># a large 1d array, then reshape it into a time vs wavelength 2d array</span>
+    <span class="c1"># structure of the file is all wavelengths for one time, then</span>
+    <span class="c1"># a new time and all wavelengths for that time.</span>
+    
+    <span class="n">iRow</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">oldtime</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">nWaves</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">nTimes</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">irradiance</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">uncertainty</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fpin</span><span class="p">:</span>
+        <span class="n">aline</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">yearday</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">irradiance</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="n">uncertainty</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iRow</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">oldtime</span> <span class="o">=</span> <span class="n">yearday</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">yearday</span> <span class="o">&gt;</span> <span class="n">oldtime</span><span class="p">):</span>
+            <span class="n">nWaves</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">isSeconds</span><span class="p">:</span>
+                <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert_time_seconds</span><span class="p">(</span><span class="n">oldtime</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert_time</span><span class="p">(</span><span class="n">oldtime</span><span class="p">))</span>
+            <span class="n">oldtime</span> <span class="o">=</span> <span class="n">yearday</span>
+            <span class="n">nTimes</span> <span class="o">=</span> <span class="n">nTimes</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nWaves</span> <span class="o">=</span> <span class="n">nWaves</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">nTimes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">wavelengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">aline</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            
+        <span class="n">iRow</span> <span class="o">=</span> <span class="n">iRow</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">isSeconds</span><span class="p">:</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert_time_seconds</span><span class="p">(</span><span class="n">oldtime</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert_time</span><span class="p">(</span><span class="n">oldtime</span><span class="p">))</span>
+    <span class="n">nTimes</span> <span class="o">=</span> <span class="n">nTimes</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="n">irradiance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">irradiance</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nTimes</span><span class="p">,</span> <span class="n">nWaves</span><span class="p">))</span>
+    <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uncertainty</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nTimes</span><span class="p">,</span> <span class="n">nWaves</span><span class="p">))</span>
+    
+    <span class="n">fism_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;vars&#39;</span><span class="p">:</span> <span class="nb">vars</span><span class="p">,</span>
+                 <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">times</span><span class="p">,</span>
+                 <span class="s1">&#39;nTimes&#39;</span><span class="p">:</span> <span class="n">nTimes</span><span class="p">,</span>
+                 <span class="s1">&#39;wave&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">)</span><span class="o">*</span><span class="mf">10.0</span><span class="p">,</span>  <span class="c1"># convert to Angstroms</span>
+                 <span class="s1">&#39;irr&#39;</span><span class="p">:</span> <span class="n">irradiance</span><span class="p">,</span>
+                 <span class="s1">&#39;unc&#39;</span><span class="p">:</span> <span class="n">uncertainty</span><span class="p">}</span>
+            
+    <span class="k">return</span> <span class="n">fism_data</span></div>
+
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># rebin FISM data into new wavelength bins</span>
+<span class="c1">#  some bins are single wavelength, and some span lots of wavelenghts</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="rebin_fism">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.rebin_fism">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rebin_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
+
+    <span class="n">shorts</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span>
+    <span class="n">longs</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span>
+    <span class="n">nWaves</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shorts</span><span class="p">)</span>
+    <span class="n">nvals</span> <span class="o">=</span> <span class="n">fism_vals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">new_irr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nvals</span><span class="p">,</span> <span class="n">nWaves</span><span class="p">))</span> <span class="c1"># np.zeros(nWaves)</span>
+    <span class="n">ave_wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nWaves</span><span class="p">)</span> <span class="c1"># np.zeros(nWaves)</span>
+
+    <span class="c1"># first go through all of the wavelengths that are singular</span>
+    <span class="k">for</span> <span class="n">iWave</span><span class="p">,</span> <span class="n">short</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shorts</span><span class="p">):</span>
+        <span class="n">long</span> <span class="o">=</span> <span class="n">longs</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">long</span> <span class="o">==</span> <span class="n">short</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">short</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">new_irr</span><span class="p">[:,</span> <span class="n">iWave</span><span class="p">]</span> <span class="o">=</span> <span class="n">fism_vals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> \
+                    <span class="p">((</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+            <span class="c1"># zero out bin so we don&#39;t double count it.</span>
+            <span class="n">fism_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># then go through the ranges</span>
+    <span class="k">for</span> <span class="n">iWave</span><span class="p">,</span> <span class="n">short</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shorts</span><span class="p">):</span>
+        <span class="n">long</span> <span class="o">=</span> <span class="n">longs</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span>
+        <span class="n">ave_wav</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">short</span> <span class="o">+</span> <span class="n">long</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">long</span> <span class="o">!=</span> <span class="n">short</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">short</span><span class="p">)</span>
+            <span class="n">iStart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">long</span><span class="p">)</span>
+            <span class="n">iEnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">wave_int</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iStart</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">iEnd</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">new_irr</span><span class="p">[:,</span> <span class="n">iWave</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fism_vals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> \
+                    <span class="p">((</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+                <span class="n">wave_int</span> <span class="o">+=</span> <span class="p">(</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mf">10.0</span>
+    <span class="k">return</span> <span class="n">new_irr</span><span class="p">,</span> <span class="n">ave_wav</span></div>
+
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># isolate FISM data into new wavelength bins</span>
+<span class="c1"># choose those closest to the center wavelength for all bins</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># from scipy.interpolate import UnivariateSpline</span>
+<div class="viewcode-block" id="isolate_fism">
+<a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.isolate_fism">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">isolate_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
+
+    <span class="n">shorts</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span>
+    <span class="n">longs</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span>
+    <span class="n">mids</span> <span class="o">=</span> <span class="p">(</span><span class="n">shorts</span> <span class="o">+</span> <span class="n">longs</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span>
+    <span class="n">nWaves</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shorts</span><span class="p">)</span>
+    <span class="n">new_irr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">fism_vals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nWaves</span><span class="p">))</span> <span class="c1"># np.zeros(nWaves)</span>
+    <span class="n">ave_wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nWaves</span><span class="p">)</span>
+
+    <span class="c1"># first go through all of the wavelengths that are singular</span>
+    <span class="k">for</span> <span class="n">iWave</span><span class="p">,</span> <span class="n">short</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shorts</span><span class="p">):</span>
+        <span class="n">long</span> <span class="o">=</span> <span class="n">longs</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">long</span> <span class="o">==</span> <span class="n">short</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">short</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">new_irr</span><span class="p">[:,</span> <span class="n">iWave</span><span class="p">]</span> <span class="o">=</span> <span class="n">fism_vals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+            <span class="c1"># zero out bin so we don&#39;t double count it.</span>
+            <span class="n">fism_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># then go through the ranges</span>
+    <span class="k">for</span> <span class="n">iWave</span><span class="p">,</span> <span class="n">short</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shorts</span><span class="p">):</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">mids</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span>
+        <span class="n">long</span> <span class="o">=</span> <span class="n">longs</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span>
+        <span class="n">ave_wav</span><span class="p">[</span><span class="n">iWave</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">short</span> <span class="o">+</span> <span class="n">long</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">long</span> <span class="o">!=</span> <span class="n">short</span><span class="p">):</span>
+            <span class="n">d1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">short</span><span class="p">)</span>
+            <span class="n">iStart</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+            <span class="n">d2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fism_waves</span> <span class="o">-</span> <span class="n">long</span><span class="p">)</span>
+            <span class="n">iEnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+            <span class="n">wave_int</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iStart</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">new_irr</span><span class="p">[:,</span> <span class="n">iWave</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fism_vals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> \
+                                  <span class="p">((</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">)</span>
+                <span class="n">wave_int</span> <span class="o">+=</span> <span class="p">(</span><span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">fism_waves</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span>
+
+            <span class="c1"># Add up all of the irradiances in a bin, but average the irradiance value over that bin:</span>
+            <span class="c1">#for i in range(iStart + 1, iEnd + 1):</span>
+            <span class="c1"># irrMaxes[iWave] = max(fism_vals[iStart+1:iEnd+1])</span>
+            <span class="c1"># diffs = (fism_waves[iStart+1:iEnd+1]-fism_waves[iStart:iEnd])/10.</span>
+            <span class="c1"># try:</span>
+            <span class="c1">#     # new_irr[iWave] = np.sum(fism_vals[iStart+1:iEnd+1])/(iEnd-iStart) # Standard Average (wrt number of elements)</span>
+            <span class="c1">#     # new_irr[iWave] = np.sum(fism_vals[iStart+1:iEnd+1]*fism_waves[iStart+1:iEnd+1*diffs]) / ((fism_waves[iEnd+1] + fism_waves[iStart+1])/2.) # Wavelength-specific average</span>
+            <span class="c1">#     # expVal = 2</span>
+            <span class="c1">#     myWeights = fism_vals[iStart+1:iEnd+1] / sum(fism_vals[iStart+1:iEnd+1]) # fism_vals[iStart+1:iEnd+1] / np.mean(fism_vals[iStart+1:iEnd+1]) ** expVal # Weighted sum</span>
+            <span class="c1">#     # new_irr[iWave] = np.average(fism_vals[iStart+1:iEnd+1], weights=myWeights)</span>
+            <span class="c1">#     # Form a univariate spline and take its central value:</span>
+            <span class="c1">#     # print(len(fism_waves[iStart+1:iEnd+1]))</span>
+            <span class="c1">#     # spl = UnivariateSpline(fism_waves[iStart+1:iEnd+1], fism_vals[iStart+1:iEnd+1], k=3)</span>
+            <span class="c1">#     # new_irr[iWave] = np.average(spl(fism_waves[iStart+1:iEnd+1]), weights=fism_vals[iStart+1:iEnd+1] / (np.sum(fism_vals[iStart+1:iEnd+1]))) #fism_vals[iStart+1:iEnd+1])</span>
+            <span class="c1">#     # Integrals:</span>
+            <span class="c1">#     # new_irr[iWave] = np.sum(fism_vals[iStart+1:iEnd+1] * (fism_waves[iEnd+1] - fism_waves[iStart+1])/10.) / len(fism_vals[iStart+1:iEnd+1])</span>
+            <span class="c1"># except:</span>
+            <span class="c1">#     new_irr[iWave] = np.mean(fism_vals[iStart+1:iEnd+1])</span>
+        <span class="c1"># d = np.abs(fism_waves - mid)</span>
+        <span class="c1"># i = np.argmin(d)</span>
+        <span class="c1"># choices[iWave] = fism_waves[i]</span>
+        <span class="c1"># new_irr[iWave] = fism_vals[i]</span>
+
+    <span class="c1"># plt.figure(figsize=(16, 10))</span>
+    <span class="c1"># # plt.plot(shorts, &#39;ro-&#39;)</span>
+    <span class="c1"># # plt.plot(longs, &#39;bo-&#39;)</span>
+    <span class="c1"># # plt.plot(np.linspace(0, len(longs), len(fism_waves)), fism_waves, &#39;go-&#39;)</span>
+    <span class="c1"># # plt.plot(choices, &#39;mo-&#39;)</span>
+    <span class="c1"># # plt.plot(ave_wav, &#39;co-&#39;)</span>
+    <span class="c1"># # plt.semilogy(fism_waves, fism_vals, &#39;ko&#39;, label=&#39;FISM2&#39;)</span>
+    <span class="c1"># plt.plot(ave_wav, new_irr, &#39;yo&#39;, label=&#39;FISM2Ave&#39;)</span>
+    <span class="c1"># # euvacSingulars = np.array([  75.,  125.,  175.,  225.,  275.,  325.,  375.,  425.,  475.,</span>
+    <span class="c1"># #     525.,  575.,  625.,  675.,  725.,  775.,  825.,  875.,  925.,</span>
+    <span class="c1"># #     975., 1025.])</span>
+    <span class="c1"># euvacAll = np.array([75.,  125.,  175.,  225.,  256.3,  284.15,  275.,</span>
+    <span class="c1">#     303.31,  303.78,  325.,  368.07,  375.,  425.,  465.22,</span>
+    <span class="c1">#     475.,  525.,  554.37,  584.33,  575.,  609.76,  629.73,</span>
+    <span class="c1">#     625.,  675.,  703.31,  725.,  765.15,  770.41,  789.36,</span>
+    <span class="c1">#     775.,  825.,  875.,  925.,  977.02,  975., 1025.72,</span>
+    <span class="c1">#    1031.91, 1025.])</span>
+    <span class="c1"># euvacIrr = np.array([5.69353262e-05, 1.32411915e-05, 9.37927458e-05, 4.36505616e-05,</span>
+    <span class="c1">#    3.46218785e-04, 0.00000000e+00, 1.75707120e-05, 3.87532953e-04,</span>
+    <span class="c1">#    4.35535292e-03, 9.03853673e-06, 3.26719434e-04, 2.06070896e-06,</span>
+    <span class="c1">#    3.30406238e-06, 1.14166610e-04, 1.88167308e-06, 3.10849797e-06,</span>
+    <span class="c1">#    2.49217276e-04, 8.68566411e-05, 2.37267582e-06, 1.43577129e-04,</span>
+    <span class="c1">#    4.84189165e-04, 1.90682223e-06, 1.29357633e-06, 9.84585057e-05,</span>
+    <span class="c1">#    7.34438803e-07, 4.23650873e-05, 5.80973952e-05, 1.70635152e-04,</span>
+    <span class="c1">#    3.69285746e-06, 7.43286848e-06, 1.51104669e-05, 1.22163808e-05,</span>
+    <span class="c1">#    8.57872454e-04, 5.73383084e-06, 6.41234926e-04, 3.82012071e-04,</span>
+    <span class="c1">#    9.12641890e-06])</span>
+    <span class="c1"># # np.array([7.65540784e-05, 1.63809850e-05, 1.38699401e-04, 7.64534817e-05,</span>
+    <span class="c1"># #    3.73511747e-05, 1.71982336e-05, 5.80616255e-06, 4.12128830e-06,</span>
+    <span class="c1"># #    3.36710758e-06, 4.03152129e-06, 2.65070695e-06, 2.69721293e-06,</span>
+    <span class="c1"># #    1.47153941e-06, 8.47519491e-07, 4.26354587e-06, 8.59421745e-06,</span>
+    <span class="c1"># #    1.79185283e-05, 1.41947633e-05, 6.55172863e-06, 1.04153719e-05])</span>
+    <span class="c1"># ridleyIrr = np.array([2.01523195e-05, 8.00565189e-06, 1.61690278e-04, 4.27308566e-05,</span>
+    <span class="c1">#    7.49159642e-04, 1.97787269e-03, 6.21483716e-05, 3.08510416e-03,</span>
+    <span class="c1">#    4.75250291e-03, 1.28075616e-04, 6.24942071e-04, 2.04546434e-05,</span>
+    <span class="c1">#    9.22183305e-06, 2.36149361e-04, 1.13273939e-05, 8.74336221e-06,</span>
+    <span class="c1">#    2.39752226e-04, 3.30081441e-04, 1.48277447e-05, 1.29773281e-04,</span>
+    <span class="c1">#    2.87132439e-04, 1.61944521e-05, 3.96214298e-06, 1.25996697e-04,</span>
+    <span class="c1">#    4.87309962e-06, 1.31103060e-04, 1.19993795e-04, 2.07571994e-04,</span>
+    <span class="c1">#    1.07477687e-05, 1.22880354e-05, 2.13009427e-05, 1.89073677e-05,</span>
+    <span class="c1">#    1.25476626e-03, 1.83125851e-05, 6.64609359e-04, 7.61778963e-04,</span>
+    <span class="c1">#    2.66737074e-05])</span>
+    <span class="c1"># # np.array([2.88915208e-05, 9.80923420e-06, 2.26321683e-04, 6.06076516e-05,</span>
+    <span class="c1"># #    9.35931824e-05, 1.80927841e-04, 3.00750583e-05, 1.22766422e-05,</span>
+    <span class="c1"># #    1.40985717e-05, 1.20683072e-05, 1.93956245e-05, 2.01386524e-05,</span>
+    <span class="c1"># #    4.50497544e-06, 5.66952742e-06, 1.18097192e-05, 1.51887053e-05,</span>
+    <span class="c1"># #    2.83487155e-05, 2.50380541e-05, 2.53424192e-05, 3.62951817e-05])</span>
+    <span class="c1"># plt.plot(euvacAll, euvacIrr, &#39;ro&#39;, label=&#39;EUVAC&#39;)</span>
+    <span class="c1"># plt.plot(euvacAll, ridleyIrr, &#39;co&#39;, label=&#39;RIDLEY&#39;)</span>
+    <span class="c1"># plt.title(&#39;2016-1-19&#39;)</span>
+    <span class="c1"># plt.legend(loc=&#39;best&#39;)</span>
+    <span class="c1"># plt.show()</span>
+
+    <span class="k">return</span> <span class="n">new_irr</span><span class="p">,</span> <span class="n">ave_wav</span></div>
+
+
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="c1"># main code:</span>
+<span class="c1">#------------------------------------------------------------------------------</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parse_args_fism</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">fismfile</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">start</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Need to specify -start time! Use -h for help!&#39;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">()</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="n">convert_ymdhm_to_dt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">flare</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*** Downloading Flare data - Can only get 24 hours of data! ***&#39;</span><span class="p">)</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">end</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Need to specify -end time! Use -h for help!&#39;</span><span class="p">)</span>
+                <span class="n">exit</span><span class="p">()</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">convert_ymdhm_to_dt</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="n">fism_file</span> <span class="o">=</span> <span class="n">download_fism2</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">flare</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fism_file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">fismfile</span>
+
+    <span class="n">fism</span> <span class="o">=</span> <span class="n">read_fism_csv_file</span><span class="p">(</span><span class="n">fism_file</span><span class="p">)</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">read_euv_csv_file</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">euvfile</span><span class="p">)</span>
+
+    <span class="n">nWaves</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">])</span>
+
+    <span class="n">filetime</span> <span class="o">=</span> <span class="n">fism</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;fism%Y%m&#39;</span><span class="p">)</span>
+    <span class="n">filestart</span> <span class="o">=</span> <span class="n">filetime</span><span class="o">+</span><span class="s1">&#39;_nWaves_</span><span class="si">%03d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">nWaves</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gitm</span><span class="p">):</span>
+        <span class="n">fileout</span> <span class="o">=</span> <span class="n">filestart</span> <span class="o">+</span> <span class="s1">&#39;_gitm.dat&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fileout</span> <span class="o">=</span> <span class="n">filestart</span> <span class="o">+</span> <span class="s1">&#39;.dat&#39;</span>
+
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileout</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gitm</span><span class="p">):</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#START</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">shortline</span> <span class="o">=</span> <span class="s1">&#39; 0000 00 00 00 00 00 &#39;</span>
+        <span class="k">for</span> <span class="n">short</span> <span class="ow">in</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]:</span>
+            <span class="n">shortline</span> <span class="o">=</span> <span class="n">shortline</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%8.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">short</span>
+        <span class="n">shortline</span> <span class="o">=</span> <span class="n">shortline</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">shortline</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+        <span class="n">longline</span> <span class="o">=</span> <span class="s1">&#39; 0000 00 00 00 00 00 &#39;</span>
+        <span class="k">for</span> <span class="n">long</span> <span class="ow">in</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]:</span>
+            <span class="n">longline</span> <span class="o">=</span> <span class="n">longline</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%8.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">long</span>
+        <span class="n">longline</span> <span class="o">=</span> <span class="n">longline</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">longline</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+    <span class="k">for</span> <span class="n">iTime</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fism</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]):</span>
+        <span class="n">new_irr</span><span class="p">,</span> <span class="n">ave_wav</span> <span class="o">=</span> <span class="n">rebin_fism</span><span class="p">(</span><span class="n">fism</span><span class="p">[</span><span class="s1">&#39;wave&#39;</span><span class="p">],</span> <span class="n">fism</span><span class="p">[</span><span class="s1">&#39;irr&#39;</span><span class="p">][</span><span class="n">iTime</span><span class="p">],</span> <span class="n">wavelengths</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">gitm</span><span class="p">):</span>
+            <span class="n">ave_wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">ave_wav</span><span class="p">)</span>
+            <span class="n">new_irr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">new_irr</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ave_wav</span><span class="p">,</span> <span class="n">new_irr</span><span class="p">)</span>
+
+        <span class="n">sTime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39; %Y %m </span><span class="si">%d</span><span class="s1"> %H %M %S&#39;</span><span class="p">)</span>
+        <span class="n">sData</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+        <span class="k">for</span> <span class="n">irr</span> <span class="ow">in</span> <span class="n">new_irr</span><span class="p">:</span>
+            <span class="n">sData</span> <span class="o">=</span> <span class="n">sData</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%15.8e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">irr</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">sTime</span> <span class="o">+</span> <span class="n">sData</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelength (A)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">fism</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="n">plotfile</span> <span class="o">=</span> <span class="n">filestart</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;writing : &#39;</span><span class="p">,</span><span class="n">plotfile</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">plotfile</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

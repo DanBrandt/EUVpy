@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.tools.spectralAnalysis &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.tools.spectralAnalysis</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.tools.spectralAnalysis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Code for computing converting flux into irradiance and the reverse, along with miscelleneous helper functions.</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Top-level imports:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Constants</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.62607015e-34</span> <span class="c1"># Planck&#39;s constant in SI units of J s</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">299792458</span> <span class="c1"># Speed of light in m s^-1</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Functions:</span>
+<div class="viewcode-block" id="spectralIrradiance">
+<a class="viewcode-back" href="../../../EUVpy.tools.spectralAnalysis.html#EUVpy.tools.spectralAnalysis.spectralIrradiance">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectralIrradiance</span><span class="p">(</span><span class="n">photonFlux</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.</span>
+<span class="sd">    :param: photonFlux: ndarray, float, or int</span>
+<span class="sd">        Photon flux in units of photons s^-1 m^-2. For a singular wavelength, units are photons m^-2</span>
+<span class="sd">    :param: wavelength: float</span>
+<span class="sd">        A specific wavelength in Angstroms.</span>
+<span class="sd">    :return: irradiance: ndarray or float</span>
+<span class="sd">        The corresponding spectral irradiance in units of W/m^2/nm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">photonEnergy</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelength</span><span class="o">*</span><span class="mf">1e-10</span><span class="p">)</span> <span class="c1"># Convert the wavelength in the denominator to meters.</span>
+    <span class="n">irradiance</span> <span class="o">=</span> <span class="n">photonFlux</span> <span class="o">*</span> <span class="n">photonEnergy</span>
+    <span class="c1"># if dWavelength != None:</span>
+    <span class="c1">#     irradiance = photonFlux * photonEnergy * (1./(dWavelength*0.1)) # Multiply the denominator by 0.1 in order to convert from an Angstrom interval to a nanometer interval.</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     irradiance = photonFlux * photonEnergy / wavelength</span>
+    <span class="k">return</span> <span class="n">irradiance</span></div>
+
+
+<div class="viewcode-block" id="spectralFlux">
+<a class="viewcode-back" href="../../../EUVpy.tools.spectralAnalysis.html#EUVpy.tools.spectralAnalysis.spectralFlux">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectralFlux</span><span class="p">(</span><span class="n">irradiance</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span> <span class="c1">#, dWavelength=10):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert the spectral irradiance to spectral flux, given a specific wavelength.</span>
+<span class="sd">    :param: irradiance: ndarray, float, or int</span>
+<span class="sd">        [Solar] spectral irradiance for a specific wavelength, in W/m^2/nm.</span>
+<span class="sd">    :param: wavelength: float</span>
+<span class="sd">        A specific wavelength in Angstroms.</span>
+<span class="sd">    :param: dWavelength: float or int</span>
+<span class="sd">        Wavelength bin width in Angstroms. Default is 1.</span>
+<span class="sd">    :return: photonFlux: ndarray or float</span>
+<span class="sd">        The corresponding spectral flux in units of Watts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">photonEnergy</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelength</span> <span class="o">*</span> <span class="mf">1e-10</span><span class="p">)</span>
+    <span class="n">photonFlux</span> <span class="o">=</span> <span class="n">irradiance</span> <span class="o">/</span> <span class="n">photonEnergy</span> <span class="c1"># (irradiance * dWavelength * 0.1) / photonEnergy</span>
+    <span class="k">return</span> <span class="n">photonFlux</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
