@@ -8,13 +8,7 @@
 import numpy as np
 import os
 from tqdm import tqdm
-<<<<<<< HEAD
-from pathlib import Path
-import EUVpy.empiricalModels.models.HEUVAC as emp
-
-=======
 import pathlib
->>>>>>> 5eba1dd7809a3d06e0e6c69d68051ba33ec4c55d
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
