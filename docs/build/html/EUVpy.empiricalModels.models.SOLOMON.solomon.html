@@ -7,7 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.SOLOMON.solomon module &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -19,7 +23,11 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+<<<<<<< HEAD
     <link rel="next" title="EUVpy.tools package" href="EUVpy.tools.html" />
+=======
+    <link rel="next" title="EUVpy.experiments package" href="EUVpy.experiments.html" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <link rel="prev" title="EUVpy.empiricalModels.models.SOLOMON package" href="EUVpy.empiricalModels.models.SOLOMON.html" /> 
 </head>
 
@@ -55,6 +63,13 @@
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -99,6 +114,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.SOLOMON.solomon.solomon">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.SOLOMON.solomon.</span></span><span class="sig-name descname"><span class="pre">solomon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F107A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'HFG'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/SOLOMON/solomon.html#solomon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.SOLOMON.solomon.solomon" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Compute the solar EUV irradiance in 23 standard bands. Utilizes Equations 1-3 from Solomon and Qian 2005
 (doi:10.1029/2005JA011160).</p>
 <dl class="field-list simple">
@@ -115,6 +131,30 @@
 <li><p><strong>solomonIrr</strong> (<em>numpy.ndarray</em>) – Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2.</p></li>
 </ul>
 </p>
+=======
+<dd><p>Compute the solar EUV irradiance in 23 standard bands.
+:param F107: ndarray</p>
+<blockquote>
+<div><p>Values of the F10.7 solar flux.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F107A</strong> – ndarray
+Values of the 81-day averaged solar flux, centered on the present day.</p></li>
+<li><p><strong>model</strong> – str
+Either ‘HFG’ or ‘EUVAC’. Controls whether or not the empirical EUV data returned corresponds to the HFG model or
+the EUVAC model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return solomonFlux<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+Values of the solar radiant flux in 23 distinct wavelength bands. Units of photon/m^2/s</p>
+</dd>
+<dt class="field-odd">Return solomonIrr<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -126,7 +166,11 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="EUVpy.empiricalModels.models.SOLOMON.html" class="btn btn-neutral float-left" title="EUVpy.empiricalModels.models.SOLOMON package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+<<<<<<< HEAD
         <a href="EUVpy.tools.html" class="btn btn-neutral float-right" title="EUVpy.tools package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+=======
+        <a href="EUVpy.experiments.html" class="btn btn-neutral float-right" title="EUVpy.experiments package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     </div>
 
   <hr/>

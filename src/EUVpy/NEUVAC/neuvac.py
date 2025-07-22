@@ -290,6 +290,7 @@ def neuvacFit(f107Data, irrTimes, irrData, wavelengths, label=None, constrain=Fa
     Calculate entirely new empirical parametric fits between F10.7 data and solar EUV irradiance data, irrespective
     of the number of wavelength bands the irradiance data is split into.
 
+<<<<<<< HEAD
     Parameters
     ----------
     f107Data : list
@@ -312,7 +313,17 @@ def neuvacFit(f107Data, irrTimes, irrData, wavelengths, label=None, constrain=Fa
     -------
     fitParams : numpy.ndarray
         An array of coefficients with which to compute the irradiance in each bin.
+=======
+    :param list f107Data: A list where the first element is an arraylike of datetimes for each F10.7 value, the second element is an arraylike of F10.7 values, and the third element is an arraylike of centered running 81-day averaged F10.7 values.
+    :param arraylike irrTimes: An arraylike of datetimes for each solar EUV spectra in irrData.
+    :param ndarray irrData: An array of solar EUV irradiance measurements or estimates (from FISM, TIMED/SEE, etc.), arranged such that there is a single observation per row. A single observaton contains the entire EUV spectrum for a single day.
+    :param arraylike wavelengths: An array of wavelengths to which the irradiance data corresponds.
+    :param label: An optional argument specifying the label for the data the model is being constructed for. Default is None.
+    :param bool constraint: An optional argument that if True, constrains the fitted function to yield nonnegative outputs.
+    :param ndarray fitParams: An array of coefficients with which to compute the irradiance in each bin.
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     """
+
     # ENFORCING MODEL RESULTS TO BE NONZERO:
     # Objective (cost) function:
     def objFun(params, variables):
@@ -413,6 +424,7 @@ def gitmNEUVAC(f107times, f107, f107b):
     Write NEUVAC irradiances to a file for ingestion directly into the Global Ionosphere-Thermosphere Model. This code
     writes the data to 59 wavelength bins.
 
+<<<<<<< HEAD
     Parameters
     ----------
     f107times : arraylike
@@ -426,6 +438,13 @@ def gitmNEUVAC(f107times, f107, f107b):
     -------
     outfile : string
         The name of the output file.
+=======
+    :param arraylike f107times: The timestamps for F10.7 values. Individual values must be datetimes.
+    :param arraylike f107: The F10.7 values. Individual values must be floats.
+    :param arraylike f107b: The F10.7 values averaged in a 54-day backwards-looking window. Individual values must be floats.
+    :return outfile: The name of the output file.
+    :rtype: str
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     """
     print('Writing a GITM file with NEUVAC irradiances between '+str(f107times[0])+' and '+str(f107times[-1])+'...')
 
@@ -466,11 +485,12 @@ def gitmNEUVAC(f107times, f107, f107b):
     print('Wrote NEUVAC EUV irradiances to the following file: '+outfile)
     return outfile
 
-def aetherFile(tableFile=str(here.parent.joinpath('data/neuvac_table.txt'))):
+def aetherFile(tableFile: str=str(here.parent.joinpath('data/neuvac_table.txt'))):
     """
     Take the NEUVAC coefficients in the 59 wavelength bins and put them into a .csv file in a format for use by the
     Aether model.
 
+<<<<<<< HEAD
     Parameters
     ----------
     tableFile : str
@@ -481,7 +501,13 @@ def aetherFile(tableFile=str(here.parent.joinpath('data/neuvac_table.txt'))):
     -------
     outfile : str
         The location of the .csv file for use by the Aether.
+=======
+    :param str tableFile: The location of the NEUVAC table file to convert. Default is the 59-bin table file in the EUVpy repo.
+    :return outfile: The location of the .csv file for use by the Aether.
+    :rtype: str
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     """
+
     # Open the table file and read in the data:
     neuvacTable = []
     with open(tableFile) as neuvacFile:

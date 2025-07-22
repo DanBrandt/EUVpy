@@ -12,6 +12,7 @@ sphinx
 myst_parser
 sphinx_rtd_theme
 pytest
+pyqt5
 
 [dev]
 PyQt5

@@ -6,7 +6,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.ensemble &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -52,6 +56,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -92,16 +103,28 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level imports:</span>
+<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
+=======
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local Imports</span>
+<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy.NEUVAC</span> <span class="kn">import</span> <span class="n">neuvac</span>
 <span class="kn">from</span> <span class="nn">EUVpy.empiricalModels.models.EUVAC</span> <span class="kn">import</span> <span class="n">euvac</span>
 <span class="kn">from</span> <span class="nn">EUVpy.empiricalModels.models.HEUVAC</span> <span class="kn">import</span> <span class="n">heuvac</span>
+=======
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.NEUVAC</span><span class="w"> </span><span class="kn">import</span> <span class="n">neuvac</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.empiricalModels.models.EUVAC</span><span class="w"> </span><span class="kn">import</span> <span class="n">euvac</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.empiricalModels.models.HEUVAC</span><span class="w"> </span><span class="kn">import</span> <span class="n">heuvac</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -117,6 +140,7 @@
 
 <div class="viewcode-block" id="irradiance_ensemble">
 <a class="viewcode-back" href="../../../EUVpy.tools.ensemble.html#EUVpy.tools.ensemble.irradiance_ensemble">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">irradiance_ensemble</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;NEUVAC&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the individual</span>
@@ -142,6 +166,27 @@
 <span class="sd">    ensemble_avg : numpy.ndarray</span>
 <span class="sd">        A 2D array of the ensemble average of irradiances.</span>
 <span class="sd">    ensemble_stddev : numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">irradiance_ensemble</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;NEUVAC&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the members,</span>
+<span class="sd">    and the standard deviations of the ensemble.</span>
+<span class="sd">    :param F107: float or ndarray</span>
+<span class="sd">        Solar flux at 10.7 cm.</span>
+<span class="sd">    :param F107A: float or ndarray</span>
+<span class="sd">        81 day-averaged solar flux at 10.7, centered on the current day.</span>
+<span class="sd">    :param iterations: int</span>
+<span class="sd">        The number of ensemble members.</span>
+<span class="sd">    :param model: str</span>
+<span class="sd">        The model with which to run the ensemble. May be &#39;NEUVAC&#39;, &#39;NEUVAC-E&#39;, &#39;EUVAC&#39;, or &#39;HEUVAC&#39;. If the model is in</span>
+<span class="sd">        the STAN BANDS, valid arguments include &#39;NEUVAC-S&#39;, &#39;EUVAC-S&#39;, or &#39;HFG&#39;. &#39;NEUVAC&#39; refers to the 59-band base</span>
+<span class="sd">        model of NEUVAC, while &#39;NEUVAC-E&#39; refers to the 37-band base model of NEUVAC.</span>
+<span class="sd">    :return ensemble: ndarray</span>
+<span class="sd">        A 3D array where each 2D element is an ensemble.</span>
+<span class="sd">    :return ensemble_avg: ndarray</span>
+<span class="sd">        A 2D array of the ensemble average of irradiances.</span>
+<span class="sd">    :return ensemble_stddev: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A 2D array of the ensemble standard deviations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get the shape of the third dimension</span>

@@ -6,7 +6,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.EUVAC.euvac &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -52,6 +56,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -94,14 +105,24 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level imports:</span>
+<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+=======
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local Imports:</span>
+<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy.tools</span> <span class="kn">import</span> <span class="n">spectralAnalysis</span>
 <span class="kn">from</span> <span class="nn">EUVpy</span> <span class="kn">import</span> <span class="n">tools</span>
+=======
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectralAnalysis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
@@ -158,6 +179,7 @@
 <span class="c1"># Functions:</span>
 <div class="viewcode-block" id="refSpec">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.EUVAC.euvac.html#EUVpy.empiricalModels.models.EUVAC.euvac.refSpec">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">refSpec</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function for the EUVAC Model: returns the standard solar flux in 37 bands from the F74113 Spectrum</span>
@@ -179,6 +201,20 @@
 <span class="sd">    F74113_i : float</span>
 <span class="sd">        The reference solar flux in units of photons/m^2/s^.</span>
 <span class="sd">    A_i : float</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">refSpec</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the standard solar flux in 37 bands from the F74113 Spectrum (pp. 584-585 in Schunk and Nagy).</span>
+<span class="sd">    Source 2: Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic</span>
+<span class="sd">    calculations, Journal of Geophysical Research, 99, A5, 8981-8992, 1994.</span>
+<span class="sd">    Source 3: Heroux, L. and Hinteregger, H. E., Aeronomical Reference Spectrum for Solar UV Below 2000 A, Journal of</span>
+<span class="sd">    Geophysical Research, 83, A11, 1978.</span>
+<span class="sd">    :param: i: int</span>
+<span class="sd">        The index for the wavelength. Must be between 0 and 37.</span>
+<span class="sd">    :return: F74113_i: float</span>
+<span class="sd">        The reference solar flux in units of photons/m^2/s^.</span>
+<span class="sd">    :return: A_i: float</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The scaling factor for the wavelength interval.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lookUpIdx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">euvacTable</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -189,6 +225,7 @@
 
 <div class="viewcode-block" id="euvac">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.EUVAC.euvac.html#EUVpy.empiricalModels.models.EUVAC.euvac.euvac">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">euvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the solar flux from F10.7, according to the EUVAC model. Return the solar flux across 37 wavelength</span>
@@ -210,6 +247,23 @@
 <span class="sd">        Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s.</span>
 <span class="sd">    euvacIrr: numpy.ndarray</span>
 <span class="sd">        Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">euvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the solar flux from F10.7, according to the EUVAC model. Return the solar flux across 37 wavelength</span>
+<span class="sd">    bands in units of photons m^-2 s^-1.</span>
+<span class="sd">    :param F107: ndarray</span>
+<span class="sd">        Values of the F10.7 solar flux.</span>
+<span class="sd">    :param F107A: ndarray</span>
+<span class="sd">        Values of the 81-day averaged solar flux, centered on the present day.</span>
+<span class="sd">    :param statsFiles: list</span>
+<span class="sd">        A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second</span>
+<span class="sd">        element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.</span>
+<span class="sd">    :return: euvacFlux: ndarray</span>
+<span class="sd">        Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s</span>
+<span class="sd">    :return euvacIrr: ndarray</span>
+<span class="sd">        Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">(</span><span class="n">F107A</span> <span class="o">+</span> <span class="n">F107</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>

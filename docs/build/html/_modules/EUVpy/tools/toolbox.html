@@ -6,7 +6,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.toolbox &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -52,6 +56,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -92,6 +103,7 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level Imports</span>
+<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -115,11 +127,40 @@
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log10</span><span class="p">,</span> <span class="n">floor</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+=======
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="o">,</span><span class="w"> </span><span class="nn">pickle</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ma</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterpolatedUnivariateSpline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Qt5Agg&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">integ</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlretrieve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">log10</span><span class="p">,</span> <span class="n">floor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local imports</span>
+<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy.empiricalModels.models.SOLOMON</span> <span class="kn">import</span> <span class="n">solomon</span>
+=======
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.empiricalModels.models.SOLOMON</span><span class="w"> </span><span class="kn">import</span> <span class="n">solomon</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -128,6 +169,7 @@
 <span class="c1"># Functions</span>
 <div class="viewcode-block" id="openDir">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.openDir">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">openDir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a directory, unless it already exists. Returns nothing.</span>
@@ -135,6 +177,12 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    directory : str</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">openDir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a directory, unless it already exists.</span>
+<span class="sd">    :param directory:</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A string that is the directory to be created, with respect to the current location.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
@@ -145,6 +193,7 @@
 
 <div class="viewcode-block" id="urlObtain">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.urlObtain">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">urlObtain</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Download a file from a URL. If the file already exists, don&#39;t download it; just print the location of the existing</span>
@@ -155,6 +204,15 @@
 <span class="sd">    url : str</span>
 <span class="sd">        The URL where the file is to be downloaded from.</span>
 <span class="sd">    fname : str</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">urlObtain</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a file from a URL. If the file already exists, don&#39;t download it; just print the location of the existing</span>
+<span class="sd">    file.</span>
+<span class="sd">    :param url: str</span>
+<span class="sd">        The URL where the file is to be downloaded from.</span>
+<span class="sd">    :param fname: str</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The filename which the downloaded file will be saved to.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
@@ -165,6 +223,7 @@
 
 <div class="viewcode-block" id="savePickle">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.savePickle">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">savePickle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pickleFilename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some data (a list, dict, or array), save it is a pickle file with a user-supplied name. Returns nothing.</span>
@@ -174,6 +233,14 @@
 <span class="sd">    data : any</span>
 <span class="sd">        A variable referring to data to be saved as a pickle.</span>
 <span class="sd">    pickleFilename : str</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">savePickle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pickleFilename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given some data (a list, dict, or array), save it is a pickle file with a user-supplied name.</span>
+<span class="sd">    :param: data</span>
+<span class="sd">        A variable referring to data to be saved as a pickle.</span>
+<span class="sd">    :param: pickleFilename, str</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A string with which to name the pickle file to be saved.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pickleFilename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pickleFile</span><span class="p">:</span>
@@ -182,6 +249,7 @@
 
 <div class="viewcode-block" id="loadPickle">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.loadPickle">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">loadPickle</span><span class="p">(</span><span class="n">pickleFilename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given the name of a (pre-existing) pickle file, load its contents.</span>
@@ -195,6 +263,15 @@
 <span class="sd">    -------</span>
 <span class="sd">    var : any</span>
 <span class="sd">        The loaded data. The data type will correspond to whatever data was saved previously using savePickle.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">loadPickle</span><span class="p">(</span><span class="n">pickleFilename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given the name of a (pre-existing) pickle file, load its contents.</span>
+<span class="sd">    :param: pickleFilename, str</span>
+<span class="sd">        A string with the location/name of the filename.</span>
+<span class="sd">    :return: var</span>
+<span class="sd">        The loaded data.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pickleFilename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pickleFile</span><span class="p">:</span>
         <span class="n">var</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickleFile</span><span class="p">)</span>
@@ -203,6 +280,7 @@
 
 <div class="viewcode-block" id="firstNonNan">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.firstNonNan">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">firstNonNan</span><span class="p">(</span><span class="n">listfloats</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find the index of the first non-NaN value in a given sequence.</span>
@@ -217,6 +295,16 @@
 <span class="sd">    item : float</span>
 <span class="sd">        The element that is the first non-NaN value.</span>
 <span class="sd">    idx : int</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">firstNonNan</span><span class="p">(</span><span class="n">listfloats</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find the index of the first non-NaN value in a given sequence.</span>
+<span class="sd">    Source: https://stackoverflow.com/questions/22129495/return-first-non-nan-value-in-python-list</span>
+<span class="sd">    :param listfloats:</span>
+<span class="sd">    :return item:</span>
+<span class="sd">        The element that is the first non-NaN value.</span>
+<span class="sd">    :return idx:</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The index corresponding to the first non-NaN value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">listfloats</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -233,6 +321,7 @@
 
 <div class="viewcode-block" id="find_nearest">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.find_nearest">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">find_nearest</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given an array, find the index and value of an item closest to a supplied value.</span>
@@ -249,6 +338,18 @@
 <span class="sd">    idx : int</span>
 <span class="sd">        The index of the nearest value.</span>
 <span class="sd">    array[idx] : float, int, str, datetime</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">find_nearest</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an array, find the index and value of an item closest to a supplied value.</span>
+<span class="sd">    :param array: ndarray</span>
+<span class="sd">        An array of values over which to search.</span>
+<span class="sd">    :param value: float, int, str, datetime</span>
+<span class="sd">        A value for which the closest value will be searched for.</span>
+<span class="sd">    :return idx: int</span>
+<span class="sd">        The index of the nearest value.</span>
+<span class="sd">    :return array[idx]: float, int, str, datetime</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The actual value.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
@@ -258,6 +359,7 @@
 
 <div class="viewcode-block" id="uniformSample">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.uniformSample">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">uniformSample</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">cadence</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some data with associated time stamps, resample the data so that the data have the time resolution equal to</span>
@@ -277,6 +379,21 @@
 <span class="sd">    uniformXdata : numpy.ndarray</span>
 <span class="sd">        A uniformly-sampled array of datetimes.</span>
 <span class="sd">    uniformYdata : numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">uniformSample</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">cadence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given some data with associated time stamps, resample the data so that the data have the time resolution equal to</span>
+<span class="sd">    the given cadence.</span>
+<span class="sd">    :param xdata: arraylike</span>
+<span class="sd">        A list of time stamps.</span>
+<span class="sd">    :param ydata: arraylike</span>
+<span class="sd">        A list of data/values associated with the time stamps.</span>
+<span class="sd">    :param cadence: int</span>
+<span class="sd">        An integer denoting (in hours) the desired time cadence of the data.</span>
+<span class="sd">    :return uniformXdata: ndarray</span>
+<span class="sd">        A uniformly-sampled array of datetimes.</span>
+<span class="sd">    :return uniformYdata: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A uniformly-sampled array of corresponding data/values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Instantiate an array of timestamps with the desired cadence:</span>
@@ -296,6 +413,7 @@
 
 <div class="viewcode-block" id="imputeData">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.imputeData">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">imputeData</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">bad_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given timeseries data, impute bad values and returned the cleaned data.</span>
@@ -307,10 +425,21 @@
 <span class="sd">    values : arraylike</span>
 <span class="sd">        A 1D list or array of timeseries data.</span>
 <span class="sd">    method : str</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">imputeData</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">bad_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given timeseries data, impute bad values and returned the cleaned data.</span>
+<span class="sd">    :param timestamps: arraylike</span>
+<span class="sd">        A 1D list or array of timestamps.</span>
+<span class="sd">    :param values: arraylike</span>
+<span class="sd">        A 1D list or array of timeseries data.</span>
+<span class="sd">    :param method: str</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A string indicating the method to be used. If &#39;mean&#39;, &#39;median&#39;, &#39;most_frequent&#39;, or &#39;constant&#39;, uses the</span>
 <span class="sd">        SimpleImputer routine from sklearn. If &#39;gam&#39;, uses a Generalized Additive Model to fill in the data. If &#39;gpr&#39;,</span>
 <span class="sd">        use Gaussian Process Regression to perform imputation. Otherwise, cubic spline interpolation is used for</span>
 <span class="sd">        imputation.</span>
+<<<<<<< HEAD
 <span class="sd">    bad_values : float, int, or NaN (type)</span>
 <span class="sd">        The type of the data you wish to impute.</span>
 
@@ -321,6 +450,15 @@
 <span class="sd">        are necessarily excluded by the chosen imputation method. For example, the edges of the data are often removed</span>
 <span class="sd">        when the cubic spline interpolation is used for imputation, to avoid Runge&#39;s phenomenon.</span>
 <span class="sd">    cleanData : numpy.ndarray</span>
+=======
+<span class="sd">    :param bad_values: float, int, or NaN (type)</span>
+<span class="sd">        The type of the data you wish to impute.</span>
+<span class="sd">    :return cleanTimes: ndarray</span>
+<span class="sd">        The timestamps corresponding to the cleaned data. This will differ from &#39;timestamps&#39; if and only if some data</span>
+<span class="sd">        are necessarily excluded by the chosen imputation method. For example, the edges of the data are often removed</span>
+<span class="sd">        when the cubic spline interpolation is used for imputation, to avoid Runge&#39;s phenomenon.</span>
+<span class="sd">    :return cleanData: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The cleaned 1D timeseries.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cleanTimes</span> <span class="o">=</span> <span class="n">timestamps</span>
@@ -338,8 +476,13 @@
         <span class="n">subset</span> <span class="o">=</span> <span class="n">values</span> <span class="c1"># [100:10000]</span>
         <span class="n">DOYvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">fractionalDOY</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">timestamps</span><span class="p">])</span>
         <span class="n">DOYsubset</span> <span class="o">=</span> <span class="n">DOYvals</span> <span class="c1"># [100:10000]</span>
+<<<<<<< HEAD
         <span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
         <span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="n">RBF</span>
+=======
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.gaussian_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.gaussian_process.kernels</span><span class="w"> </span><span class="kn">import</span> <span class="n">RBF</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="n">kernel</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_scale_bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">))</span>
         <span class="n">XPred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">DOYsubset</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">XAxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">subset</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -351,7 +494,11 @@
     <span class="k">elif</span> <span class="n">method</span><span class="o">==</span><span class="s1">&#39;gam&#39;</span><span class="p">:</span>
         <span class="c1"># Use a GAM to parameterize perform gap-filling:</span>
         <span class="n">DOY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">fractionalDOY</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">timestamps</span><span class="p">])</span>
+<<<<<<< HEAD
         <span class="kn">from</span> <span class="nn">pygam</span> <span class="kn">import</span> <span class="n">LinearGAM</span><span class="p">,</span> <span class="n">s</span>
+=======
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pygam</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearGAM</span><span class="p">,</span> <span class="n">s</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="n">X</span> <span class="o">=</span> <span class="n">DOY</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span>
         <span class="n">gam</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -384,6 +531,7 @@
 
 <div class="viewcode-block" id="gapify">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.gapify">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">gapify</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">bad_value</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">replace_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Take a timeseries and replace the bad values (signified by &#39;bad_values&#39;) with NaNs, unless otherwise desired.</span>
@@ -399,6 +547,17 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">gapify</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">bad_value</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">replace_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Take a timeseries and replace the bad values (signified by &#39;bad_values&#39;) with NaNs, unless otherwise desired.</span>
+<span class="sd">    :param timestamps: arraylike</span>
+<span class="sd">        A 1D list or array of timestamps.</span>
+<span class="sd">    :param bad_values: int or float</span>
+<span class="sd">        A float or int corresponding to the bad values to be &#39;gapped out&#39;. Default is 999.</span>
+<span class="sd">    :param replace_val: int, float, NaN, or None</span>
+<span class="sd">        An int, float, NaN, or Nonetype describing what will replace the bad values.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    :return gappedData:</span>
 <span class="sd">        The gapified 1D data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -410,6 +569,7 @@
 
 <div class="viewcode-block" id="fractionalDOY">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.fractionalDOY">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">fractionalDOY</span><span class="p">(</span><span class="n">myDatetime</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a generic datetime object into a float corresponding to the fractional day of the year.</span>
@@ -422,6 +582,14 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    fracDOY : float</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">fractionalDOY</span><span class="p">(</span><span class="n">myDatetime</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a generic datetime object into a float corresponding to the fractional day of the year.</span>
+<span class="sd">    :param: myDatetime: datetime</span>
+<span class="sd">        A datetime object.</span>
+<span class="sd">    :return: fracDOY: float</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A float corresponding to the fractional Day of the Year, with the decimal portion included to show contributions</span>
 <span class="sd">        from the time of day in hours, minutes, and seconds.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -432,6 +600,7 @@
 <span class="c1"># TODO: Fix the function below to handle VERY LARGE data gaps.</span>
 <div class="viewcode-block" id="rollingAverage">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.rollingAverage">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">rollingAverage</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">impute_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Using pandas, compute a rolling average of over &#39;data&#39; using a window length of &#39;windowlength&#39;. Sets the leading and</span>
@@ -452,6 +621,22 @@
 <span class="sd">    -------</span>
 <span class="sd">    rolled : arraylike</span>
 <span class="sd">        The rolling averaged data.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">rollingAverage</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">impute_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Using pandas, compute a rolling average of over &#39;data&#39; using a window length of &#39;windowlength&#39;. Sets the leading and</span>
+<span class="sd">    trailing windows to the values of the original data.</span>
+<span class="sd">    :param myData: arraylike</span>
+<span class="sd">        The data over which to compute the rolling average.</span>
+<span class="sd">    :param window_length: int</span>
+<span class="sd">        The size of the window over which to average.</span>
+<span class="sd">    :param impute_edges: bool</span>
+<span class="sd">        A boolean determining whether the edges will be interpolated. Default is True.</span>
+<span class="sd">    :param center: bool</span>
+<span class="sd">        A boolean determining whether the centered average will be used.</span>
+<span class="sd">    :return: rolled, arraylike</span>
+<span class="sd">        The rolling average data.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">myDataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">myData</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Var&#39;</span><span class="p">])</span>
     <span class="n">myDataframe</span><span class="p">[</span><span class="s1">&#39;Rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myDataframe</span><span class="p">[</span><span class="s1">&#39;Var&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">window_length</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -492,6 +677,7 @@
 
 <div class="viewcode-block" id="rollingStd">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.rollingStd">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">rollingStd</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some data, compute the rolling standard deviation. If the data is two dimensional, compute the rolling</span>
@@ -513,6 +699,23 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Define the generic rolling std function to be used repeatedly:</span>
     <span class="k">def</span> <span class="nf">stdRoller</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">windowLength</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">rollingStd</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given some data, compute the rolling standard deviation. If the data is two dimensional, compute the rolling</span>
+<span class="sd">    standard deviation along a specific axis of the data (specified by the user).</span>
+<span class="sd">    :param myData: arraylike</span>
+<span class="sd">        The data over which to compute the rolling average.</span>
+<span class="sd">    :param window_length: int</span>
+<span class="sd">        The size of the window over which to average. Default is 2.</span>
+<span class="sd">    :param axis: int</span>
+<span class="sd">        For 2D data, the axis along which to compute the rolling standard deviation. Defaults is -1.</span>
+<span class="sd">    :return stdData: ndarray</span>
+<span class="sd">        The rolling standard deviation values of the data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define the generic rolling std function to be used repeatedly:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stdRoller</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">windowLength</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="n">myDataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Var&#39;</span><span class="p">])</span>
         <span class="n">myDataframe</span><span class="p">[</span><span class="s1">&#39;Rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">myDataframe</span><span class="p">[</span><span class="s1">&#39;Var&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">windowLength</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
         <span class="c1"># Set the leading and trailing values equal to the mean standard deviation:</span>
@@ -544,6 +747,7 @@
 
 <div class="viewcode-block" id="normalize">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.normalize">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Normalize data with respect to the mean, along the axis specified by the user.</span>
@@ -561,6 +765,19 @@
 <span class="sd">        The normalized data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">normFunc</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normalize data with respect to the mean, along the axis specified by the user.</span>
+<span class="sd">    :param myData: ndarray</span>
+<span class="sd">        A 1d or 2d array of data.</span>
+<span class="sd">    :param axis: int</span>
+<span class="sd">        The axis along which to perform normalization with respect to the mean. Default is -1.</span>
+<span class="sd">    :return normedData: ndarray</span>
+<span class="sd">        The normalized data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normFunc</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">myData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">normedData</span> <span class="o">=</span> <span class="n">normFunc</span><span class="p">(</span><span class="n">myData</span><span class="p">)</span>
@@ -581,12 +798,17 @@
 
 <div class="viewcode-block" id="corrCol">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.corrCol">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">corrCol</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">otherData</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">corrCol</span><span class="p">(</span><span class="n">myData</span><span class="p">,</span> <span class="n">otherData</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given two sets of data, find the correlation between them. If the first set of data</span>
 <span class="sd">    is multidimensional, correlate it with the second set by column. This function requires that</span>
 <span class="sd">    &#39;otherData&#39; is 1D and equivalent to the lengths of the columns of &#39;myData&#39;. Otherwise, if &#39;myData&#39;</span>
 <span class="sd">    is 1D, it must be the same length as &#39;otherData&#39;.</span>
+<<<<<<< HEAD
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -600,6 +822,15 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    fitParams : numpy.ndarray</span>
+=======
+<span class="sd">    :param myData: ndarray</span>
+<span class="sd">        The dependent variable data.</span>
+<span class="sd">    :param otherData: ndarray</span>
+<span class="sd">        The independent variable data.</span>
+<span class="sd">    :param saveLoc: str</span>
+<span class="sd">        A location where to save figures of the correlations. Optional argument. Default is None.</span>
+<span class="sd">    :return fitParams: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A poly1d object for the fit of the data. The last element is Pearson&#39;s R.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Loop through the columns and perform the correlation:</span>
@@ -631,11 +862,16 @@
 
 <div class="viewcode-block" id="bestPolyfit">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.bestPolyfit">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">bestPolyfit</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">maxOrder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">bestPolyfit</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">maxOrder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given independent variable and dependent variable 1D data fit the data with polynomial functions of orders up to a</span>
 <span class="sd">    user-defined limit set to &#39;maxOrder&#39;. For the best-fitting model, return the parameters for the polynomial (as a</span>
 <span class="sd">    poly1d object) along with the associated Residual Sum of Squares.</span>
+<<<<<<< HEAD
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -652,12 +888,25 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    modelRes : list</span>
+=======
+<span class="sd">    :param xdata: ndarray</span>
+<span class="sd">        1D independent variable data.</span>
+<span class="sd">    :param ydata: ndarray</span>
+<span class="sd">        1D dependent variable data.</span>
+<span class="sd">    :param maxOrder: int</span>
+<span class="sd">        A number below which (inclusive) to consider models to fit to the data. Default is 5.</span>
+<span class="sd">    :param func: str</span>
+<span class="sd">        Specifies what function should be used for fitting. Valid strings are: &#39;exp&#39;, &#39;linear&#39;, &#39;log&#39;, and &#39;cubic&#39;. If</span>
+<span class="sd">        this argument is passed, maxOrder is ignored.</span>
+<span class="sd">    :return modelRes: list</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A list where the first element are the model parameters, the second is the Residual Sum of Squares, and the</span>
 <span class="sd">        third is the model order.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Example functions:</span>
     <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;exp&#39;</span><span class="p">:</span>
+<<<<<<< HEAD
             <span class="k">def</span> <span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span>
         <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;cubic&#39;</span><span class="p">:</span>
@@ -671,6 +920,21 @@
                 <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
         <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;quadratic&#39;</span><span class="p">:</span>
             <span class="k">def</span> <span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+=======
+            <span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span>
+        <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;cubic&#39;</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">d</span>
+        <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+                <span class="n">a</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="k">elif</span> <span class="n">func</span> <span class="o">==</span> <span class="s1">&#39;quadratic&#39;</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">myFunc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
                 <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid argument supplied for argument &quot;func&quot;.&#39;</span><span class="p">)</span>
@@ -717,12 +981,17 @@
 
 <div class="viewcode-block" id="binRMSE">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.binRMSE">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">binRMSE</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydataEst</span><span class="p">,</span> <span class="n">ydataTrue</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">titleStr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">binRMSE</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydataEst</span><span class="p">,</span> <span class="n">ydataTrue</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">titleStr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some 1D independent variable data, some 1D estimates of dependent variable data, 1D true values of dependent</span>
 <span class="sd">    variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the RMSE</span>
 <span class="sd">    error in each bin. Then compute the correlation between the RMSE and the binned xdata. Automatically saves</span>
 <span class="sd">    a figure for the results at a user-defined location.</span>
+<<<<<<< HEAD
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -747,6 +1016,26 @@
 <span class="sd">    binCenters : list</span>
 <span class="sd">        The bin centers for the dependent variable data.</span>
 <span class="sd">    RMSE : list</span>
+=======
+<span class="sd">    :param xdata: ndarray</span>
+<span class="sd">        1D independent variable data.</span>
+<span class="sd">    :param ydataEst: ndarray</span>
+<span class="sd">        1D estimates of dependent variable data.</span>
+<span class="sd">    :param ydataEst: ndarray</span>
+<span class="sd">        1D actual values of dependent variable data.</span>
+<span class="sd">    :param step: int</span>
+<span class="sd">        The bin width for the independent variable data. Default is 10.</span>
+<span class="sd">    :param saveLoc: str</span>
+<span class="sd">        A string for the location where the figure should be saved.</span>
+<span class="sd">    :param titleStr: str</span>
+<span class="sd">        A string for the title of the figure to be generated. Assumes that a single number representing a figure number</span>
+<span class="sd">        or wavelength is given.</span>
+<span class="sd">    :param normalize: Bool</span>
+<span class="sd">        Controls whether the RMSE is normalized or not. Default is False.</span>
+<span class="sd">    :return binCenters: list</span>
+<span class="sd">        The bin centers for the dependent variable data.</span>
+<span class="sd">    :return RMSE: list</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The RMSE values for each bin.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create the bins:</span>
@@ -785,12 +1074,17 @@
 
 <div class="viewcode-block" id="binCorrelation">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.binCorrelation">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">binCorrelation</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydataEst</span><span class="p">,</span> <span class="n">ydataTrue</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">titleStr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">binCorrelation</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydataEst</span><span class="p">,</span> <span class="n">ydataTrue</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">titleStr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some 1D independent variable data, some 1D estimates of dependent variable data, 1D true values of dependent</span>
 <span class="sd">    variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the squared</span>
 <span class="sd">    difference in each bin. Then compute the correlation between the the squared difference and the binned xdata.</span>
 <span class="sd">    Automatically saves a figure for the results at a user-defined location.</span>
+<<<<<<< HEAD
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -818,6 +1112,29 @@
 <span class="sd">    binCenters : list</span>
 <span class="sd">        The bin centers for the dependent variable data.</span>
 <span class="sd">    SQDF : list</span>
+=======
+<span class="sd">    :param xdata: ndarray</span>
+<span class="sd">        1D independent variable data.</span>
+<span class="sd">    :param ydataEst: ndarray</span>
+<span class="sd">        1D estimates of dependent variable data.</span>
+<span class="sd">    :param ydataEst: ndarray</span>
+<span class="sd">        1D actual values of dependent variable data.</span>
+<span class="sd">    :param step: int</span>
+<span class="sd">        The bin width for the independent variable data. Default is 10.</span>
+<span class="sd">    :param saveLoc: str</span>
+<span class="sd">        A string for the location where the figure should be saved.</span>
+<span class="sd">    :param titleStr: str</span>
+<span class="sd">        A string for the title of the figure to be generated. Assumes that a single number representing a figure number</span>
+<span class="sd">        or wavelength is given.</span>
+<span class="sd">    :param root: Bool</span>
+<span class="sd">        Controls whether the square root of the SQDF is taken. Default is False.</span>
+<span class="sd">    :param normalize: Bool</span>
+<span class="sd">        Controls whether the SQDF is normalized (by dividing by the true data and multiplying by 100). Default is False.</span>
+<span class="sd">        If True, ignores the value of &#39;root&#39;.</span>
+<span class="sd">    :return binCenters: list</span>
+<span class="sd">        The bin centers for the dependent variable data.</span>
+<span class="sd">    :return SQDF: list</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The Squared Difference values for each bin.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create the bins:</span>
@@ -873,6 +1190,7 @@
 
 <div class="viewcode-block" id="round_mult">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.round_mult">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">round_mult</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Round a number to the nearest integer multiple of a given divisor.</span>
@@ -889,6 +1207,18 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    rounded: float</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">round_mult</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">divisor</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Round a number to the nearest integer multiple of a given divisor.</span>
+<span class="sd">    :param num: int or float</span>
+<span class="sd">        The number to round down.</span>
+<span class="sd">    :param divisor: int or float</span>
+<span class="sd">        The number which the result must be an integer multiple of.</span>
+<span class="sd">    :param direction: str</span>
+<span class="sd">        Either &#39;down&#39; or &#39;up&#39;. Specifies whether rounding should be done up or down/</span>
+<span class="sd">    :return rounded: float</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The resulting number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;down&#39;</span><span class="p">:</span>
@@ -899,6 +1229,7 @@
 
 <div class="viewcode-block" id="stringList">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.stringList">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">stringList</span><span class="p">(</span><span class="n">myList</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a list of numbers into a single string.</span>
@@ -911,6 +1242,14 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    myStr : str</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">stringList</span><span class="p">(</span><span class="n">myList</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a list of numbers into a single string.</span>
+<span class="sd">    :param myList: list</span>
+<span class="sd">        A list of numbers.</span>
+<span class="sd">    :return myStr: str</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">strList</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">myList</span><span class="p">]</span>
@@ -920,11 +1259,16 @@
 
 <div class="viewcode-block" id="rebin">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.rebin">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">rebin</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">rebin</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unc</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Rebin 2D [irradiance/flux] data, where each row is a complete spectrum, and each column is a specific wavelength</span>
 <span class="sd">    bin. Do the rebinning according to a desired resolution, and restrict the returned information to wavelength</span>
 <span class="sd">    boundaries set by the user.</span>
+<<<<<<< HEAD
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -953,6 +1297,30 @@
 <span class="sd">    newWaves : numpy.ndarray</span>
 <span class="sd">        The centers of the wavelength bins corresponding to the rebinned data.</span>
 <span class="sd">    newData : numpy.ndarray</span>
+=======
+<span class="sd">    :param wavelengths: arraylike</span>
+<span class="sd">        A list of wavelengths at which each irradiance value is taken.</span>
+<span class="sd">    :param data: ndarray</span>
+<span class="sd">        A 2D array of spectrum data (irradiances or fluxes).</span>
+<span class="sd">    :param resolution: float or dict</span>
+<span class="sd">        The desired spectral resolution of the rebinned data. Units must be in nanometers. If argument is a dict, the</span>
+<span class="sd">        key &#39;short&#39; should contain wavelength boundaries for the beginning of bins, and the key &#39;long&#39; should contain</span>
+<span class="sd">        wavelength boundaries for the ending of bins. These boundaries should be in Angstroms.</span>
+<span class="sd">    :param limits: list</span>
+<span class="sd">        A list of two elements, where the first is a lower limit for wavelengths and the second is an upper limit for</span>
+<span class="sd">        wavelengths, both in units of nanometers.</span>
+<span class="sd">    :param factor: int</span>
+<span class="sd">        A factor by which to upsample the data before performing rebinning. Tends to make the binning much more</span>
+<span class="sd">        accurate, due to the use of integrals. Default is None.</span>
+<span class="sd">    :param zero: bool</span>
+<span class="sd">        Controls whether singular lines are set to a value of zero after they are extracted. Default is True.</span>
+<span class="sd">    :param unc: bool</span>
+<span class="sd">        Indicates whether or not uncertainties are being rebinned. If so, they will be combined in each bin using an</span>
+<span class="sd">        interpolation method.</span>
+<span class="sd">    :return newWaves: ndarray</span>
+<span class="sd">        The centers of the wavelength bins corresponding to the rebinned data.</span>
+<span class="sd">    :return newData: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The rebinned data as a 2D array, arranged like the input data but at the new wavelength resolution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get the native wavelength resolution of the input data:</span>
@@ -1114,6 +1482,7 @@
 
 <div class="viewcode-block" id="newbins">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.newbins">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">newbins</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Rebin data according to a user-defined binning scheme.</span>
@@ -1138,6 +1507,26 @@
 <span class="sd">    newWaves : arraylike</span>
 <span class="sd">        The wavelength boundaries of the new binning scheme.</span>
 <span class="sd">    newData : arraylike</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">newbins</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rebin data according to a user-defined binning scheme.</span>
+<span class="sd">    :param wavelengths: arraylike</span>
+<span class="sd">        The wavelengths of the native data. Units should be in nm.</span>
+<span class="sd">    :param data: arraylike</span>
+<span class="sd">        The native data to be rebinned. Assumes each row is an observation and each column is a bin.</span>
+<span class="sd">    :param bins: dict</span>
+<span class="sd">        A dictionary containing the left-ward wavelength bin limits (first key) and the right-ward wavelength bin limits</span>
+<span class="sd">        (right key). Units should be in Angstroms.</span>
+<span class="sd">    :param zero: bool</span>
+<span class="sd">        Controls whether a wavelength bin is &#39;zeroed&#39; out after it is considered. Default is False.</span>
+<span class="sd">    :param interpolation: bool</span>
+<span class="sd">        Controls whether interpolation or 4-nm centered windowed averaging is used to handle singular emission</span>
+<span class="sd">        lines. Default is False, corresponding to the windowed averaging.</span>
+<span class="sd">    :return newWaves: arraylike</span>
+<span class="sd">        The wavelength boundaries of the new binning scheme.</span>
+<span class="sd">    :return newData: arraylike</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The values of the rebinned data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># originalData = data</span>
@@ -1219,12 +1608,17 @@
 
 <div class="viewcode-block" id="forecast">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.forecast">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">trend_coefs</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">trend_coefs</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Produce linear minimum MSE forecast [taken from statsmodels.tsa.vector_ar.var_model.py]</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+<<<<<<< HEAD
 <span class="sd">    y : ndarray</span>
 <span class="sd">        Input data. (k_ar x neqs)</span>
 <span class="sd">    coefs : numpy.ndarray</span>
@@ -1240,6 +1634,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    forecasts : numpy.ndarray</span>
 <span class="sd">        Predictions. (steps x neqs)</span>
+=======
+<span class="sd">    y : ndarray (k_ar x neqs)</span>
+<span class="sd">    coefs : ndarray (k_ar x neqs x neqs)</span>
+<span class="sd">    trend_coefs : ndarray (1 x neqs) or (neqs)</span>
+<span class="sd">    steps : int</span>
+<span class="sd">    exog : ndarray (trend_coefs.shape[1] x neqs)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    forecasts : ndarray (steps x neqs)</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -1286,11 +1691,16 @@
 
 <div class="viewcode-block" id="forecastInversion">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.forecastInversion">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">forecastInversion</span><span class="p">(</span><span class="n">forecastData</span><span class="p">,</span> <span class="n">history</span><span class="p">,</span> <span class="n">lastDiff</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">forecastInversion</span><span class="p">(</span><span class="n">forecastData</span><span class="p">,</span> <span class="n">history</span><span class="p">,</span> <span class="n">lastDiff</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Designed to operate on the output of the statsmodels VAR package. Takes a forecast generated by a VAR model, and</span>
 <span class="sd">    for each sample in the forecast, inverts the forecast to obtain the actual prediction. Essentially, this function</span>
 <span class="sd">    takes forecasts generated for non-stationary data that has been transformed to stationary data, and inverts it</span>
+<<<<<<< HEAD
 <span class="sd">    in order to give the non-stationary forecast result.</span>
 
 <span class="sd">    Parameters</span>
@@ -1309,6 +1719,20 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    invertedForecastDataNew : numpy.ndarray</span>
+=======
+<span class="sd">    in order to give the non-stationary forecat result.</span>
+<span class="sd">    :param forecastData: ndarray</span>
+<span class="sd">        An n x m array of forecasts, where n is the number of forecasts and m is the variable.</span>
+<span class="sd">    :param history: ndarray</span>
+<span class="sd">        A 2D array of training data which was used to generate the forecastData.</span>
+<span class="sd">    :param lastDiff, ndarray</span>
+<span class="sd">        A 1 x m array of the most recent differences for all of the variables.</span>
+<span class="sd">    :param trend: ndarray</span>
+<span class="sd">        An 2D array of historical trend data for the non-stationary version of the data.</span>
+<span class="sd">    :param window: int</span>
+<span class="sd">        The window over which the historical trend was calculated (assumes some sort of centered average was done).</span>
+<span class="sd">    :return invertedForecastDataNew: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The inverted forecasted data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data_and_preds_combined</span> <span class="o">=</span> <span class="n">history</span>
@@ -1353,6 +1777,7 @@
 
 <div class="viewcode-block" id="find_exp">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.find_exp">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">find_exp</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
@@ -1360,12 +1785,16 @@
 <span class="sd">    number : float</span>
 <span class="sd">        A float of any precision.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">find_exp</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="n">base10</span> <span class="o">=</span> <span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">base10</span><span class="p">)))</span></div>
 
 
 <div class="viewcode-block" id="get_cc">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.get_cc">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">get_cc</span><span class="p">(</span><span class="n">array1</span><span class="p">,</span> <span class="n">array2</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the cross-correlation of two 1D arrays of the same length.</span>
@@ -1380,6 +1809,16 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    c : float</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">get_cc</span><span class="p">(</span><span class="n">array1</span><span class="p">,</span> <span class="n">array2</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the cross-correlation of two 1D arrays of the same length.</span>
+<span class="sd">    :param array1: ndarray</span>
+<span class="sd">        A 1D array of length n.</span>
+<span class="sd">    :param array2: ndarray</span>
+<span class="sd">        A 1D array of length n.</span>
+<span class="sd">    :return c: float</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The normalized correlation of the two arrays.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
@@ -1393,6 +1832,7 @@
 
 <div class="viewcode-block" id="mycorrelate2d">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.mycorrelate2d">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">mycorrelate2d</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the correlation matrix from 2D data, where each row is cross correlated with the others.</span>
@@ -1409,6 +1849,19 @@
 <span class="sd">    -------</span>
 <span class="sd">    ccm : numpy.ndarray</span>
 <span class="sd">        The [normalized] cross-correlation matrix.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">mycorrelate2d</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the correlation matrix from 2D data, where each row is cross correlated with the others.</span>
+<span class="sd">    This function handles NaN values by ignoring them.</span>
+<span class="sd">    :param df: ndarray</span>
+<span class="sd">        A 2D array of dimensions n x m.</span>
+<span class="sd">    :param normalized: bool</span>
+<span class="sd">        Determines whether the resulting correlation matrix is normalized. Default is False.</span>
+<span class="sd">    :returns ccm: ndarray</span>
+<span class="sd">        The [normalized] cross-correlation matrix.</span>
+<span class="sd">    Source: https://stackoverflow.com/questions/54292947/basics-of-normalizing-cross-correlation-with-a-view-to-comparing-signals</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Initialize cross correlation matrix with zeros</span>
     <span class="n">ccm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -1431,6 +1884,7 @@
 
 <div class="viewcode-block" id="linear">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.linear">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A generic linear function for fitting lines with.</span>
@@ -1448,12 +1902,18 @@
 <span class="sd">    -------</span>
 <span class="sd">    y : int, float, or arraylike</span>
 <span class="sd">        The dependent variable.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A generic linear function for fitting lines with.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span></div>
 
 
 <div class="viewcode-block" id="squareDiff">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.squareDiff">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">squareDiff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the difference squared between two arrays or lists (of the same length).</span>
@@ -1469,6 +1929,11 @@
 <span class="sd">    -------</span>
 <span class="sd">    sqdf : arraylike</span>
 <span class="sd">        The squared difference between the two arrays.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">squareDiff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the difference squared between two arrays or lists (of the same length).</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
@@ -1478,6 +1943,7 @@
 
 <div class="viewcode-block" id="mape">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.mape">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">mape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the mean absolute percentage error between two sequences.</span>
@@ -1492,6 +1958,16 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    mape : float</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">mape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the mean absolute percentage error between two arrays.</span>
+<span class="sd">    :param x: arraylike</span>
+<span class="sd">        The modeled values.</span>
+<span class="sd">    :param y: arraylike</span>
+<span class="sd">        The actual (true) values.</span>
+<span class="sd">    :return mape:</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The mean absolute percentage error.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1502,6 +1978,7 @@
 
 <div class="viewcode-block" id="plotHist">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.plotHist">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">plotHist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logScale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given data and bins, plot a histogram and fit a distribution to it.</span>
@@ -1528,6 +2005,26 @@
 <span class="sd">    -------</span>
 <span class="sd">    fig : matplotlib.figure</span>
 <span class="sd">        A figure object containing the histogram.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">plotHist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">saveLoc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logScale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given data and bins, plot a histogram and fit a distribution to it.</span>
+<span class="sd">    :param data: arraylike</span>
+<span class="sd">        1D data to make a histogram with.</span>
+<span class="sd">    :param bins: arraylike</span>
+<span class="sd">        The bins with which to bin the data.</span>
+<span class="sd">    :param color: str</span>
+<span class="sd">        The color of the histogram data that will be in the plot.</span>
+<span class="sd">    :param saveLoc: str</span>
+<span class="sd">        A string containing the location with which to save the file.</span>
+<span class="sd">    :param labels: list</span>
+<span class="sd">        A 3-element list containing string for the xlabel, ylabel, and the title.</span>
+<span class="sd">    :param logScale: bool</span>
+<span class="sd">        If &#39;x&#39;, scales the x-axis on a log scale. If &#39;y&#39;, scales the y-axis on a log scale. If &#39;both&#39;, scales both.</span>
+<span class="sd">    :param density: bool</span>
+<span class="sd">        If True, computes the density curve of the histogram. If False, simply fits a skew normal distribution to the</span>
+<span class="sd">        data.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">validLocs</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">xVals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">500</span><span class="p">)</span>
@@ -1574,27 +2071,37 @@
 
 <div class="viewcode-block" id="percDev">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.percDev">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">percDev</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the percentage deviation (a.k.a. percentage error).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">percDev</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the percentage deviation (a.k.a. percentage error).</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    :param x: float or arraylike</span>
 <span class="sd">        The observed value(s).</span>
 <span class="sd">    :param y: float or arraylike</span>
 <span class="sd">        The true value(s).</span>
+<<<<<<< HEAD
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    percentDev : float or arraylike</span>
 <span class="sd">        The percent deviation between the two arrays.</span>
+=======
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span></div>
 
 
 <div class="viewcode-block" id="readFISM2">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.readFISM2">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">readFISM2</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a FISM2 netcdf file, read it in and output a .dat file with the same format as the .dat files here:</span>
@@ -1606,6 +2113,14 @@
 <span class="sd">        The location of the FISM2 file to read in.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">readFISM2</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a FISM2 netcdf file, read it in and output a .dat file with the same format as the .dat files here:</span>
+<span class="sd">    https://github.com/aaronjridley/GITM/tree/master/srcData/FISM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="n">fism2Data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 
     <span class="n">irradiance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fism2Data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;irradiance&#39;</span><span class="p">])</span>  <span class="c1"># W/m^2/nm</span>
@@ -1617,7 +2132,11 @@
         <span class="n">currentDatetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">day</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
         <span class="n">datetimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentDatetime</span><span class="p">)</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">numStr</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+=======
+    <span class="k">def</span><span class="w"> </span><span class="nf">numStr</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1642,6 +2161,7 @@
 
 <div class="viewcode-block" id="readCLS">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.readCLS">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">readCLS</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites</span>
@@ -1657,6 +2177,17 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    data : numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">readCLS</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites</span>
+<span class="sd">    (CLS).</span>
+<span class="sd">    :param filename: str</span>
+<span class="sd">        The location of the data file.</span>
+<span class="sd">    :return times: list</span>
+<span class="sd">        The datetimes for each data value.</span>
+<span class="sd">    :return data: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The solar flux data for F30, F15, F10.7, F8, and F3.2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1686,6 +2217,7 @@
 
 <div class="viewcode-block" id="band_info">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.band_info">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">band_info</span><span class="p">(</span><span class="n">bin_boundaries_left</span><span class="p">,</span> <span class="n">bin_boundaries_right</span><span class="p">,</span> <span class="n">solomon</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a two array-likes of wavelength bin boundaries, return the indices of those corresponding only to wavelength</span>
@@ -1706,6 +2238,22 @@
 <span class="sd">    sortInds : arraylike</span>
 <span class="sd">        The indices of the wavelength ranges only.</span>
 <span class="sd">    xPosSorted : arraylike</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">band_info</span><span class="p">(</span><span class="n">bin_boundaries_left</span><span class="p">,</span> <span class="n">bin_boundaries_right</span><span class="p">,</span> <span class="n">solomon</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a two array-likes of wavelength bin boundaries, return the indices of those corresponding only to wavelength</span>
+<span class="sd">    ranges, rather than individual lines, and also return the wavelength boundaries themselves.</span>
+<span class="sd">    :param bin_boundaries_left: array-like</span>
+<span class="sd">        The left-sided wavelength band boundaries. May either be in nm or Angstroms.</span>
+<span class="sd">    :param bin_boundaries_right: array-like</span>
+<span class="sd">        The right-sided wavelength band boundaries. May either be in nm or Angstroms. Units should match those of</span>
+<span class="sd">        bin_boundaries_left.</span>
+<span class="sd">    :param solomon: boolean</span>
+<span class="sd">        If True, does the same thing, but accounts for overlapping bands in the solomon bins. Default is False.</span>
+<span class="sd">    :return sortInds: array-like</span>
+<span class="sd">        The indices of the wavelength ranges only.</span>
+<span class="sd">    :return xPosSorted: array-like</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The values of the wavelength ranges themselves, for the purposes of making spectral stair plots.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">solomon</span><span class="p">:</span>
@@ -1741,6 +2289,7 @@
 
 <div class="viewcode-block" id="solomonRebin">
 <a class="viewcode-back" href="../../../EUVpy.tools.toolbox.html#EUVpy.tools.toolbox.solomonRebin">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">solomonRebin</span><span class="p">(</span><span class="n">solomonIrr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given some irradiance in the Solomon Bins, do a simple rebinning procedure to simply sum the irradiance in the</span>
@@ -1754,6 +2303,15 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    solomonIrr_for_plotting: numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">solomonRebin</span><span class="p">(</span><span class="n">solomonIrr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given some irradiance in the Solomon Bins, do a simple rebinning procedure to simply sum the irradiance in the</span>
+<span class="sd">    overlapping bins, so that the resulting spectra can be plotted rather easily.</span>
+<span class="sd">    :param solomonIrr: numpy array</span>
+<span class="sd">        An array of irradiance in the Solomon Bins. Rows are observations and columns are wavelength bins.</span>
+<span class="sd">    :return solomonIrr_for_plotting: numpy array</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The rebinned irradiance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">solomonTable</span> <span class="o">=</span> <span class="n">solomon</span><span class="o">.</span><span class="n">solomonBands</span>

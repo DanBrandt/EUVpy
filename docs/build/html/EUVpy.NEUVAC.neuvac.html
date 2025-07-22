@@ -7,7 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.NEUVAC.neuvac module &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -55,6 +59,13 @@
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -96,16 +107,27 @@
 <span id="euvpy-neuvac-neuvac-module"></span><h1>EUVpy.NEUVAC.neuvac module<a class="headerlink" href="#module-EUVpy.NEUVAC.neuvac" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.NEUVAC.neuvac.aetherFile">
+<<<<<<< HEAD
 <span class="sig-prename descclassname"><span class="pre">EUVpy.NEUVAC.neuvac.</span></span><span class="sig-name descname"><span class="pre">aetherFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tableFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/daabrand/Projects/EUVpy/src/EUVpy/data/neuvac_table.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/NEUVAC/neuvac.html#aetherFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.NEUVAC.neuvac.aetherFile" title="Link to this definition"></a></dt>
+=======
+<span class="sig-prename descclassname"><span class="pre">EUVpy.NEUVAC.neuvac.</span></span><span class="sig-name descname"><span class="pre">aetherFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tableFile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/jepaki/code/EUVpy/src/EUVpy/data/neuvac_table.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/NEUVAC/neuvac.html#aetherFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.NEUVAC.neuvac.aetherFile" title="Link to this definition"></a></dt>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <dd><p>Take the NEUVAC coefficients in the 59 wavelength bins and put them into a .csv file in a format for use by the
 Aether model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<<<<<<< HEAD
 <dd class="field-odd"><p><strong>tableFile</strong> (<em>str</em>) – The location of the NEUVAC table file to convert. Default is the 59-bin table file in the EUVpy repo. Default
 location is EUVpy/Src/EUVpy/data/.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>outfile</strong> – The location of the .csv file for use by the Aether.</p>
+=======
+<dd class="field-odd"><p><strong>tableFile</strong> (<em>str</em>) – The location of the NEUVAC table file to convert. Default is the 59-bin table file in the EUVpy repo.</p>
+</dd>
+<dt class="field-even">Return outfile<span class="colon">:</span></dt>
+<dd class="field-even"><p>The location of the .csv file for use by the Aether.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -126,11 +148,19 @@ writes the data to 59 wavelength bins.</p>
 <li><p><strong>f107b</strong> (<em>arraylike</em>) – The F10.7 values averaged in a 54-day backwards-looking window. Individual values must be floats.</p></li>
 </ul>
 </dd>
+<<<<<<< HEAD
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>outfile</strong> – The name of the output file.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string</p>
+=======
+<dt class="field-even">Return outfile<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the output file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -138,6 +168,7 @@ writes the data to 59 wavelength bins.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.NEUVAC.neuvac.irrFunc">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.NEUVAC.neuvac.</span></span><span class="sig-name descname"><span class="pre">irrFunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/NEUVAC/neuvac.html#irrFunc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.NEUVAC.neuvac.irrFunc" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Parametric formula used to model solar irradiance a given wavelength band as a function of F10.7 and F10.7A.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -162,12 +193,16 @@ window.</p></li>
 </dd>
 </dl>
 </dd></dl>
+=======
+<dd></dd></dl>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.NEUVAC.neuvac.neuvacEUV">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.NEUVAC.neuvac.</span></span><span class="sig-name descname"><span class="pre">neuvacEUV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f107a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tableFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statsFiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/NEUVAC/neuvac.html#neuvacEUV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.NEUVAC.neuvac.neuvacEUV" title="Link to this definition"></a></dt>
 <dd><p>Use a parametric model to compute solar flux in the 59 conventional wavelength bands used by Aether/GITM. Capable
 of returning perturbed irradiance values that are perturbed according to the variations of in the intensity of each
+<<<<<<< HEAD
 bin. Uses Eq. 4 from Brandt and Ridley, 2025 (doi:10.1029/2024SW004043).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -192,6 +227,46 @@ number of wavelength bands.</p></li>
 NEUVAC.</p></li>
 </ul>
 </p>
+=======
+bin
+:param f107: ndarray</p>
+<blockquote>
+<div><p>F10.7 values.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f107a</strong> – ndarray
+81-day center-averaged F10.7 values; must be the same length as f107.</p></li>
+<li><p><strong>bands</strong> – str
+If None or ‘NEUVAC’, returns irradiances in the GITM Bands. If ‘EUVAC’, returns them in the 37 bands used by
+EUVAC. If ‘SOLOMON’, returns them in the 22 bands used by Solomon and Qian.</p></li>
+<li><p><strong>tableFile</strong> – str
+Corresponds to the .txt file holding the NEUVAC coefficients most recently-generated by fitNeuvac.py. If
+not given, simply uses the table file corresponding to the selected bin structure. Default is None.</p></li>
+<li><p><strong>statsFiles</strong> – list
+A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second
+element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return euvIrradiance<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+A nxm ndarray where n is the number of EUV irradiance values and m is the number of wavelength bands.</p>
+</dd>
+<dt class="field-odd">Return perturbedEuvIrradiance<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+A nxm ndarray where n is the number of EUV irradiance values perturbed due to inherent uncertainty and m is the
+number of wavelength bands.</p>
+</dd>
+<dt class="field-even">Return savedPerts<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+A nxm ndarray of the perturbations (time series of the NEUVAC+Perturbation - NEUVAC)</p>
+</dd>
+<dt class="field-odd">Return cc2<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+A mxm ndarray of the correlation matrix between each wavelength’s time-series of the NEUVAC+Perturbation -
+NEUVAC.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -204,6 +279,7 @@ of the number of wavelength bands the irradiance data is split into.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<<<<<<< HEAD
 <li><p><strong>f107Data</strong> (<em>list</em>) – A list where the first element is an arraylike of datetimes for each F10.7 value, the second element is an
 arraylike of F10.7 values, and the third element is an arraylike of centered running 81-day averaged F10.7
 values.</p></li>
@@ -221,6 +297,17 @@ there is a single observation per row. A single observaton contains the entire E
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
+=======
+<li><p><strong>f107Data</strong> (<em>list</em>) – A list where the first element is an arraylike of datetimes for each F10.7 value, the second element is an arraylike of F10.7 values, and the third element is an arraylike of centered running 81-day averaged F10.7 values.</p></li>
+<li><p><strong>irrTimes</strong> (<em>arraylike</em>) – An arraylike of datetimes for each solar EUV spectra in irrData.</p></li>
+<li><p><strong>irrData</strong> (<em>ndarray</em>) – An array of solar EUV irradiance measurements or estimates (from FISM, TIMED/SEE, etc.), arranged such that there is a single observation per row. A single observaton contains the entire EUV spectrum for a single day.</p></li>
+<li><p><strong>wavelengths</strong> (<em>arraylike</em>) – An array of wavelengths to which the irradiance data corresponds.</p></li>
+<li><p><strong>label</strong> – An optional argument specifying the label for the data the model is being constructed for. Default is None.</p></li>
+<li><p><strong>constraint</strong> (<em>bool</em>) – An optional argument that if True, constrains the fitted function to yield nonnegative outputs.</p></li>
+<li><p><strong>fitParams</strong> (<em>ndarray</em>) – An array of coefficients with which to compute the irradiance in each bin.</p></li>
+</ul>
+</dd>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dl>
 </dd></dl>
 

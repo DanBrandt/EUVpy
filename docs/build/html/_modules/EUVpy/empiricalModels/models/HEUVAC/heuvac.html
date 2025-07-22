@@ -6,7 +6,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.HEUVAC.heuvac &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -52,6 +56,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -95,10 +106,17 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level Imports:</span>
+<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
+=======
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -114,13 +132,18 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local Imports:</span>
+<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy</span> <span class="kn">import</span> <span class="n">tools</span>
+=======
+<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Helper Functions:</span>
 <div class="viewcode-block" id="writeInputFile">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.writeInputFile">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">writeInputFile</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function that writes the formatted input file that the HEUVAC model uses during execution. This function</span>
@@ -132,6 +155,17 @@
 <span class="sd">        A single value of F10.7.</span>
 <span class="sd">    F107A : float</span>
 <span class="sd">        A single value for the 81-day averaged F10.7, centered on the current day.</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">writeInputFile</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write the formatted input file for running HEUVAC.</span>
+<span class="sd">    :param F107: float</span>
+<span class="sd">        A single value of F10.7.</span>
+<span class="sd">    :param F107A: float</span>
+<span class="sd">        A single value for the 81-day averaged F10.7, centered on the current day.</span>
+<span class="sd">    :return:</span>
+<span class="sd">        Returns nothing.</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;HEUVAC-scratch.TXT&#39;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heuvacFile</span><span class="p">:</span>
@@ -143,6 +177,7 @@
 
 <div class="viewcode-block" id="getTorr">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.getTorr">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">getTorr</span><span class="p">(</span><span class="n">fluxFile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function that reads the output file from HEUVAC in the Torr bins.</span>
@@ -160,6 +195,17 @@
 <span class="sd">        The HEUVAC flux in the Torr bins (W/m2/nm).</span>
 <span class="sd">    irr : numpy.ndarray</span>
 <span class="sd">        The HEUVAC irradiance in the Torr bins (W/m2/nm).</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">getTorr</span><span class="p">(</span><span class="n">fluxFile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the output file from HEUVAC in the Torr bins.</span>
+<span class="sd">    :param fluxFile: str</span>
+<span class="sd">        The filename where the HEUVAC fluxes in the Torr bins have been output.</span>
+<span class="sd">    :return wav: ndarray</span>
+<span class="sd">        The wavelength bin centers for the Torr bins (Angstroms).</span>
+<span class="sd">    :return flux: ndarray</span>
+<span class="sd">        The HEUVAC flux in the Torr bins (W/m2/nm).</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">wavs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
     <span class="n">fluxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
@@ -184,6 +230,7 @@
 
 <div class="viewcode-block" id="getFlux">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.getFlux">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">getFlux</span><span class="p">(</span><span class="n">userFile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read the output file from HEUVAC in the user-defined bins.</span>
@@ -200,6 +247,18 @@
 <span class="sd">    flux : numpy.ndarray</span>
 <span class="sd">        The HEUVAC flux in the user-defined bins (ph/cm2/s).</span>
 <span class="sd">    irr : numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">getFlux</span><span class="p">(</span><span class="n">userFile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the output file from HEUVAC in the Torr bins.</span>
+<span class="sd">    :param userFile: str</span>
+<span class="sd">        The filename where the HEUVAC fluxes in the user-defined bins have been output.</span>
+<span class="sd">    :return wav: ndarray</span>
+<span class="sd">        The wavelength bin centers for the Torr bins (Angstroms).</span>
+<span class="sd">    :return flux: ndarray</span>
+<span class="sd">        The HEUVAC flux in the user-defined bins (ph/cm2/s).</span>
+<span class="sd">    :return: irr</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The HEUVAC irradiance in the user-defined bins (W/m2/nm).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">wav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span>
@@ -221,6 +280,7 @@
 
 <div class="viewcode-block" id="heuvac">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.HEUVAC.heuvac.html#EUVpy.empiricalModels.models.HEUVAC.heuvac.heuvac">[docs]</a>
+<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">heuvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">torr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main function for executing HEUVAC: Call the HEUVAC Fortran code for each individual F10.7, F10.7A pair. For more</span>
@@ -243,6 +303,23 @@
 <span class="sd">    heuvacFlux : numpy.ndarray</span>
 <span class="sd">        The solar EUV flux in different wavelength bins returned from HEUVAC.</span>
 <span class="sd">    heuvacIrr : numpy.ndarray</span>
+=======
+<span class="k">def</span><span class="w"> </span><span class="nf">heuvac</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">torr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Call the HEUVAC Fortran code for each F10.7, F10.7A pair.</span>
+<span class="sd">    :param F107: arraylike</span>
+<span class="sd">        The values of [daily] F10.7.</span>
+<span class="sd">    :param F107A: arraylike</span>
+<span class="sd">        The values of 81-day averaged F10.7, centered on the current day.</span>
+<span class="sd">    :param torr: bool</span>
+<span class="sd">        Controls whether or not the binned data returned is in the 37 standard Torr et al bins or in the high-resolution</span>
+<span class="sd">        10 Angstrom-wide bins (the standard high resolution of HEUVAC). Default is True.</span>
+<span class="sd">    :return heuvacWav: ndarray</span>
+<span class="sd">        The bin center wavelengths for the HEUVAC data.</span>
+<span class="sd">    :return heuvacFlux: ndarray</span>
+<span class="sd">        The solar EUV flux in different wavelength bins returned from HEUVAC.</span>
+<span class="sd">    :return heuvacIrr: ndarray</span>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The solar EUV irradiance in different wavelength bins returend from HEUVAC.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">torr</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>

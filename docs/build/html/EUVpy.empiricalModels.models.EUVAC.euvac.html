@@ -7,7 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.EUVAC.euvac module &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -55,6 +59,13 @@
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -100,6 +111,7 @@
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.EUVAC.euvac.euvac">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.EUVAC.euvac.</span></span><span class="sig-name descname"><span class="pre">euvac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F107A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statsFiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/EUVAC/euvac.html#euvac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.EUVAC.euvac.euvac" title="Link to this definition"></a></dt>
 <dd><p>Compute the solar flux from F10.7, according to the EUVAC model. Return the solar flux across 37 wavelength
+<<<<<<< HEAD
 bands in units of photons m^-2 s^-1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -116,6 +128,30 @@ element is a file containing the 1x37 standard deviation values for EUVAC. Optio
 <li><p><strong>euvacIrr</strong> (<em>numpy.ndarray</em>) – Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2.</p></li>
 </ul>
 </p>
+=======
+bands in units of photons m^-2 s^-1.
+:param F107: ndarray</p>
+<blockquote>
+<div><p>Values of the F10.7 solar flux.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F107A</strong> – ndarray
+Values of the 81-day averaged solar flux, centered on the present day.</p></li>
+<li><p><strong>statsFiles</strong> – list
+A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second
+element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>euvacFlux: ndarray
+Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s</p>
+</dd>
+<dt class="field-odd">Return euvacIrr<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -123,6 +159,7 @@ element is a file containing the 1x37 standard deviation values for EUVAC. Optio
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.EUVAC.euvac.refSpec">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.EUVAC.euvac.</span></span><span class="sig-name descname"><span class="pre">refSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/EUVAC/euvac.html#refSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.EUVAC.euvac.refSpec" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Helper function for the EUVAC Model: returns the standard solar flux in 37 bands from the F74113 Spectrum
 (pp. 584-585 in Schunk and Nagy).</p>
 <p>For additional resources, see the following:
@@ -140,6 +177,25 @@ Geophysical Research, 83, A11, 1978.</p>
 <li><p><strong>A_i</strong> (<em>float</em>) – The scaling factor for the wavelength interval.</p></li>
 </ul>
 </p>
+=======
+<dd><p>Return the standard solar flux in 37 bands from the F74113 Spectrum (pp. 584-585 in Schunk and Nagy).
+Source 2: Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic
+calculations, Journal of Geophysical Research, 99, A5, 8981-8992, 1994.
+Source 3: Heroux, L. and Hinteregger, H. E., Aeronomical Reference Spectrum for Solar UV Below 2000 A, Journal of
+Geophysical Research, 83, A11, 1978.
+:param: i: int</p>
+<blockquote>
+<div><p>The index for the wavelength. Must be between 0 and 37.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>F74113_i: float
+The reference solar flux in units of photons/m^2/s^.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A_i: float
+The scaling factor for the wavelength interval.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>

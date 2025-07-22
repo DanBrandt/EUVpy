@@ -7,7 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.spectralAnalysis module &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -55,6 +59,13 @@
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3 current"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -97,6 +108,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.tools.spectralAnalysis.spectralFlux">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.spectralAnalysis.</span></span><span class="sig-name descname"><span class="pre">spectralFlux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">irradiance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/spectralAnalysis.html#spectralFlux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.spectralAnalysis.spectralFlux" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Convert the spectral irradiance to spectral flux, given a specific wavelength.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -111,6 +123,25 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray or float</p>
+=======
+<dd><p>Convert the spectral irradiance to spectral flux, given a specific wavelength.
+:param: irradiance: ndarray, float, or int</p>
+<blockquote>
+<div><p>[Solar] spectral irradiance for a specific wavelength, in W/m^2/nm.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wavelength: float
+A specific wavelength in Angstroms.</p>
+</dd>
+<dt class="field-even">Param<span class="colon">:</span></dt>
+<dd class="field-even"><p>dWavelength: float or int
+Wavelength bin width in Angstroms. Default is 1.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>photonFlux: ndarray or float
+The corresponding spectral flux in units of Watts.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -118,6 +149,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.tools.spectralAnalysis.spectralIrradiance">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.spectralAnalysis.</span></span><span class="sig-name descname"><span class="pre">spectralIrradiance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">photonFlux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/spectralAnalysis.html#spectralIrradiance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.spectralAnalysis.spectralIrradiance" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -131,6 +163,21 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray or float</p>
+=======
+<dd><p>Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.
+:param: photonFlux: ndarray, float, or int</p>
+<blockquote>
+<div><p>Photon flux in units of photons s^-1 m^-2. For a singular wavelength, units are photons m^-2</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wavelength: float
+A specific wavelength in Angstroms.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>irradiance: ndarray or float
+The corresponding spectral irradiance in units of W/m^2/nm.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>

@@ -7,7 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.processIndices module &mdash; EUVpy 1 documentation</title>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+=======
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -55,6 +59,13 @@
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+=======
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
+</ul>
+</li>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3 current"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -100,6 +111,7 @@
 <dd><p>Filter F10.7 values like so:
 1. Compute the running average and standard deviation.
 2. Identify the locations of values OUTSIDE the running average +/- n*stddev.
+<<<<<<< HEAD
 3. For each datapoint identified in (2), replace it with the running average +/- n*stddev, depending on the sign.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -116,6 +128,28 @@ Default is 2.</p></li>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>arraylike</p>
+=======
+3. For each datapoint identified in (2), replace it with the running average +/- n*stddev, depending on the sign.
+:param index_times: arraylike</p>
+<blockquote>
+<div><p>An array or list of datetime values for each F10.7 value.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index_values</strong> – arraylike
+An array or list of F10.7 values with the same shape as index_times.</p></li>
+<li><p><strong>window_length</strong> – int
+The length of the running window over which to compute the running average and standard deviation. Default is 81.</p></li>
+<li><p><strong>n</strong> – int
+The factor by which the standard deviation will be multiplied to determine which values should be replaced.
+Default is 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return filteredF107<span class="colon">:</span></dt>
+<dd class="field-even"><p>arraylike
+The resulting filtered F10.7.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -124,6 +158,7 @@ Default is 2.</p></li>
 <dt class="sig sig-object py" id="EUVpy.tools.processIndices.cleanF107">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">cleanF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">999.9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#cleanF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.cleanF107" title="Link to this definition"></a></dt>
 <dd><p>Given time stamps and observations of F10.7, determine the location of bad values (using the argument ‘bad_value’),
+<<<<<<< HEAD
 and replace them with imputed data generated with CSAPS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -138,6 +173,25 @@ and replace them with imputed data generated with CSAPS.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>arraylike</p>
+=======
+and replace them with imputed data generated with CSAPS.
+:param index_times: arraylike</p>
+<blockquote>
+<div><p>An array or list of datetimes for each F10.7 value.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index_values</strong> – arraylike
+An array or list of F10.7 values with the same shape as index_times.</p></li>
+<li><p><strong>bad_value</strong> – float or int
+A single value corresponding to the bad values to be removed and imputed over. Default is 999.9.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return clean_values<span class="colon">:</span></dt>
+<dd class="field-even"><p>arraylike
+The gap-filled/imputed data.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -148,6 +202,7 @@ and replace them with imputed data generated with CSAPS.</p>
 <dd><p>Obtains Sun-Earth distance adjusted, flare-corrected F10.7 data from Collecte Localisation Satellites. Downloads the
 most recent measurements to a file. Reads the file and extracts the F10.7 values between two dates. Note that if the
 ending date is less than or equal to the last date in the version of the file that has already been downloaded, the
+<<<<<<< HEAD
 file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloaded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -167,12 +222,31 @@ file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloade
 </ul>
 </p>
 </dd>
+=======
+file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloaded.
+:param dateStart: str</p>
+<blockquote>
+<div><p>The starting date in YYYY-MM-DD format.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dateEnd</strong> – str
+The ending date in YYYY-MM-DD format.</p></li>
+<li><p><strong>truncate</strong> – bool
+Controls whether to truncate the data to exclude the most recent 81 days. Defaults is True.</p></li>
+<li><p><strong>rewrite</strong> – bool
+Controls whether an existing CLS file is rewritten. Defualt is True.</p></li>
+</ul>
+</dd>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.tools.processIndices.getF107">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">getF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dateStart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dateEnd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#getF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.getF107" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Given two dates (a start date and an ending date), automatically download F10.7 data from NASA OMNIWeb.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -189,6 +263,33 @@ file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloade
 <li><p><strong>f107A</strong> (<em>str</em>) – The 81-day averaged F10.7 values (centered on the current day) for the time desired.</p></li>
 </ul>
 </p>
+=======
+<dd><p>Given two dates, automatically download F10.7 data from NASA OMNIWeb.
+:param dateStart: str</p>
+<blockquote>
+<div><p>The starting date, in YYYY-MM-DD format.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dateEnd</strong> – str
+The ending date, in YYYY-MM-DD format.</p>
+</dd>
+<dt class="field-even">Return dataFile<span class="colon">:</span></dt>
+<dd class="field-even"><p>str
+The downloaded OMNI data file.</p>
+</dd>
+<dt class="field-odd">Return times<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+An array of datetimes for the F10.7 values.</p>
+</dd>
+<dt class="field-even">Return f107<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+The F10.7 values for the time desired.</p>
+</dd>
+<dt class="field-odd">Return f107A<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str
+The 81-day averaged F10.7 values (centered on the current day) for the time desired.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -197,6 +298,7 @@ file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloade
 <dt class="sig sig-object py" id="EUVpy.tools.processIndices.readCLS">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">readCLS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#readCLS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.readCLS" title="Link to this definition"></a></dt>
 <dd><p>Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites
+<<<<<<< HEAD
 (CLS).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -208,6 +310,21 @@ file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloade
 <li><p><strong>data</strong> (<em>numpy.ndarray</em>) – The solar flux data for F30, F15, F10.7, F8, and F3.2.</p></li>
 </ul>
 </p>
+=======
+(CLS).
+:param filename: str</p>
+<blockquote>
+<div><p>The location of the data file.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return times<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list
+The datetimes for each data value.</p>
+</dd>
+<dt class="field-even">Return data<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+The solar flux data for F30, F15, F10.7, F8, and F3.2.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -220,6 +337,7 @@ file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloade
 Requires ONLY a filename containing F10.7 data.
 Note that F10.7 values are daily values measured at LOCAL NOON of each day.
 Note that the OBSERVED values DO NOT correspond to 1 AU, and they may vary, while the ADJUSTED values are calibrated
+<<<<<<< HEAD
 to correspond to 1 AU.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -231,6 +349,21 @@ to correspond to 1 AU.</p>
 <li><p><strong>f107</strong> (<em>numpy.ndarray</em>) – A 1D array of F10.7 values.</p></li>
 </ul>
 </p>
+=======
+to correspond to 1 AU.
+:param filename: str</p>
+<blockquote>
+<div><p>A string containing the location of the txt file with the F10.7 data.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return times<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray
+A 1D array of datetimes corresponding to each F10.7 measurement.</p>
+</dd>
+<dt class="field-even">Return f107<span class="colon">:</span></dt>
+<dd class="field-even"><p>ndarray
+A 1D array of F10.7 values.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -238,6 +371,7 @@ to correspond to 1 AU.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.tools.processIndices.readOMNI">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">readOMNI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerFile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#readOMNI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.readOMNI" title="Link to this definition"></a></dt>
+<<<<<<< HEAD
 <dd><p>Read in file from an OMNI data and parse it according to the specified format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -254,6 +388,29 @@ to correspond to 1 AU.</p>
 m is the number of variables collected at each time sample.</p></li>
 </ul>
 </p>
+=======
+<dd><p>Read in file from an OMNI data and parse it according to the specified format.
+:param dataFile: str</p>
+<blockquote>
+<div><p>The name of the file where the OMNI data is stored.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>headerFile</strong> – str
+The name of the file containing header information for the OMNI data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>omniTimes: ndarray</dt><dd><p>A 1D array of datetimes for the omni data.</p>
+</dd>
+<dt>omniLabels: ndarray</dt><dd><p>A 1D array of strings of each of the variables in the OMNI data.</p>
+</dd>
+<dt>omniDataArray: ndarray</dt><dd><p>A 2D array with all the OMNI data. The shape is nxm, where n is the number of time samples (each hour) and
+m is the number of variables collected at each time sample.</p>
+>>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
