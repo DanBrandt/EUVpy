@@ -31,13 +31,15 @@ from EUVpy import tools
 # Helper Functions:
 def writeInputFile(F107, F107A):
     """
-    Write the formatted input file for running HEUVAC.
-    :param F107: float
+    Helper function that writes the formatted input file that the HEUVAC model uses during execution. This function
+    writes the input file to an internal location, and it does not return anything.
+
+    Parameters
+    ----------
+    F107 : float
         A single value of F10.7.
-    :param F107A: float
+    F107A : float
         A single value for the 81-day averaged F10.7, centered on the current day.
-    :return:
-        Returns nothing.
     """
     filename = 'HEUVAC-scratch.TXT'
     with open(filename, 'w') as heuvacFile:
@@ -48,13 +50,21 @@ def writeInputFile(F107, F107A):
 
 def getTorr(fluxFile):
     """
-    Read the output file from HEUVAC in the Torr bins.
-    :param fluxFile: str
+    Helper function that reads the output file from HEUVAC in the Torr bins.
+
+    Parameters
+    ----------
+    fluxFile : str
         The filename where the HEUVAC fluxes in the Torr bins have been output.
-    :return wav: ndarray
+
+    Returns
+    -------
+    wav : ndarray
         The wavelength bin centers for the Torr bins (Angstroms).
-    :return flux: ndarray
+    flux: numpy.ndarray
         The HEUVAC flux in the Torr bins (W/m2/nm).
+    irr : numpy.ndarray
+        The HEUVAC irradiance in the Torr bins (W/m2/nm).
     """
     wavs = np.zeros(37)
     fluxes = np.zeros(37)
@@ -78,14 +88,20 @@ def getTorr(fluxFile):
 
 def getFlux(userFile):
     """
-    Read the output file from HEUVAC in the Torr bins.
-    :param userFile: str
+    Read the output file from HEUVAC in the user-defined bins.
+
+    Parameters
+    ----------
+    userFile: str
         The filename where the HEUVAC fluxes in the user-defined bins have been output.
-    :return wav: ndarray
-        The wavelength bin centers for the Torr bins (Angstroms).
-    :return flux: ndarray
+
+    Returns
+    -------
+    wav : numpy.ndarray
+        The wavelength bin centers for the user-defined bins (Angstroms).
+    flux : numpy.ndarray
         The HEUVAC flux in the user-defined bins (ph/cm2/s).
-    :return: irr
+    irr : numpy.ndarray
         The HEUVAC irradiance in the user-defined bins (W/m2/nm).
     """
     wav = np.zeros(106)
@@ -106,19 +122,26 @@ def getFlux(userFile):
 
 def heuvac(F107, F107A, torr=True, statsFiles=None):
     """
-    Call the HEUVAC Fortran code for each F10.7, F10.7A pair.
-    :param F107: arraylike
+    Main function for executing HEUVAC: Call the HEUVAC Fortran code for each individual F10.7, F10.7A pair. For more
+    details on HEUVAC, please see Richards, et al. 2006 (doi:10.1016/j.asr.2005.06.031).
+
+    Parameters
+    ----------
+    F107 : arraylike
         The values of [daily] F10.7.
-    :param F107A: arraylike
+    F107A : arraylike
         The values of 81-day averaged F10.7, centered on the current day.
-    :param torr: bool
+    torr : bool
         Controls whether or not the binned data returned is in the 37 standard Torr et al bins or in the high-resolution
         10 Angstrom-wide bins (the standard high resolution of HEUVAC). Default is True.
-    :return heuvacWav: ndarray
+
+    Returns
+    -------
+    heuvacWav : numpy.ndarray
         The bin center wavelengths for the HEUVAC data.
-    :return heuvacFlux: ndarray
+    heuvacFlux : numpy.ndarray
         The solar EUV flux in different wavelength bins returned from HEUVAC.
-    :return heuvacIrr: ndarray
+    heuvacIrr : numpy.ndarray
         The solar EUV irradiance in different wavelength bins returend from HEUVAC.
     """
     if torr==True:

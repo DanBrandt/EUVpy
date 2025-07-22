@@ -38,8 +38,11 @@ from EUVpy.empiricalModels.models.SOLOMON import solomon
 # Functions
 def openDir(directory):
     """
-    Create a directory, unless it already exists.
-    :param directory:
+    Create a directory, unless it already exists. Returns nothing.
+
+    Parameters
+    ----------
+    directory : str
         A string that is the directory to be created, with respect to the current location.
     """
     if os.path.isdir(directory) == False:
@@ -50,10 +53,13 @@ def openDir(directory):
 def urlObtain(url, fname):
     """
     Download a file from a URL. If the file already exists, don't download it; just print the location of the existing
-    file.
-    :param url: str
+    file. Returns nothing.
+
+    Parameters
+    ----------
+    url : str
         The URL where the file is to be downloaded from.
-    :param fname: str
+    fname : str
         The filename which the downloaded file will be saved to.
     """
     if os.path.isfile(fname) == True:
@@ -63,10 +69,13 @@ def urlObtain(url, fname):
 
 def savePickle(data, pickleFilename):
     """
-    Given some data (a list, dict, or array), save it is a pickle file with a user-supplied name.
-    :param: data
+    Given some data (a list, dict, or array), save it is a pickle file with a user-supplied name. Returns nothing.
+
+    Parameters
+    ----------
+    data : any
         A variable referring to data to be saved as a pickle.
-    :param: pickleFilename, str
+    pickleFilename : str
         A string with which to name the pickle file to be saved.
     """
     with open(pickleFilename, 'wb') as pickleFile:
@@ -75,10 +84,16 @@ def savePickle(data, pickleFilename):
 def loadPickle(pickleFilename):
     """
     Given the name of a (pre-existing) pickle file, load its contents.
-    :param: pickleFilename, str
+
+    Parameters
+    ----------
+    pickleFilename : str
         A string with the location/name of the filename.
-    :return: var
-        The loaded data.
+
+    Returns
+    -------
+    var : any
+        The loaded data. The data type will correspond to whatever data was saved previously using savePickle.
     """
     with open(pickleFilename, 'rb') as pickleFile:
         var = pickle.load(pickleFile)
@@ -87,11 +102,17 @@ def loadPickle(pickleFilename):
 def firstNonNan(listfloats):
     """
     Find the index of the first non-NaN value in a given sequence.
-    Source: https://stackoverflow.com/questions/22129495/return-first-non-nan-value-in-python-list
-    :param listfloats:
-    :return item:
+
+    Parameters
+    ----------
+    listfloats : arraylike
+        A sequence of floats to search over.
+
+    Returns
+    -------
+    item : float
         The element that is the first non-NaN value.
-    :return idx:
+    idx : int
         The index corresponding to the first non-NaN value.
     """
     indices = np.indices(np.asarray(listfloats).shape)[0]
@@ -108,13 +129,19 @@ def firstNonNan(listfloats):
 def find_nearest(array, value):
     """
     Given an array, find the index and value of an item closest to a supplied value.
-    :param array: ndarray
+
+    Parameters
+    ----------
+    array : numpy.ndarray
         An array of values over which to search.
-    :param value: float, int, str, datetime
+    value : float, int, str, datetime
         A value for which the closest value will be searched for.
-    :return idx: int
+
+    Returns
+    -------
+    idx : int
         The index of the nearest value.
-    :return array[idx]: float, int, str, datetime
+    array[idx] : float, int, str, datetime
         The actual value.
     """
     array = np.asarray(array)
@@ -125,15 +152,21 @@ def uniformSample(xdata, ydata, cadence):
     """
     Given some data with associated time stamps, resample the data so that the data have the time resolution equal to
     the given cadence.
-    :param xdata: arraylike
+
+    Parameters
+    ----------
+    xdata : arraylike
         A list of time stamps.
-    :param ydata: arraylike
+    ydata : arraylike
         A list of data/values associated with the time stamps.
-    :param cadence: int
+    cadence : int
         An integer denoting (in hours) the desired time cadence of the data.
-    :return uniformXdata: ndarray
+
+    Returns
+    -------
+    uniformXdata : numpy.ndarray
         A uniformly-sampled array of datetimes.
-    :return uniformYdata: ndarray
+    uniformYdata : numpy.ndarray
         A uniformly-sampled array of corresponding data/values.
     """
     # Instantiate an array of timestamps with the desired cadence:
@@ -153,22 +186,28 @@ def uniformSample(xdata, ydata, cadence):
 def imputeData(timestamps, values, method='mean', bad_values=np.nan):
     """
     Given timeseries data, impute bad values and returned the cleaned data.
-    :param timestamps: arraylike
+
+    Parameters
+    ----------
+    timestamps : arraylike
         A 1D list or array of timestamps.
-    :param values: arraylike
+    values : arraylike
         A 1D list or array of timeseries data.
-    :param method: str
+    method : str
         A string indicating the method to be used. If 'mean', 'median', 'most_frequent', or 'constant', uses the
         SimpleImputer routine from sklearn. If 'gam', uses a Generalized Additive Model to fill in the data. If 'gpr',
         use Gaussian Process Regression to perform imputation. Otherwise, cubic spline interpolation is used for
         imputation.
-    :param bad_values: float, int, or NaN (type)
+    bad_values : float, int, or NaN (type)
         The type of the data you wish to impute.
-    :return cleanTimes: ndarray
+
+    Returns
+    -------
+    cleanTimes : numpy.ndarray
         The timestamps corresponding to the cleaned data. This will differ from 'timestamps' if and only if some data
         are necessarily excluded by the chosen imputation method. For example, the edges of the data are often removed
         when the cubic spline interpolation is used for imputation, to avoid Runge's phenomenon.
-    :return cleanData: ndarray
+    cleanData : numpy.ndarray
         The cleaned 1D timeseries.
     """
     cleanTimes = timestamps
@@ -232,12 +271,18 @@ def imputeData(timestamps, values, method='mean', bad_values=np.nan):
 def gapify(timeseries, bad_value=999, replace_val=np.nan):
     """
     Take a timeseries and replace the bad values (signified by 'bad_values') with NaNs, unless otherwise desired.
-    :param timestamps: arraylike
+
+    Parameters
+    ----------
+    timestamps : arraylike
         A 1D list or array of timestamps.
-    :param bad_values: int or float
+    bad_values : int or float
         A float or int corresponding to the bad values to be 'gapped out'. Default is 999.
-    :param replace_val: int, float, NaN, or None
+    replace_val : int, float, NaN, or None
         An int, float, NaN, or Nonetype describing what will replace the bad values.
+
+    Returns
+    -------
     :return gappedData:
         The gapified 1D data.
     """
@@ -249,9 +294,15 @@ def gapify(timeseries, bad_value=999, replace_val=np.nan):
 def fractionalDOY(myDatetime):
     """
     Convert a generic datetime object into a float corresponding to the fractional day of the year.
-    :param: myDatetime: datetime
+
+    Parameters
+    ----------
+    myDatetime : datetime.datetime
         A datetime object.
-    :return: fracDOY: float
+
+    Returns
+    -------
+    fracDOY : float
         A float corresponding to the fractional Day of the Year, with the decimal portion included to show contributions
         from the time of day in hours, minutes, and seconds.
     """
@@ -263,16 +314,22 @@ def rollingAverage(myData, window_length=1, impute_edges=True, center=True):
     """
     Using pandas, compute a rolling average of over 'data' using a window length of 'windowlength'. Sets the leading and
     trailing windows to the values of the original data.
-    :param myData: arraylike
+
+    Parameters
+    ----------
+    myData : arraylike
         The data over which to compute the rolling average.
-    :param window_length: int
+    window_length : int
         The size of the window over which to average.
-    :param impute_edges: bool
+    impute_edges : bool
         A boolean determining whether the edges will be interpolated. Default is True.
-    :param center: bool
+    center : bool
         A boolean determining whether the centered average will be used.
-    :return: rolled, arraylike
-        The rolling average data.
+
+    Returns
+    -------
+    rolled : arraylike
+        The rolling averaged data.
     """
     myDataframe = pd.DataFrame(data=myData, columns=['Var'])
     myDataframe['Rolling'] = myDataframe['Var'].rolling(window=window_length, center=center).mean()
@@ -314,13 +371,19 @@ def rollingStd(myData, window_length=2, axis=-1):
     """
     Given some data, compute the rolling standard deviation. If the data is two dimensional, compute the rolling
     standard deviation along a specific axis of the data (specified by the user).
-    :param myData: arraylike
+
+    Parameters
+    ----------
+    myData : arraylike
         The data over which to compute the rolling average.
-    :param window_length: int
+    window_length : int
         The size of the window over which to average. Default is 2.
-    :param axis: int
+    axis : int
         For 2D data, the axis along which to compute the rolling standard deviation. Defaults is -1.
-    :return stdData: ndarray
+
+    Returns
+    -------
+    stdData : numpy.ndarray
         The rolling standard deviation values of the data.
     """
     # Define the generic rolling std function to be used repeatedly:
@@ -356,11 +419,17 @@ def rollingStd(myData, window_length=2, axis=-1):
 def normalize(myData, axis=-1):
     """
     Normalize data with respect to the mean, along the axis specified by the user.
-    :param myData: ndarray
+
+    Parameters
+    ----------
+    myData : numpy.ndarray
         A 1d or 2d array of data.
-    :param axis: int
+    axis : int
         The axis along which to perform normalization with respect to the mean. Default is -1.
-    :return normedData: ndarray
+
+    Returns
+    -------
+    normedData : numpy.ndarray
         The normalized data.
     """
     def normFunc(data):
@@ -387,13 +456,19 @@ def corrCol(myData, otherData, saveLoc=None):
     is multidimensional, correlate it with the second set by column. This function requires that
     'otherData' is 1D and equivalent to the lengths of the columns of 'myData'. Otherwise, if 'myData'
     is 1D, it must be the same length as 'otherData'.
-    :param myData: ndarray
+
+    Parameters
+    ----------
+    myData : numpy.ndarray
         The dependent variable data.
-    :param otherData: ndarray
+    otherData : numpy.ndarray
         The independent variable data.
-    :param saveLoc: str
+    saveLoc : str
         A location where to save figures of the correlations. Optional argument. Default is None.
-    :return fitParams: ndarray
+
+    Returns
+    -------
+    fitParams : numpy.ndarray
         A poly1d object for the fit of the data. The last element is Pearson's R.
     """
     # Loop through the columns and perform the correlation:
@@ -427,16 +502,22 @@ def bestPolyfit(xdata, ydata, maxOrder=5, func=None, **kwargs):
     Given independent variable and dependent variable 1D data fit the data with polynomial functions of orders up to a
     user-defined limit set to 'maxOrder'. For the best-fitting model, return the parameters for the polynomial (as a
     poly1d object) along with the associated Residual Sum of Squares.
-    :param xdata: ndarray
+
+    Parameters
+    ----------
+    xdata : numpy.ndarray
         1D independent variable data.
-    :param ydata: ndarray
+    ydata : numpy.ndarray
         1D dependent variable data.
-    :param maxOrder: int
+    maxOrder : int
         A number below which (inclusive) to consider models to fit to the data. Default is 5.
-    :param func: str
+    func : str
         Specifies what function should be used for fitting. Valid strings are: 'exp', 'linear', 'log', and 'cubic'. If
         this argument is passed, maxOrder is ignored.
-    :return modelRes: list
+
+    Returns
+    -------
+    modelRes : list
         A list where the first element are the model parameters, the second is the Residual Sum of Squares, and the
         third is the model order.
     """
@@ -505,24 +586,30 @@ def binRMSE(xdata, ydataEst, ydataTrue, step=10, saveLoc=None, titleStr=None, no
     variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the RMSE
     error in each bin. Then compute the correlation between the RMSE and the binned xdata. Automatically saves
     a figure for the results at a user-defined location.
-    :param xdata: ndarray
+
+    Parameters
+    ----------
+    xdata: numpy.ndarray
         1D independent variable data.
-    :param ydataEst: ndarray
+    ydataEst: numpy.ndarray
         1D estimates of dependent variable data.
-    :param ydataEst: ndarray
+    ydataEst : numpy.ndarray
         1D actual values of dependent variable data.
-    :param step: int
+    step : int
         The bin width for the independent variable data. Default is 10.
-    :param saveLoc: str
+    saveLoc : str
         A string for the location where the figure should be saved.
-    :param titleStr: str
+    titleStr : str
         A string for the title of the figure to be generated. Assumes that a single number representing a figure number
         or wavelength is given.
-    :param normalize: Bool
+    normalize : Bool
         Controls whether the RMSE is normalized or not. Default is False.
-    :return binCenters: list
+
+    Returns
+    -------
+    binCenters : list
         The bin centers for the dependent variable data.
-    :return RMSE: list
+    RMSE : list
         The RMSE values for each bin.
     """
     # Create the bins:
@@ -564,27 +651,33 @@ def binCorrelation(xdata, ydataEst, ydataTrue, step=10, saveLoc=None, titleStr=N
     variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the squared
     difference in each bin. Then compute the correlation between the the squared difference and the binned xdata.
     Automatically saves a figure for the results at a user-defined location.
-    :param xdata: ndarray
+
+    Parameters
+    ----------
+    xdata : numpy.ndarray
         1D independent variable data.
-    :param ydataEst: ndarray
+    ydataEst : numpy.ndarray
         1D estimates of dependent variable data.
-    :param ydataEst: ndarray
+    ydataEst : numpy.ndarray
         1D actual values of dependent variable data.
-    :param step: int
+    step : int
         The bin width for the independent variable data. Default is 10.
-    :param saveLoc: str
+    saveLoc : str
         A string for the location where the figure should be saved.
-    :param titleStr: str
+    titleStr : str
         A string for the title of the figure to be generated. Assumes that a single number representing a figure number
         or wavelength is given.
-    :param root: Bool
+    root : Bool
         Controls whether the square root of the SQDF is taken. Default is False.
-    :param normalize: Bool
+    normalize : Bool
         Controls whether the SQDF is normalized (by dividing by the true data and multiplying by 100). Default is False.
         If True, ignores the value of 'root'.
-    :return binCenters: list
+
+    Returns
+    -------
+    binCenters : list
         The bin centers for the dependent variable data.
-    :return SQDF: list
+    SQDF : list
         The Squared Difference values for each bin.
     """
     # Create the bins:
@@ -640,13 +733,19 @@ def binCorrelation(xdata, ydataEst, ydataTrue, step=10, saveLoc=None, titleStr=N
 def round_mult(num, divisor, direction='down'):
     """
     Round a number to the nearest integer multiple of a given divisor.
-    :param num: int or float
+
+    Parameters
+    ----------
+    num: int or float
         The number to round down.
-    :param divisor: int or float
+    divisor: int or float
         The number which the result must be an integer multiple of.
-    :param direction: str
+    direction: str
         Either 'down' or 'up'. Specifies whether rounding should be done up or down/
-    :return rounded: float
+
+    Returns
+    -------
+    rounded: float
         The resulting number.
     """
     if direction == 'down':
@@ -657,9 +756,15 @@ def round_mult(num, divisor, direction='down'):
 def stringList(myList):
     """
     Convert a list of numbers into a single string.
-    :param myList: list
+
+    Parameters
+    ----------
+    myList : list
         A list of numbers.
-    :return myStr: str
+
+    Returns
+    -------
+    myStr : str
         The string.
     """
     strList = [str(element) for element in myList]
@@ -671,28 +776,34 @@ def rebin(wavelengths, data, resolution, limits=None, factor=None, zero=True, un
     Rebin 2D [irradiance/flux] data, where each row is a complete spectrum, and each column is a specific wavelength
     bin. Do the rebinning according to a desired resolution, and restrict the returned information to wavelength
     boundaries set by the user.
-    :param wavelengths: arraylike
+
+    Parameters
+    ----------
+    wavelengths : arraylike
         A list of wavelengths at which each irradiance value is taken.
-    :param data: ndarray
+    data : numpy.ndarray
         A 2D array of spectrum data (irradiances or fluxes).
-    :param resolution: float or dict
+    resolution : float or dict
         The desired spectral resolution of the rebinned data. Units must be in nanometers. If argument is a dict, the
         key 'short' should contain wavelength boundaries for the beginning of bins, and the key 'long' should contain
         wavelength boundaries for the ending of bins. These boundaries should be in Angstroms.
-    :param limits: list
+    limits : list
         A list of two elements, where the first is a lower limit for wavelengths and the second is an upper limit for
         wavelengths, both in units of nanometers.
-    :param factor: int
+    factor : int
         A factor by which to upsample the data before performing rebinning. Tends to make the binning much more
         accurate, due to the use of integrals. Default is None.
-    :param zero: bool
+    zero : bool
         Controls whether singular lines are set to a value of zero after they are extracted. Default is True.
-    :param unc: bool
+    unc : bool
         Indicates whether or not uncertainties are being rebinned. If so, they will be combined in each bin using an
         interpolation method.
-    :return newWaves: ndarray
+
+    Returns
+    -------
+    newWaves : numpy.ndarray
         The centers of the wavelength bins corresponding to the rebinned data.
-    :return newData: ndarray
+    newData : numpy.ndarray
         The rebinned data as a 2D array, arranged like the input data but at the new wavelength resolution.
     """
     # Get the native wavelength resolution of the input data:
@@ -854,21 +965,27 @@ def rebin(wavelengths, data, resolution, limits=None, factor=None, zero=True, un
 def newbins(wavelengths, data, bins, zero=False, interpolation=False):
     """
     Rebin data according to a user-defined binning scheme.
-    :param wavelengths: arraylike
+
+    Returns
+    -------
+    wavelengths : arraylike
         The wavelengths of the native data. Units should be in nm.
-    :param data: arraylike
+    data : arraylike
         The native data to be rebinned. Assumes each row is an observation and each column is a bin.
-    :param bins: dict
+    bins : dict
         A dictionary containing the left-ward wavelength bin limits (first key) and the right-ward wavelength bin limits
         (right key). Units should be in Angstroms.
-    :param zero: bool
+    zero : bool
         Controls whether a wavelength bin is 'zeroed' out after it is considered. Default is False.
-    :param interpolation: bool
+    interpolation : bool
         Controls whether interpolation or 4-nm centered windowed averaging is used to handle singular emission
         lines. Default is False, corresponding to the windowed averaging.
-    :return newWaves: arraylike
+
+    Returns
+    -------
+    newWaves : arraylike
         The wavelength boundaries of the new binning scheme.
-    :return newData: arraylike
+    newData : arraylike
         The values of the rebinned data.
     """
     # originalData = data
@@ -953,15 +1070,21 @@ def forecast(y, coefs, trend_coefs, steps, exog=None):
 
     Parameters
     ----------
-    y : ndarray (k_ar x neqs)
-    coefs : ndarray (k_ar x neqs x neqs)
+    y : ndarray
+        Input data. (k_ar x neqs)
+    coefs : numpy.ndarray
+        Coefficients for the model. (k_ar x neqs x neqs)
     trend_coefs : ndarray (1 x neqs) or (neqs)
+        Coefficients for the trend component. (1 x neqs) or (neqs)
     steps : int
-    exog : ndarray (trend_coefs.shape[1] x neqs)
+        Number of forecasts to make.
+    exog : numpy.ndarray
+        Exogeneous (external) covariates to use during forecasting. (trend_coefs.shape[1] x neqs)
 
     Returns
     -------
-    forecasts : ndarray (steps x neqs)
+    forecasts : numpy.ndarray
+        Predictions. (steps x neqs)
 
     Notes
     -----
@@ -1010,18 +1133,24 @@ def forecastInversion(forecastData, history, lastDiff, trend, window):
     Designed to operate on the output of the statsmodels VAR package. Takes a forecast generated by a VAR model, and
     for each sample in the forecast, inverts the forecast to obtain the actual prediction. Essentially, this function
     takes forecasts generated for non-stationary data that has been transformed to stationary data, and inverts it
-    in order to give the non-stationary forecat result.
-    :param forecastData: ndarray
+    in order to give the non-stationary forecast result.
+
+    Parameters
+    ----------
+    forecastData : numpy.ndarray
         An n x m array of forecasts, where n is the number of forecasts and m is the variable.
-    :param history: ndarray
+    history : numpy.ndarray
         A 2D array of training data which was used to generate the forecastData.
-    :param lastDiff, ndarray
+    lastDiff : numpy.ndarray
         A 1 x m array of the most recent differences for all of the variables.
-    :param trend: ndarray
+    trend : numpy.ndarray
         An 2D array of historical trend data for the non-stationary version of the data.
-    :param window: int
+    window : int
         The window over which the historical trend was calculated (assumes some sort of centered average was done).
-    :return invertedForecastDataNew: ndarray
+
+    Returns
+    -------
+    invertedForecastDataNew : numpy.ndarray
         The inverted forecasted data.
     """
     data_and_preds_combined = history
@@ -1064,17 +1193,29 @@ def forecastInversion(forecastData, history, lastDiff, trend, window):
     return invertedForecastDataNew
 
 def find_exp(number) -> int:
+    """
+    Parameters
+    ----------
+    number : float
+        A float of any precision.
+    """
     base10 = log10(abs(number))
     return 1*(10**(floor(base10)))
 
 def get_cc(array1, array2, normalize=True):
     """
     Compute the cross-correlation of two 1D arrays of the same length.
-    :param array1: ndarray
+
+    Parameters
+    ----------
+    array1 : numpy.ndarray
         A 1D array of length n.
-    :param array2: ndarray
+    array2: numpy.ndarray
         A 1D array of length n.
-    :return c: float
+
+    Returns
+    -------
+    c : float
         The normalized correlation of the two arrays.
     """
     if normalize:
@@ -1089,13 +1230,18 @@ def mycorrelate2d(df, normalized=False):
     """
     Compute the correlation matrix from 2D data, where each row is cross correlated with the others.
     This function handles NaN values by ignoring them.
-    :param df: ndarray
+
+    Parameters
+    ----------
+    df : numpy.ndarray
         A 2D array of dimensions n x m.
-    :param normalized: bool
+    normalized : bool
         Determines whether the resulting correlation matrix is normalized. Default is False.
-    :returns ccm: ndarray
+
+    Returns
+    -------
+    ccm : numpy.ndarray
         The [normalized] cross-correlation matrix.
-    Source: https://stackoverflow.com/questions/54292947/basics-of-normalizing-cross-correlation-with-a-view-to-comparing-signals
     """
     # Initialize cross correlation matrix with zeros
     ccm = np.zeros((df.shape[1], df.shape[1]))
@@ -1118,12 +1264,38 @@ def mycorrelate2d(df, normalized=False):
 def linear(x, a, b):
     """
     A generic linear function for fitting lines with.
+
+    Parameters
+    ----------
+    x : int, float, or arraylike
+        An independent variable.
+    a : int or float
+        The first model parameter - the coefficient.
+    b : int or float
+        The second model parameter - the intercept term.
+
+    Returns
+    -------
+    y : int, float, or arraylike
+        The dependent variable.
     """
     return a*x + b
 
 def squareDiff(x, y):
     """
     Compute the difference squared between two arrays or lists (of the same length).
+
+    Parameters
+    ----------
+    x : arraylike
+        A sequence for which to compute the difference with another.
+    y : arraylike
+        The second sequence, which will be compared with the first.
+
+    Returns
+    -------
+    sqdf : arraylike
+        The squared difference between the two arrays.
     """
     res = []
     for i in range(len(x)):
@@ -1132,12 +1304,18 @@ def squareDiff(x, y):
 
 def mape(x, y):
     """
-    Compute the mean absolute percentage error between two arrays.
-    :param x: arraylike
+    Compute the mean absolute percentage error between two sequences.
+
+    Parameters
+    ----------
+    x: arraylike
         The modeled values.
-    :param y: arraylike
+    y: arraylike
         The actual (true) values.
-    :return mape:
+
+    Returns
+    -------
+    mape : float
         The mean absolute percentage error.
     """
     n = len(x)
@@ -1148,21 +1326,29 @@ def mape(x, y):
 def plotHist(data, bins, color, saveLoc=None, labels=None, logScale=None, density=True):
     """
     Given data and bins, plot a histogram and fit a distribution to it.
-    :param data: arraylike
+
+    Parameters
+    ----------
+    data : arraylike
         1D data to make a histogram with.
-    :param bins: arraylike
+    bins : arraylike
         The bins with which to bin the data.
-    :param color: str
+    color : str
         The color of the histogram data that will be in the plot.
-    :param saveLoc: str
+    saveLoc : str
         A string containing the location with which to save the file.
-    :param labels: list
+    labels: list
         A 3-element list containing string for the xlabel, ylabel, and the title.
-    :param logScale: bool
+    logScale : bool
         If 'x', scales the x-axis on a log scale. If 'y', scales the y-axis on a log scale. If 'both', scales both.
-    :param density: bool
+    density : bool
         If True, computes the density curve of the histogram. If False, simply fits a skew normal distribution to the
         data.
+
+    Returns
+    -------
+    fig : matplotlib.figure
+        A figure object containing the histogram.
     """
     validLocs = ~np.isnan(data)
     xVals = np.linspace(bins[0], bins[-1], 500)
@@ -1209,10 +1395,18 @@ def plotHist(data, bins, color, saveLoc=None, labels=None, logScale=None, densit
 def percDev(x, y):
     """
     Compute the percentage deviation (a.k.a. percentage error).
+
+    Parameters
+    ----------
     :param x: float or arraylike
         The observed value(s).
     :param y: float or arraylike
         The true value(s).
+
+    Returns
+    -------
+    percentDev : float or arraylike
+        The percent deviation between the two arrays.
     """
     return np.divide(np.subtract(x, y), y) * 100
 
@@ -1220,6 +1414,11 @@ def readFISM2(fname):
     """
     Given a FISM2 netcdf file, read it in and output a .dat file with the same format as the .dat files here:
     https://github.com/aaronjridley/GITM/tree/master/srcData/FISM
+
+    Parameters
+    ----------
+    fname : str
+        The location of the FISM2 file to read in.
     """
     from netCDF4 import Dataset
     fism2Data = Dataset(fname)
@@ -1259,11 +1458,17 @@ def readCLS(filename):
     """
     Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites
     (CLS).
-    :param filename: str
+
+    Parameters
+    ----------
+    filename : str
         The location of the data file.
-    :return times: list
+    times : list
         The datetimes for each data value.
-    :return data: ndarray
+
+    Returns
+    -------
+    data : numpy.ndarray
         The solar flux data for F30, F15, F10.7, F8, and F3.2.
     """
     times = []
@@ -1294,16 +1499,22 @@ def band_info(bin_boundaries_left, bin_boundaries_right, solomon=False):
     """
     Given a two array-likes of wavelength bin boundaries, return the indices of those corresponding only to wavelength
     ranges, rather than individual lines, and also return the wavelength boundaries themselves.
-    :param bin_boundaries_left: array-like
+
+    Parameters
+    ----------
+    bin_boundaries_left : arraylike
         The left-sided wavelength band boundaries. May either be in nm or Angstroms.
-    :param bin_boundaries_right: array-like
+    bin_boundaries_right : arraylike
         The right-sided wavelength band boundaries. May either be in nm or Angstroms. Units should match those of
         bin_boundaries_left.
-    :param solomon: boolean
+    solomon : boolean
         If True, does the same thing, but accounts for overlapping bands in the solomon bins. Default is False.
-    :return sortInds: array-like
+
+    Returns
+    -------
+    sortInds : arraylike
         The indices of the wavelength ranges only.
-    :return xPosSorted: array-like
+    xPosSorted : arraylike
         The values of the wavelength ranges themselves, for the purposes of making spectral stair plots.
     """
     if not solomon:
@@ -1340,9 +1551,15 @@ def solomonRebin(solomonIrr):
     """
     Given some irradiance in the Solomon Bins, do a simple rebinning procedure to simply sum the irradiance in the
     overlapping bins, so that the resulting spectra can be plotted rather easily.
-    :param solomonIrr: numpy array
+
+    Parameters
+    ----------
+    solomonIrr : numpyn.ndarray
         An array of irradiance in the Solomon Bins. Rows are observations and columns are wavelength bins.
-    :return solomonIrr_for_plotting: numpy array
+
+    Returns
+    -------
+    solomonIrr_for_plotting: numpy.ndarray
         The rebinned irradiance.
     """
     solomonTable = solomon.solomonBands

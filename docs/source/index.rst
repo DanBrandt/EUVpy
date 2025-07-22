@@ -1,5 +1,5 @@
 .. EUVpy documentation master file, created by
-   sphinx-quickstart on Tue Mar  4 13:59:26 2025.
+   sphinx-quickstart on Tue Jul 22 13:50:30 2025.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -15,4 +15,4 @@ documentation for details.
    :maxdepth: 4
    :caption: Contents:
 
-   src
+   EUVpy

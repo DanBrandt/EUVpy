@@ -27,23 +27,29 @@ heuvacStatsFiles = [here.parent.joinpath('experiments/corMatHEUVAC.pkl'), here.p
 
 def irradiance_ensemble(F107, F107A, iterations=100, model='NEUVAC'):
     """
-    Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the members,
-    and the standard deviations of the ensemble.
-    :param F107: float or ndarray
+    Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the individual
+    members, and the standard deviations of the ensemble.
+
+    Parameters
+    ----------
+    F107 : float or numpy.ndarray
         Solar flux at 10.7 cm.
-    :param F107A: float or ndarray
+    F107A : float or numpy.ndarray
         81 day-averaged solar flux at 10.7, centered on the current day.
-    :param iterations: int
+    iterations : int
         The number of ensemble members.
-    :param model: str
+    model : str
         The model with which to run the ensemble. May be 'NEUVAC', 'NEUVAC-E', 'EUVAC', or 'HEUVAC'. If the model is in
         the STAN BANDS, valid arguments include 'NEUVAC-S', 'EUVAC-S', or 'HFG'. 'NEUVAC' refers to the 59-band base
         model of NEUVAC, while 'NEUVAC-E' refers to the 37-band base model of NEUVAC.
-    :return ensemble: ndarray
+
+    Returns
+    -------
+    ensemble : numpy.ndarray
         A 3D array where each 2D element is an ensemble.
-    :return ensemble_avg: ndarray
+    ensemble_avg : numpy.ndarray
         A 2D array of the ensemble average of irradiances.
-    :return ensemble_stddev: ndarray
+    ensemble_stddev : numpy.ndarray
         A 2D array of the ensemble standard deviations.
     """
     # Get the shape of the third dimension

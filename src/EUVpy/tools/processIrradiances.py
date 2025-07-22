@@ -16,8 +16,8 @@ from netCDF4 import Dataset
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Local Imports
-from src.EUVpy.tools import toolbox
-from src.EUVpy.tools import spectralAnalysis
+from EUVpy.tools import toolbox
+from EUVpy.tools import spectralAnalysis
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -59,20 +59,26 @@ def getIrr(dateStart, dateEnd, source):
     """
     Given a starting date and an ending date, automatically download irradiance data from LISIRD for a specific source,
     including FISM2 (daily or stan bands) or SEE (Level 3 daily).
-    :param dateStart: str
+
+    Parameters
+    ----------
+    dateStart : str
         The starting date for the data in YYYY-MM-DD format.
-    :param dateEnd: str
+    dateEnd : str
         The ending date for the data in YYYY-MM-DD format.
-    :param source: str
+    source : {'FISM2', 'FISM2S', 'SEE'}
         The type of data to be obtained. Valid inputs are:
         - FISM2 (for daily averages of FISM2 data)
         - FISM2S (for daily averages of FISM2 standard bands, according to Solomon and Qian 2005)
         - SEE (for Level 3 daily averages of TIMED/SEE data)
-    :return times: ndarray
+
+    Returns
+    -------
+    times : numpy.ndarray
         Datetime values for each spectrum.
-    :return wavelengths: ndarray
+    wavelengths: numpy.ndarray
         Wavelength bins (bin boundaries) for the spectral data.
-    :return irradiance: ndarray
+    irradiance : numpy.ndarray
         A 2D array where each row is a spectrum at a particular time, and the columns are wavelength bands.
     """
     # Converting the input time strings to datetimes:
@@ -112,16 +118,22 @@ def getIrr(dateStart, dateEnd, source):
 def obtainFism1(fismFiles, euv_bins, saveLoc=None):
     """
     Given muliple FISM1 .dat files, get the information from each band, using code developed by Dr. Aaron Ridley.
-    :param fismfiles: arraylile
+
+    Parameters
+    ----------
+    fismfiles : arraylike
         A list or array of .dat files containing FISM1 data (the full VUV spectrum from .1nm to 195nm at 1 nm
         resolution.
-    :param euv_bins: dict
+    euv_bins : dictionary
         EUV bins with which to rebin the FISM1 data. Obtained from fism2_process.rebin_fism.
-    :param saveLoc: str
+    saveLoc : str
         Optional argument that controls where pickle files are saved.
-    :return irrTimes: ndarray
+
+    Returns
+    -------
+    irrTimes : numpy.ndarray
         A 1d array of datetimes corresponding to each set of irradiance values.
-    :return irrArray: ndarray
+    irrArray : numpy.ndarray
         An ndarray containing all of the individual 59 irradiance values in each band from all .dat files.
     """
     myIrrPickleFile = 'myIrrFISM1.pkl'
@@ -173,18 +185,24 @@ def obtainFism1(fismFiles, euv_bins, saveLoc=None):
 
 def obtainFism2(myFism2File, bands=False):
     """
-    Load in spectrum data from a FISM2 file.
-    :param myFism2File: str
+    Load in spectrum data from a FISM2 file downloaded from CU Boulder's LISIRD website.
+
+    Parameters
+    ----------
+    myFism2File : str
         The location of the NETCDF4 file.
-    :param bands: bool
+    bands : bool
         If True, loads in the data segmented into the Solomon and Qian 2005 standard bands.
-    :return datetimes: ndarray
+
+    Returns
+    -------
+    datetimes : numpy.ndarray
         An array of datetimes for each TIMED/SEE spectra.
-    :return wavelengths: ndarray
+    wavelengths : numpy.ndarray
         A one-dimensional array of wavelengths at which there are irradiance values.
-    :return irradiances: ndarray
+    irradiances : numpy.ndarray
         A two-dimensional array of irradiance values at each time.
-    :return uncertainties: ndarray
+    uncertainties : numpy.ndarray
         A two-dimensional array of irradiance uncertainty values at each time.
     """
     fism2Data = Dataset(myFism2File)
@@ -215,15 +233,21 @@ def obtainFism2(myFism2File, bands=False):
 def obtainSEE(seeFile):
     """
     Given a TIMED/SEE NETCDF4 file, load in and return the timestamps, wavelengths, irradiances, and uncertainties.
-    :param seeFile: str
+
+    Parameters
+    ----------
+    seeFile : str
         The NETCDF4 file containing TIMED/SEE data.
-    :return datetimes: ndarray
+
+    Returns
+    -------
+    datetimes : numpy.ndarray
         An array of datetimes for each TIMED/SEE spectra.
-    :return wavelengths: ndarray
+    wavelengths : numpy.ndarray
         A one-dimensional array of wavelengths at which there are irradiance values.
-    :return irradiances: ndarray
+    irradiances : numpy.ndarray
         A two-dimensional array of irradiance values at each time.
-    :return uncertainties: ndarray
+    uncertainties : numpy.ndarray
         A two-dimensional array of irradiance uncertainty values at each time.
     """
     seeData = Dataset(seeFile)
@@ -244,17 +268,23 @@ def obtainSEE(seeFile):
 def obtainNRLSSIS2(filename):
     """
     Given a NRLSSI2 NETCDF4 file, load in and return the timestamps, wavelengths, irradiances, and uncertainties.
-    :param filename: str
+
+    Parameters
+    ----------
+    filename : str
         The NETCDF4 file containing TIMED/SEE data.
-    :return datetimes: ndarray
+
+    Returns
+    -------
+    datetimes : numpy.ndarray
         An array of datetimes for each TIMED/SEE spectra.
-    :return wavelengths: ndarray
+    wavelengths : numpy.ndarray
         A one-dimensional array of wavelengths at which there are irradiance values.
-    :return bandwidths: ndarray
+    bandwidths : numpy.ndarray
         The width of the corresponding band for each irradiance measurement.
-    :return irradiance: ndarray
+    irradiance : numpy.ndarray
         A two-dimensional array of irradiance values at each time.
-    :return uncertainties: ndarray
+    uncertainties : numpy.ndarray
         A two-dimensional array of irradiance uncertainty values at each time.
     """
     NRLData = Dataset(filename)
@@ -274,15 +304,21 @@ def obtainNRLSSIS2(filename):
 def obtainSDO(seeFile):
     """
     Given an SDO NETCDF4 file, load in and return the timestamps, wavelengths, irradiances, and uncertainties.
-    :param seeFile: str
+
+    Parameters
+    ----------
+    seeFile : str
         The NETCDF4 file containing SDO/EVE data.
-    :return datetimes: ndarray
+
+    Returns
+    -------
+    datetimes : numpy.ndarray
         An array of datetimes for each SDO/EVE spectra.
-    :return wavelengths: ndarray
+    wavelengths : numpy.ndarray
         A one-dimensional array of wavelengths at which there are irradiance values.
-    :return irradiances: ndarray
+    irradiances : numpy.ndarray
         A two-dimensional array of irradiance values at each time.
-    :return uncertainties: ndarray
+    uncertainties : numpy.ndarray
         A two-dimensional array of irradiance uncertainty values at each time.
     """
     sdoData = Dataset(seeFile)
@@ -383,34 +419,34 @@ def obtainSDO(seeFile):
     # sys.exit(0)
 # -----------------------------------------------------------------------------------------------------------------------
 
-if __name__ == '__main__':
-    datetimes, wavelengths, irradiances, uncertainties = obtainSEE(TIMED_spectra_folder+'latest_see_L3_merged_2002-2023.ncdf')
-    datetimesF, wavelengthsF, irradiancesF, uncertaintiesF = obtainFism2(fism2_spectra_folder+'daily_data_1947-2023.nc')
-
-    import matplotlib.pylab as pylab
-    params = {'legend.fontsize': 'x-large',
-              'figure.figsize': (14, 6),
-              'axes.labelsize': 'x-large',
-              'axes.titlesize': 'X-Large',
-              'xtick.labelsize': 'X-large',
-              'ytick.labelsize': 'X-large'}
-    sampleVals1 = irradiancesF[21056, :]
-    idx = np.flatnonzero(~np.isnan(sampleVals1))
-    sampleVals1[idx[sampleVals1[idx] < 0]] = np.nan
-    sampleVals2 = irradiances[1000, :]
-    idx = np.flatnonzero(~np.isnan(sampleVals2))
-    sampleVals2[idx[sampleVals2[idx] < 0]] = np.nan
-    pylab.rcParams.update(params)
-    import matplotlib.pyplot as plt
-    plt.figure()
-    plt.plot(wavelengthsF*10, sampleVals1, color='b', label='FISM2')
-    plt.plot(wavelengths*10, sampleVals2, color='r', label='TIMED/SEE')
-    plt.xlabel('Wavelength (Angstroms)')
-    plt.ylabel('Irradiance (W/m$^2$/nm)')
-    plt.title('Solar EUV Spectra on '+str(datetimes[1000].date()))
-    plt.legend(loc='best')
-    plt.yscale('log')
-
-    # TODO: Fix plot axis labels (fontsize), add a title, etc.
-
-    ellipsis
+# if __name__ == '__main__':
+#     datetimes, wavelengths, irradiances, uncertainties = obtainSEE(TIMED_spectra_folder+'latest_see_L3_merged_2002-2023.ncdf')
+#     datetimesF, wavelengthsF, irradiancesF, uncertaintiesF = obtainFism2(fism2_spectra_folder+'daily_data_1947-2023.nc')
+#
+#     import matplotlib.pylab as pylab
+#     params = {'legend.fontsize': 'x-large',
+#               'figure.figsize': (14, 6),
+#               'axes.labelsize': 'x-large',
+#               'axes.titlesize': 'X-Large',
+#               'xtick.labelsize': 'X-large',
+#               'ytick.labelsize': 'X-large'}
+#     sampleVals1 = irradiancesF[21056, :]
+#     idx = np.flatnonzero(~np.isnan(sampleVals1))
+#     sampleVals1[idx[sampleVals1[idx] < 0]] = np.nan
+#     sampleVals2 = irradiances[1000, :]
+#     idx = np.flatnonzero(~np.isnan(sampleVals2))
+#     sampleVals2[idx[sampleVals2[idx] < 0]] = np.nan
+#     pylab.rcParams.update(params)
+#     import matplotlib.pyplot as plt
+#     plt.figure()
+#     plt.plot(wavelengthsF*10, sampleVals1, color='b', label='FISM2')
+#     plt.plot(wavelengths*10, sampleVals2, color='r', label='TIMED/SEE')
+#     plt.xlabel('Wavelength (Angstroms)')
+#     plt.ylabel('Irradiance (W/m$^2$/nm)')
+#     plt.title('Solar EUV Spectra on '+str(datetimes[1000].date()))
+#     plt.legend(loc='best')
+#     plt.yscale('log')
+#
+#     # TODO: Fix plot axis labels (fontsize), add a title, etc.
+#
+#     ellipsis

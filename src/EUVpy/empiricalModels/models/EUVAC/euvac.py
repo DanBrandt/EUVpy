@@ -68,16 +68,25 @@ euvacTable = np.array([
 # Functions:
 def refSpec(i):
     """
-    Return the standard solar flux in 37 bands from the F74113 Spectrum (pp. 584-585 in Schunk and Nagy).
-    Source 2: Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic
-    calculations, Journal of Geophysical Research, 99, A5, 8981-8992, 1994.
-    Source 3: Heroux, L. and Hinteregger, H. E., Aeronomical Reference Spectrum for Solar UV Below 2000 A, Journal of
+    Helper function for the EUVAC Model: returns the standard solar flux in 37 bands from the F74113 Spectrum
+    (pp. 584-585 in Schunk and Nagy).
+
+    For additional resources, see the following:
+    - Richard, P. G., Fennelly, J. A., and Torr, D. G., EUVAC: A solar EUV flux model for aeronomic calculations,
+    Journal of Geophysical Research, 99, A5, 8981-8992, 1994.
+    - Heroux, L. and Hinteregger, H. E., Aeronomical Reference Spectrum for Solar UV Below 2000 A, Journal of
     Geophysical Research, 83, A11, 1978.
-    :param: i: int
+
+    Parameters
+    ----------
+    i : int
         The index for the wavelength. Must be between 0 and 37.
-    :return: F74113_i: float
+
+    Returns
+    -------
+    F74113_i : float
         The reference solar flux in units of photons/m^2/s^.
-    :return: A_i: float
+    A_i : float
         The scaling factor for the wavelength interval.
     """
     lookUpIdx = np.where(euvacTable[:, 0] == i)[0]
@@ -89,17 +98,23 @@ def euvac(F107, F107A, statsFiles=None):
     """
     Compute the solar flux from F10.7, according to the EUVAC model. Return the solar flux across 37 wavelength
     bands in units of photons m^-2 s^-1.
-    :param F107: ndarray
+
+    Parameters
+    ----------
+    F107 : numpy.ndarray
         Values of the F10.7 solar flux.
-    :param F107A: ndarray
+    F107A : numpy.ndarray
         Values of the 81-day averaged solar flux, centered on the present day.
-    :param statsFiles: list
-        A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second
-        element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.
-    :return: euvacFlux: ndarray
-        Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s
-    :return euvacIrr: ndarray
-        Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2
+    statsFiles : list
+        A 2 element list where the first element is a file containing the 37x37 correlation matrix and the second
+        element is a file containing the 1x37 standard deviation values for EUVAC. Optional.
+
+    Returns
+    -------
+    euvacFlux: numpy.ndarray
+        Values of the solar radiant flux in 37 distinct wavelength bands. In photons/m^2/s.
+    euvacIrr: numpy.ndarray
+        Values of the solar spectral irradiance in 37 distinct wavelength bands. In W/m^2.
     """
     P = (F107A + F107)/2.0
     if type(F107) == np.ndarray:

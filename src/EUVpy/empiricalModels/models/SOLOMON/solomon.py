@@ -76,18 +76,24 @@ solomonBandWidths = np.array([3.5, 0.4, 1., 1.4, 3.8, 8.5, 6.9, 6.6, 3., 22., 11
 #-----------------------------------------------------------------------------------------------------------------------
 def solomon(F107, F107A, model='HFG'):
     """
-    Compute the solar EUV irradiance in 23 standard bands.
-    :param F107: ndarray
+    Compute the solar EUV irradiance in 23 standard bands. Utilizes Equations 1-3 from Solomon and Qian 2005
+    (doi:10.1029/2005JA011160).
+
+    Parameters
+    ----------
+    F107 : numpy.ndarray
         Values of the F10.7 solar flux.
-    :param F107A: ndarray
+    F107A : numpy.ndarray
         Values of the 81-day averaged solar flux, centered on the present day.
-    :param model: str
-        Either 'HFG' or 'EUVAC'. Controls whether or not the empirical EUV data returned corresponds to the HFG model or
-        the EUVAC model.
-    :return solomonFlux: ndarray
-        Values of the solar radiant flux in 23 distinct wavelength bands. Units of photon/m^2/s
-    :return solomonIrr: ndarray
-        Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2
+    model : {'HFG', 'EUVAC'}
+        Controls whether or not the empirical EUV data returned corresponds to the HFG model or the EUVAC model.
+
+    Returns
+    -------
+    solomonFlux : numpy.ndarray
+        Values of the solar radiant flux in 23 distinct wavelength bands. Units of photon/m^2/s.
+    solomonIrr : numpy.ndarray
+        Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2.
     """
     # Instantiate the output data:
     if type(F107) == list or type(F107) != np.ndarray:

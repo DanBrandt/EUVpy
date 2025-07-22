@@ -33,11 +33,17 @@ def readF107(filename):
     Note that F10.7 values are daily values measured at LOCAL NOON of each day.
     Note that the OBSERVED values DO NOT correspond to 1 AU, and they may vary, while the ADJUSTED values are calibrated
     to correspond to 1 AU.
-    :param filename: str
+
+    Parameters
+    ----------
+    filename : str
         A string containing the location of the txt file with the F10.7 data.
-    :return times: ndarray
+
+    Returns
+    -------
+    times : numpy.ndarray
         A 1D array of datetimes corresponding to each F10.7 measurement.
-    :return f107: ndarray
+    f107 : numpy.ndarray
         A 1D array of F10.7 values.
     """
     times = []
@@ -79,11 +85,17 @@ def readCLS(filename):
     """
     Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites
     (CLS).
-    :param filename: str
+
+    Parameters
+    ----------
+    filename : str
         The location of the data file.
-    :return times: list
+
+    Returns
+    -------
+    times : list
         The datetimes for each data value.
-    :return data: ndarray
+    data : numpy.ndarray
         The solar flux data for F30, F15, F10.7, F8, and F3.2.
     """
     times = []
@@ -119,14 +131,28 @@ def getCLSF107(dateStart, dateEnd, truncate=True, rewrite=True):
     most recent measurements to a file. Reads the file and extracts the F10.7 values between two dates. Note that if the
     ending date is less than or equal to the last date in the version of the file that has already been downloaded, the
     file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloaded.
-    :param dateStart: str
+
+    Parameters
+    ----------
+    dateStart : str
         The starting date in YYYY-MM-DD format.
-    :param dateEnd: str
+    dateEnd : str
         The ending date in YYYY-MM-DD format.
-    :param truncate: bool
+    truncate : bool
         Controls whether to truncate the data to exclude the most recent 81 days. Defaults is True.
-    :param rewrite: bool
+    rewrite : bool
         Controls whether an existing CLS file is rewritten. Defualt is True.
+
+    Returns
+    -------
+    times : list
+        The datetimes for each data value.
+    F107 : arraylike
+        Solar flux at 10.7 cm.
+    F107A : arraylike
+        81-day averaged solar flux at 10.7 cm, centered on the current day.
+    F107B : arraylike
+        54-day averaged solar flux at 10.7 cm, averaged in a backwards-looking window.
     """
     dateTimeStart = datetime.strptime(dateStart, '%Y-%m-%d')
     dateTimeEnd = datetime.strptime(dateEnd, '%Y-%m-%d')
@@ -163,18 +189,24 @@ def getCLSF107(dateStart, dateEnd, truncate=True, rewrite=True):
 
 def getF107(dateStart, dateEnd):
     """
-    Given two dates, automatically download F10.7 data from NASA OMNIWeb.
-    :param dateStart: str
+    Given two dates (a start date and an ending date), automatically download F10.7 data from NASA OMNIWeb.
+
+    Parameters
+    ----------
+    dateStart : str
         The starting date, in YYYY-MM-DD format.
-    :param dateEnd: str
+    dateEnd : str
         The ending date, in YYYY-MM-DD format.
-    :return dataFile: str
+
+    Returns
+    -------
+    dataFile : str
         The downloaded OMNI data file.
-    :return times: ndarray
+    times : numpy.ndarray
         An array of datetimes for the F10.7 values.
-    :return f107: ndarray
+    f107 : numpy.ndarray
         The F10.7 values for the time desired.
-    :return f107A: str
+    f107A : str
         The 81-day averaged F10.7 values (centered on the current day) for the time desired.
     """
     dateStartStr = dateStart.replace('-','')
@@ -216,16 +248,21 @@ def getF107(dateStart, dateEnd):
 def readOMNI(dataFile, headerFile):
     """
     Read in file from an OMNI data and parse it according to the specified format.
-    :param dataFile: str
+
+    Parameters
+    ----------
+    dataFile : str
         The name of the file where the OMNI data is stored.
-    :param headerFile: str
+    headerFile : str
         The name of the file containing header information for the OMNI data.
-    :return:
-    omniTimes: ndarray
+
+    Returns
+    -------
+    omniTimes : numpy.ndarray
         A 1D array of datetimes for the omni data.
-    omniLabels: ndarray
+    omniLabels: numpy.ndarray
         A 1D array of strings of each of the variables in the OMNI data.
-    omniDataArray: ndarray
+    omniDataArray: numpy.ndarray
         A 2D array with all the OMNI data. The shape is nxm, where n is the number of time samples (each hour) and
         m is the number of variables collected at each time sample.
     """
@@ -267,13 +304,19 @@ def cleanF107(index_times, index_values, bad_value=999.9):
     """
     Given time stamps and observations of F10.7, determine the location of bad values (using the argument 'bad_value'),
     and replace them with imputed data generated with CSAPS.
-    :param index_times: arraylike
+
+    Parameters
+    ----------
+    index_times : arraylike
         An array or list of datetimes for each F10.7 value.
-    :param index_values: arraylike
+    index_values : arraylike
         An array or list of F10.7 values with the same shape as index_times.
-    :param bad_value: float or int
+    bad_value : float or int
         A single value corresponding to the bad values to be removed and imputed over. Default is 999.9.
-    :return clean_values: arraylike
+
+    Returns
+    -------
+    clean_values : arraylike
         The gap-filled/imputed data.
     """
     # Check for bad values:
@@ -316,16 +359,22 @@ def F107filter(index_times, index_values, window_length=81, n=2):
     1. Compute the running average and standard deviation.
     2. Identify the locations of values OUTSIDE the running average +/- n*stddev.
     3. For each datapoint identified in (2), replace it with the running average +/- n*stddev, depending on the sign.
-    :param index_times: arraylike
+
+    Parameters
+    ----------
+    index_times : arraylike
         An array or list of datetime values for each F10.7 value.
-    :param index_values: arraylike
+    index_values : arraylike
         An array or list of F10.7 values with the same shape as index_times.
-    :param window_length: int
+    window_length : int
         The length of the running window over which to compute the running average and standard deviation. Default is 81.
-    :param n: int
+    n : int
         The factor by which the standard deviation will be multiplied to determine which values should be replaced.
         Default is 2.
-    :return filteredF107: arraylike
+
+    Returns
+    -------
+     filteredF107 : arraylike
         The resulting filtered F10.7.
     """
     filteredF107 = index_values.copy()
@@ -368,50 +417,50 @@ def F107filter(index_times, index_values, window_length=81, n=2):
 #-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Execution
-if __name__=="__main__":
-    # PENTICTON DATA
-    saveLoc = '../solarIndices/F107/Penticton/'
-    fname = '../solarIndices/F107/Penticton/F107_1947_1996.txt'
-    fname1 = '../solarIndices/F107/Penticton/F107_1996_2007.txt'
-    fname2 = '../solarIndices/F107/Penticton/F107_current.txt'
-    times, f107 = readF107(fname)
-    times1, f1071 = readF107(fname1)
-    times2, f1072 = readF107(fname2)
-    # -------------------------------
-    # Combine all of the outputs from the files above and view the results as a sanity check:
-    allTimes = np.concatenate((times, times1, times2))
-    allF107 = np.concatenate((f107, f1071, f1072))
-    # Resample the times:
-    uniformTimes, uniformF107 = uniformSample(allTimes, allF107, cadence=24)
-    # Clean the data (through either gapification or imputation):
-    cleanedTimes, cleanedF107 = imputeData(uniformTimes, uniformF107, method='interp', bad_values=0)
-    # cleanedF107 = gapify(uniformF107, bad_value=0)
-    # Filter the data:
-    filteredF107 = F107filter(cleanedTimes, cleanedF107)
-    # Compute the centered rolling 81-day average of F10.7:
-    averagedF107 = rollingAverage(filteredF107, window_length=81)
-    # Compute the 54-day average of F10.7 with a backwards window:
-    backwardsAveragedF107 = rollingAverage(filteredF107, window_length=54, center=False)
-    # Plot as a sanity-check:
-    # import matplotlib; matplotlib.use('Qt5Agg'); import matplotlib.pyplot as plt; plt.figure(); plt.plot(cleanedTimes, cleanedF107); plt.plot(cleanedTimes, averagedF107); plt.plot(cleanedTimes, backwardsAveragedF107); plt.show()
-    # Save the data to pickle files:
-    savePickle(cleanedTimes, saveLoc+'F107times.pkl')
-    savePickle(cleanedF107, saveLoc+'F107vals.pkl')
-    savePickle(backwardsAveragedF107, saveLoc+'F107averageVals.pkl') # averagedF107
-    # -------------------------------
-    # Do all of the above with NASA OMNIWEB data:
-    omniSaveloc = '../solarIndices/F107/OMNIWeb/'
-    omniDataFile = '../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.lst'
-    omniHeaderFile = '../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.fmt'
-    omniTimes, omniLabels, omniData = readOMNI(omniDataFile, omniHeaderFile)
-    omniF107 = np.squeeze(omniData)
-    cleanOmniF107 = cleanF107(omniTimes, omniF107, bad_value=999.9)
-    filteredOMNIF107 = F107filter(omniTimes, cleanOmniF107)
-    averagedOmniData = rollingAverage(filteredOMNIF107, window_length=81)
-    # Save the data to pickle files:
-    savePickle(omniTimes, omniSaveloc + 'OMNIF107times.pkl')
-    savePickle(filteredOMNIF107, omniSaveloc + 'OMNIF107vals.pkl')
-    savePickle(averagedOmniData, omniSaveloc + 'OMNIF107averageVals.pkl')
-    # -------------------------------
-    sys.exit(0)
+# # Execution
+# if __name__=="__main__":
+#     # PENTICTON DATA
+#     saveLoc = '../solarIndices/F107/Penticton/'
+#     fname = '../solarIndices/F107/Penticton/F107_1947_1996.txt'
+#     fname1 = '../solarIndices/F107/Penticton/F107_1996_2007.txt'
+#     fname2 = '../solarIndices/F107/Penticton/F107_current.txt'
+#     times, f107 = readF107(fname)
+#     times1, f1071 = readF107(fname1)
+#     times2, f1072 = readF107(fname2)
+#     # -------------------------------
+#     # Combine all of the outputs from the files above and view the results as a sanity check:
+#     allTimes = np.concatenate((times, times1, times2))
+#     allF107 = np.concatenate((f107, f1071, f1072))
+#     # Resample the times:
+#     uniformTimes, uniformF107 = uniformSample(allTimes, allF107, cadence=24)
+#     # Clean the data (through either gapification or imputation):
+#     cleanedTimes, cleanedF107 = imputeData(uniformTimes, uniformF107, method='interp', bad_values=0)
+#     # cleanedF107 = gapify(uniformF107, bad_value=0)
+#     # Filter the data:
+#     filteredF107 = F107filter(cleanedTimes, cleanedF107)
+#     # Compute the centered rolling 81-day average of F10.7:
+#     averagedF107 = rollingAverage(filteredF107, window_length=81)
+#     # Compute the 54-day average of F10.7 with a backwards window:
+#     backwardsAveragedF107 = rollingAverage(filteredF107, window_length=54, center=False)
+#     # Plot as a sanity-check:
+#     # import matplotlib; matplotlib.use('Qt5Agg'); import matplotlib.pyplot as plt; plt.figure(); plt.plot(cleanedTimes, cleanedF107); plt.plot(cleanedTimes, averagedF107); plt.plot(cleanedTimes, backwardsAveragedF107); plt.show()
+#     # Save the data to pickle files:
+#     savePickle(cleanedTimes, saveLoc+'F107times.pkl')
+#     savePickle(cleanedF107, saveLoc+'F107vals.pkl')
+#     savePickle(backwardsAveragedF107, saveLoc+'F107averageVals.pkl') # averagedF107
+#     # -------------------------------
+#     # Do all of the above with NASA OMNIWEB data:
+#     omniSaveloc = '../solarIndices/F107/OMNIWeb/'
+#     omniDataFile = '../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.lst'
+#     omniHeaderFile = '../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.fmt'
+#     omniTimes, omniLabels, omniData = readOMNI(omniDataFile, omniHeaderFile)
+#     omniF107 = np.squeeze(omniData)
+#     cleanOmniF107 = cleanF107(omniTimes, omniF107, bad_value=999.9)
+#     filteredOMNIF107 = F107filter(omniTimes, cleanOmniF107)
+#     averagedOmniData = rollingAverage(filteredOMNIF107, window_length=81)
+#     # Save the data to pickle files:
+#     savePickle(omniTimes, omniSaveloc + 'OMNIF107times.pkl')
+#     savePickle(filteredOMNIF107, omniSaveloc + 'OMNIF107vals.pkl')
+#     savePickle(averagedOmniData, omniSaveloc + 'OMNIF107averageVals.pkl')
+#     # -------------------------------
+#     sys.exit(0)

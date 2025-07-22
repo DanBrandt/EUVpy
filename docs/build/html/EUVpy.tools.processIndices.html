@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.tools.processIndices module &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EUVpy.tools.processIrradiances module" href="EUVpy.tools.processIrradiances.html" />
+    <link rel="prev" title="EUVpy.tools.ensemble module" href="EUVpy.tools.ensemble.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="EUVpy.html">EUVpy package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="EUVpy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="EUVpy.html">EUVpy package</a></li>
+          <li class="breadcrumb-item"><a href="EUVpy.tools.html">EUVpy.tools package</a></li>
+      <li class="breadcrumb-item active">EUVpy.tools.processIndices module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/EUVpy.tools.processIndices.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-EUVpy.tools.processIndices">
+<span id="euvpy-tools-processindices-module"></span><h1>EUVpy.tools.processIndices module<a class="headerlink" href="#module-EUVpy.tools.processIndices" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.F107filter">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">F107filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">81</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#F107filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.F107filter" title="Link to this definition"></a></dt>
+<dd><p>Filter F10.7 values like so:
+1. Compute the running average and standard deviation.
+2. Identify the locations of values OUTSIDE the running average +/- n*stddev.
+3. For each datapoint identified in (2), replace it with the running average +/- n*stddev, depending on the sign.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index_times</strong> (<em>arraylike</em>) – An array or list of datetime values for each F10.7 value.</p></li>
+<li><p><strong>index_values</strong> (<em>arraylike</em>) – An array or list of F10.7 values with the same shape as index_times.</p></li>
+<li><p><strong>window_length</strong> (<em>int</em>) – The length of the running window over which to compute the running average and standard deviation. Default is 81.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – The factor by which the standard deviation will be multiplied to determine which values should be replaced.
+Default is 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filteredF107</strong> – The resulting filtered F10.7.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.cleanF107">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">cleanF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">999.9</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#cleanF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.cleanF107" title="Link to this definition"></a></dt>
+<dd><p>Given time stamps and observations of F10.7, determine the location of bad values (using the argument ‘bad_value’),
+and replace them with imputed data generated with CSAPS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index_times</strong> (<em>arraylike</em>) – An array or list of datetimes for each F10.7 value.</p></li>
+<li><p><strong>index_values</strong> (<em>arraylike</em>) – An array or list of F10.7 values with the same shape as index_times.</p></li>
+<li><p><strong>bad_value</strong> (<em>float</em><em> or </em><em>int</em>) – A single value corresponding to the bad values to be removed and imputed over. Default is 999.9.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>clean_values</strong> – The gap-filled/imputed data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.getCLSF107">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">getCLSF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dateStart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dateEnd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rewrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#getCLSF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.getCLSF107" title="Link to this definition"></a></dt>
+<dd><p>Obtains Sun-Earth distance adjusted, flare-corrected F10.7 data from Collecte Localisation Satellites. Downloads the
+most recent measurements to a file. Reads the file and extracts the F10.7 values between two dates. Note that if the
+ending date is less than or equal to the last date in the version of the file that has already been downloaded, the
+file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloaded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dateStart</strong> (<em>str</em>) – The starting date in YYYY-MM-DD format.</p></li>
+<li><p><strong>dateEnd</strong> (<em>str</em>) – The ending date in YYYY-MM-DD format.</p></li>
+<li><p><strong>truncate</strong> (<em>bool</em>) – Controls whether to truncate the data to exclude the most recent 81 days. Defaults is True.</p></li>
+<li><p><strong>rewrite</strong> (<em>bool</em>) – Controls whether an existing CLS file is rewritten. Defualt is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>times</strong> (<em>list</em>) – The datetimes for each data value.</p></li>
+<li><p><strong>F107</strong> (<em>arraylike</em>) – Solar flux at 10.7 cm.</p></li>
+<li><p><strong>F107A</strong> (<em>arraylike</em>) – 81-day averaged solar flux at 10.7 cm, centered on the current day.</p></li>
+<li><p><strong>F107B</strong> (<em>arraylike</em>) – 54-day averaged solar flux at 10.7 cm, averaged in a backwards-looking window.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.getF107">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">getF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dateStart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dateEnd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#getF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.getF107" title="Link to this definition"></a></dt>
+<dd><p>Given two dates (a start date and an ending date), automatically download F10.7 data from NASA OMNIWeb.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dateStart</strong> (<em>str</em>) – The starting date, in YYYY-MM-DD format.</p></li>
+<li><p><strong>dateEnd</strong> (<em>str</em>) – The ending date, in YYYY-MM-DD format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>dataFile</strong> (<em>str</em>) – The downloaded OMNI data file.</p></li>
+<li><p><strong>times</strong> (<em>numpy.ndarray</em>) – An array of datetimes for the F10.7 values.</p></li>
+<li><p><strong>f107</strong> (<em>numpy.ndarray</em>) – The F10.7 values for the time desired.</p></li>
+<li><p><strong>f107A</strong> (<em>str</em>) – The 81-day averaged F10.7 values (centered on the current day) for the time desired.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.readCLS">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">readCLS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#readCLS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.readCLS" title="Link to this definition"></a></dt>
+<dd><p>Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites
+(CLS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The location of the data file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>times</strong> (<em>list</em>) – The datetimes for each data value.</p></li>
+<li><p><strong>data</strong> (<em>numpy.ndarray</em>) – The solar flux data for F30, F15, F10.7, F8, and F3.2.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.readF107">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">readF107</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#readF107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.readF107" title="Link to this definition"></a></dt>
+<dd><p>Load in F10.7 data from the files obtained from the FTP server provided by the Government of Canada:
+<a class="reference external" href="https://www.spaceweather.gc.ca/forecast-prevision/solar-solaire/solarflux/sx-5-en.php">https://www.spaceweather.gc.ca/forecast-prevision/solar-solaire/solarflux/sx-5-en.php</a>
+Requires ONLY a filename containing F10.7 data.
+Note that F10.7 values are daily values measured at LOCAL NOON of each day.
+Note that the OBSERVED values DO NOT correspond to 1 AU, and they may vary, while the ADJUSTED values are calibrated
+to correspond to 1 AU.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – A string containing the location of the txt file with the F10.7 data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>times</strong> (<em>numpy.ndarray</em>) – A 1D array of datetimes corresponding to each F10.7 measurement.</p></li>
+<li><p><strong>f107</strong> (<em>numpy.ndarray</em>) – A 1D array of F10.7 values.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.processIndices.readOMNI">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.processIndices.</span></span><span class="sig-name descname"><span class="pre">readOMNI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headerFile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/processIndices.html#readOMNI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.processIndices.readOMNI" title="Link to this definition"></a></dt>
+<dd><p>Read in file from an OMNI data and parse it according to the specified format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataFile</strong> (<em>str</em>) – The name of the file where the OMNI data is stored.</p></li>
+<li><p><strong>headerFile</strong> (<em>str</em>) – The name of the file containing header information for the OMNI data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>omniTimes</strong> (<em>numpy.ndarray</em>) – A 1D array of datetimes for the omni data.</p></li>
+<li><p><strong>omniLabels</strong> (<em>numpy.ndarray</em>) – A 1D array of strings of each of the variables in the OMNI data.</p></li>
+<li><p><strong>omniDataArray</strong> (<em>numpy.ndarray</em>) – A 2D array with all the OMNI data. The shape is nxm, where n is the number of time samples (each hour) and
+m is the number of variables collected at each time sample.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="EUVpy.tools.ensemble.html" class="btn btn-neutral float-left" title="EUVpy.tools.ensemble module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EUVpy.tools.processIrradiances.html" class="btn btn-neutral float-right" title="EUVpy.tools.processIrradiances module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

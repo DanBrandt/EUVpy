@@ -24,8 +24,8 @@ from src.EUVpy.empiricalModels.models.EUVAC import euvac
 #-----------------------------------------------------------------------------------------------------------------------
 # Directory Management
 euv_folder = '../tools/EUV/'
-neuvac_tableFile = '../NEUVAC/neuvac_table.txt'
-neuvac_tableFile_Solomon = '../NEUVAC/neuvac_table_stan_bands.txt'
+neuvac_tableFile = '../data/neuvac_table.txt'
+neuvac_tableFile_Solomon = '../data/neuvac_table_stan_bands.txt'
 figures_folder = 'Uncertainty'
 #-----------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,607 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.tools.processIndices &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../EUVpy.html">EUVpy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../EUVpy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">EUVpy.tools.processIndices</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for EUVpy.tools.processIndices</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This module contains functions used for processing/loading in solar indices.</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Top-level Imports</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">csaps</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Qt5Agg&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Local imports:</span>
+<span class="kn">from</span> <span class="nn">EUVpy.tools.toolbox</span> <span class="kn">import</span> <span class="n">uniformSample</span><span class="p">,</span> <span class="n">imputeData</span><span class="p">,</span> <span class="n">rollingAverage</span><span class="p">,</span> <span class="n">rollingStd</span><span class="p">,</span> <span class="n">savePickle</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Folder for downloading F10.7 data:</span>
+<span class="n">F107Folder</span> <span class="o">=</span> <span class="s1">&#39;../solarIndices/F107/OMNIWeb/&#39;</span>
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># Functions:</span>
+<div class="viewcode-block" id="readF107">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.readF107">[docs]</a>
+<span class="k">def</span> <span class="nf">readF107</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load in F10.7 data from the files obtained from the FTP server provided by the Government of Canada:</span>
+<span class="sd">    https://www.spaceweather.gc.ca/forecast-prevision/solar-solaire/solarflux/sx-5-en.php</span>
+<span class="sd">    Requires ONLY a filename containing F10.7 data.</span>
+<span class="sd">    Note that F10.7 values are daily values measured at LOCAL NOON of each day.</span>
+<span class="sd">    Note that the OBSERVED values DO NOT correspond to 1 AU, and they may vary, while the ADJUSTED values are calibrated</span>
+<span class="sd">    to correspond to 1 AU.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        A string containing the location of the txt file with the F10.7 data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    times : numpy.ndarray</span>
+<span class="sd">        A 1D array of datetimes corresponding to each F10.7 measurement.</span>
+<span class="sd">    f107 : numpy.ndarray</span>
+<span class="sd">        A 1D array of F10.7 values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">f107</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Loop through the file to collect the data:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">myFile</span><span class="p">:</span>
+            <span class="c1"># Note that the line structure is different depending on what file is downloaded:</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;current&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span><span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;2007&#39;</span><span class="p">:</span>
+                        <span class="n">elements</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span> <span class="c1"># Index 6 = Observed; Index 7 = Adjusted</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+                        <span class="n">currentTime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;julian&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">elements</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span> <span class="c1"># Index 5 = Observed; Index 6 = Adjusted</span>
+                        <span class="k">except</span><span class="p">:</span>
+                            <span class="n">elements</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                            <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                        <span class="n">currentTime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;julian&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentTime</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">elements</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                    <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">8</span><span class="p">]))</span> <span class="c1"># Index 8 = Adjusted</span>
+                    <span class="n">currentTime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;julian&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">currentTime</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">())</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">f107</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="readCLS">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.readCLS">[docs]</a>
+<span class="k">def</span> <span class="nf">readCLS</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites</span>
+<span class="sd">    (CLS).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        The location of the data file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    times : list</span>
+<span class="sd">        The datetimes for each data value.</span>
+<span class="sd">    data : numpy.ndarray</span>
+<span class="sd">        The solar flux data for F30, F15, F10.7, F8, and F3.2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">precisionVals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+        <span class="n">allLines</span> <span class="o">=</span> <span class="n">myFile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">allLines</span><span class="p">)</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">allLines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">:</span>
+                <span class="n">elements</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">9</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">13</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">17</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">21</span><span class="p">])])</span>
+                    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="mi">12</span><span class="p">)</span> <span class="p">)</span>
+                    <span class="n">precisionVals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">14</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">18</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">22</span><span class="p">])]</span> <span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Print the precision:</span>
+    <span class="c1"># print(&#39;Mean precision values...&#39;)</span>
+    <span class="c1"># print(&#39;F30: &#39;+str(np.nanmean([element[0] for element in precisionVals]))+&#39; sfu&#39;) # 6</span>
+    <span class="c1"># print(&#39;F15: &#39; + str(np.nanmean([element[1] for element in precisionVals])) + &#39; sfu&#39;) # 8</span>
+    <span class="c1"># print(&#39;F10.7: &#39; + str(np.nanmean([element[2] for element in precisionVals])) + &#39; sfu&#39;) # 13</span>
+    <span class="c1"># print(&#39;F8: &#39; + str(np.nanmean([element[3] for element in precisionVals])) + &#39; sfu&#39;) # 12</span>
+    <span class="c1"># print(&#39;F3.2: &#39; + str(np.nanmean([element[4] for element in precisionVals])) + &#39; sfu&#39;) # 11</span>
+    <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="getCLSF107">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.getCLSF107">[docs]</a>
+<span class="k">def</span> <span class="nf">getCLSF107</span><span class="p">(</span><span class="n">dateStart</span><span class="p">,</span> <span class="n">dateEnd</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rewrite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains Sun-Earth distance adjusted, flare-corrected F10.7 data from Collecte Localisation Satellites. Downloads the</span>
+<span class="sd">    most recent measurements to a file. Reads the file and extracts the F10.7 values between two dates. Note that if the</span>
+<span class="sd">    ending date is less than or equal to the last date in the version of the file that has already been downloaded, the</span>
+<span class="sd">    file IS NOT re-downloaded, but simply parsed. Otherwise, the file is redownloaded.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dateStart : str</span>
+<span class="sd">        The starting date in YYYY-MM-DD format.</span>
+<span class="sd">    dateEnd : str</span>
+<span class="sd">        The ending date in YYYY-MM-DD format.</span>
+<span class="sd">    truncate : bool</span>
+<span class="sd">        Controls whether to truncate the data to exclude the most recent 81 days. Defaults is True.</span>
+<span class="sd">    rewrite : bool</span>
+<span class="sd">        Controls whether an existing CLS file is rewritten. Defualt is True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    times : list</span>
+<span class="sd">        The datetimes for each data value.</span>
+<span class="sd">    F107 : arraylike</span>
+<span class="sd">        Solar flux at 10.7 cm.</span>
+<span class="sd">    F107A : arraylike</span>
+<span class="sd">        81-day averaged solar flux at 10.7 cm, centered on the current day.</span>
+<span class="sd">    F107B : arraylike</span>
+<span class="sd">        54-day averaged solar flux at 10.7 cm, averaged in a backwards-looking window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dateTimeStart</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateStart</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">dateTimeEnd</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateEnd</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">euvpy_app_folder</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;.euvpy&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">euvpy_app_folder</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">euvpy_app_folder</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># 1: Check if there is ALREADY a F10.7 file present:</span>
+    <span class="c1">#fname = &#39;../solarIndices/F107/radio_flux_adjusted_observation.txt&#39;</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">euvpy_app_folder</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;radio_flux_adjusted_observation.txt&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fname</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">rewrite</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="c1"># Read in the file:</span>
+        <span class="n">times</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">readCLS</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="c1"># Check if the ending date exceeds the ending date in the file. If so, redownloading the file:</span>
+        <span class="k">if</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dateTimeEnd</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span>
+                <span class="s1">&#39;ftp://ftpsedr.cls.fr/pub/previsol/solarflux/observation/radio_flux_adjusted_observation.txt&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">readCLS</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Download the file:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s1">&#39;ftp://ftpsedr.cls.fr/pub/previsol/solarflux/observation/radio_flux_adjusted_observation.txt&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">readCLS</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="c1"># Compute the 81-day (centered) averaged F10.7 and 54-day averaged (:</span>
+    <span class="n">F107</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">F107A</span> <span class="o">=</span> <span class="n">rollingAverage</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">81</span><span class="p">,</span> <span class="n">impute_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">F107B</span> <span class="o">=</span> <span class="n">rollingAverage</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">54</span><span class="p">,</span> <span class="n">impute_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">len(F107) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span><span class="si">}</span><span class="s1">, len(F107B) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">F107B</span><span class="p">)</span><span class="si">}</span><span class="s1">, len(F107B) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">F107B</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Extract the values in the desired time range:</span>
+    <span class="n">goodInds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">dateTimeStart</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">dateTimeEnd</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Truncation:</span>
+    <span class="k">if</span> <span class="n">truncate</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">goodInds</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">81</span><span class="p">:</span>
+        <span class="n">goodInds</span> <span class="o">=</span> <span class="n">goodInds</span><span class="p">[:</span><span class="o">-</span><span class="mi">81</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">)[</span><span class="n">goodInds</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">F107</span><span class="p">)[</span><span class="n">goodInds</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">F107A</span><span class="p">)[</span><span class="n">goodInds</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">F107B</span><span class="p">)[</span><span class="n">goodInds</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="getF107">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.getF107">[docs]</a>
+<span class="k">def</span> <span class="nf">getF107</span><span class="p">(</span><span class="n">dateStart</span><span class="p">,</span> <span class="n">dateEnd</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given two dates (a start date and an ending date), automatically download F10.7 data from NASA OMNIWeb.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dateStart : str</span>
+<span class="sd">        The starting date, in YYYY-MM-DD format.</span>
+<span class="sd">    dateEnd : str</span>
+<span class="sd">        The ending date, in YYYY-MM-DD format.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dataFile : str</span>
+<span class="sd">        The downloaded OMNI data file.</span>
+<span class="sd">    times : numpy.ndarray</span>
+<span class="sd">        An array of datetimes for the F10.7 values.</span>
+<span class="sd">    f107 : numpy.ndarray</span>
+<span class="sd">        The F10.7 values for the time desired.</span>
+<span class="sd">    f107A : str</span>
+<span class="sd">        The 81-day averaged F10.7 values (centered on the current day) for the time desired.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dateStartStr</span> <span class="o">=</span> <span class="n">dateStart</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">dateEndStr</span> <span class="o">=</span> <span class="n">dateEnd</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">fileStr</span> <span class="o">=</span> <span class="n">F107Folder</span><span class="o">+</span><span class="s1">&#39;f107_&#39;</span><span class="o">+</span><span class="n">dateStartStr</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">dateEndStr</span><span class="o">+</span><span class="s1">&#39;.txt&#39;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fileStr</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="c1"># Set up the command string:</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;wget --post-data &quot;activity=retrieve&amp;res=hour&amp;spacecraft=omni2&amp;start_date=&#39;</span><span class="o">+</span><span class="n">dateStartStr</span><span class="o">+</span><span class="s1">&#39;&amp;end_date=&#39;</span><span class="o">+</span>\
+              <span class="n">dateEndStr</span><span class="o">+</span><span class="s1">&#39;&amp;vars=50&amp;scale=Linear&amp;ymin=&amp;ymax=&amp;view=0&amp;charsize=&amp;xstyle=0&amp;ystyle=0&amp;symbol=0&amp;symsize=&amp;&#39;</span> \
+              <span class="s1">&#39;linestyle=solid&amp;table=0&amp;imagex=640&amp;imagey=480&amp;color=&amp;back=&quot; &#39;</span> \
+              <span class="s1">&#39;https://omniweb.gsfc.nasa.gov/cgi/nx1.cgi -O &#39;</span><span class="o">+</span><span class="n">fileStr</span>
+        <span class="c1"># Execute the command:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="c1">#dataFile = fileStr</span>
+
+    <span class="c1"># Obtain the data:</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">f107</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileStr</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f107File</span><span class="p">:</span>
+        <span class="n">f107Data</span> <span class="o">=</span> <span class="n">f107File</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f107Data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">f107Data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">15</span><span class="p">:</span>
+                <span class="n">lineData</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lineData</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">lineData</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span>
+                <span class="n">hours</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">lineData</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+                <span class="n">f107</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lineData</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Convert to arrays:</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">f107</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">f107</span><span class="p">)</span>
+    <span class="c1"># Clean the data:</span>
+    <span class="n">cleanedF107</span> <span class="o">=</span> <span class="n">cleanF107</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">f107</span><span class="p">,</span> <span class="n">bad_value</span><span class="o">=</span><span class="mf">999.9</span><span class="p">)</span>
+    <span class="n">filteredF107</span> <span class="o">=</span> <span class="n">F107filter</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">cleanedF107</span><span class="p">)</span>
+    <span class="n">f107A</span> <span class="o">=</span> <span class="n">rollingAverage</span><span class="p">(</span><span class="n">filteredF107</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">81</span><span class="p">)</span>
+    <span class="c1"># Return the data:</span>
+    <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">filteredF107</span><span class="p">,</span> <span class="n">f107A</span></div>
+
+
+<div class="viewcode-block" id="readOMNI">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.readOMNI">[docs]</a>
+<span class="k">def</span> <span class="nf">readOMNI</span><span class="p">(</span><span class="n">dataFile</span><span class="p">,</span> <span class="n">headerFile</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read in file from an OMNI data and parse it according to the specified format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataFile : str</span>
+<span class="sd">        The name of the file where the OMNI data is stored.</span>
+<span class="sd">    headerFile : str</span>
+<span class="sd">        The name of the file containing header information for the OMNI data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    omniTimes : numpy.ndarray</span>
+<span class="sd">        A 1D array of datetimes for the omni data.</span>
+<span class="sd">    omniLabels: numpy.ndarray</span>
+<span class="sd">        A 1D array of strings of each of the variables in the OMNI data.</span>
+<span class="sd">    omniDataArray: numpy.ndarray</span>
+<span class="sd">        A 2D array with all the OMNI data. The shape is nxm, where n is the number of time samples (each hour) and</span>
+<span class="sd">        m is the number of variables collected at each time sample.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># First, open the header file and obtain the variable names:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">headerFile</span><span class="p">)</span> <span class="k">as</span> <span class="n">omniHeaderFile</span><span class="p">:</span>
+        <span class="n">omniHeaderInfo</span> <span class="o">=</span> <span class="n">omniHeaderFile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="c1"># Ignore the initial lines in the file and just obtain the relevant info:</span>
+        <span class="n">omniVariables</span> <span class="o">=</span> <span class="n">omniHeaderInfo</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+        <span class="c1"># Parse the variables in each line and collect them into a list of indices and a list of variable names:</span>
+        <span class="n">omniIndices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">omniVariableNames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">omniVariables</span><span class="p">:</span>
+            <span class="n">segmentedElement</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">omniIndices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">segmentedElement</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">segmentedElement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Scalar&#39;</span> <span class="ow">or</span> <span class="n">segmentedElement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Vector&#39;</span><span class="p">:</span>
+                <span class="n">omniVariableNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Avg &#39;</span><span class="o">+</span><span class="n">segmentedElement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39; B&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">omniVariableNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">segmentedElement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+        <span class="n">numVars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">omniVariableNames</span><span class="p">)</span>
+        <span class="n">omniLabels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omniVariableNames</span><span class="p">[</span><span class="mi">3</span><span class="p">:])</span>
+
+    <span class="c1"># Second, open the data file and read in the data:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dataFile</span><span class="p">)</span> <span class="k">as</span> <span class="n">omniDataFile</span><span class="p">:</span>
+        <span class="n">omniData</span> <span class="o">=</span> <span class="n">omniDataFile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="c1"># Go over each line and collect the variables corresponding to each element in the line. For time values, collect them into datetime objects:</span>
+        <span class="n">omniDataArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">omniData</span><span class="p">),</span> <span class="n">numVars</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+        <span class="n">omniTimes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">omniDataArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">omniLine</span> <span class="o">=</span> <span class="n">omniData</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">omniTimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">omniLine</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">omniLine</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span>
+                <span class="n">hours</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">omniLine</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">omniDataArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">column</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">omniDataArray</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">omniLine</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+        <span class="n">omniTimes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">omniTimes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">omniTimes</span><span class="p">,</span> <span class="n">omniLabels</span><span class="p">,</span> <span class="n">omniDataArray</span></div>
+
+
+<div class="viewcode-block" id="cleanF107">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.cleanF107">[docs]</a>
+<span class="k">def</span> <span class="nf">cleanF107</span><span class="p">(</span><span class="n">index_times</span><span class="p">,</span> <span class="n">index_values</span><span class="p">,</span> <span class="n">bad_value</span><span class="o">=</span><span class="mf">999.9</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given time stamps and observations of F10.7, determine the location of bad values (using the argument &#39;bad_value&#39;),</span>
+<span class="sd">    and replace them with imputed data generated with CSAPS.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    index_times : arraylike</span>
+<span class="sd">        An array or list of datetimes for each F10.7 value.</span>
+<span class="sd">    index_values : arraylike</span>
+<span class="sd">        An array or list of F10.7 values with the same shape as index_times.</span>
+<span class="sd">    bad_value : float or int</span>
+<span class="sd">        A single value corresponding to the bad values to be removed and imputed over. Default is 999.9.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    clean_values : arraylike</span>
+<span class="sd">        The gap-filled/imputed data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check for bad values:</span>
+    <span class="n">badVals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">index_values</span> <span class="o">&gt;=</span> <span class="n">bad_value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">badVals</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">clean_values</span> <span class="o">=</span> <span class="n">index_values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">good_data_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">index_values</span> <span class="o">&gt;=</span> <span class="n">bad_value</span><span class="p">)</span>
+        <span class="n">bad_data_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">good_data_inds</span><span class="p">)</span>
+
+        <span class="n">full_times_seconds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([(</span><span class="n">x</span> <span class="o">-</span> <span class="n">index_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">index_times</span><span class="p">])</span>
+
+        <span class="n">good_data</span> <span class="o">=</span> <span class="n">clean_values</span><span class="p">[</span><span class="n">good_data_inds</span><span class="p">]</span>
+        <span class="n">good_times</span> <span class="o">=</span> <span class="n">full_times_seconds</span><span class="p">[</span><span class="n">good_data_inds</span><span class="p">]</span>
+        <span class="n">bad_times</span> <span class="o">=</span> <span class="n">full_times_seconds</span><span class="p">[</span><span class="n">bad_data_inds</span><span class="p">]</span>
+
+        <span class="n">yi</span> <span class="o">=</span> <span class="n">csaps</span><span class="o">.</span><span class="n">csaps</span><span class="p">(</span><span class="n">good_times</span><span class="p">,</span> <span class="n">good_data</span><span class="p">,</span> <span class="n">bad_times</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">subsetData</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">clean_values</span><span class="p">)</span>
+        <span class="n">subsetData</span><span class="p">[</span><span class="n">good_data_inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_values</span><span class="p">[</span><span class="n">good_data_inds</span><span class="p">]</span>
+        <span class="n">subsetData</span><span class="p">[</span><span class="n">bad_data_inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">yi</span>
+
+        <span class="n">subsetInds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">clean_values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># No subsetting since bad values were filled in</span>
+
+        <span class="c1"># Since subsetting took place, change the actual values in the original data:</span>
+        <span class="n">clean_values</span><span class="p">[</span><span class="n">subsetInds</span><span class="p">]</span> <span class="o">=</span> <span class="n">subsetData</span>
+
+        <span class="c1"># Plot the results for a sanity check:</span>
+        <span class="c1"># import matplotlib.pyplot as plt</span>
+        <span class="c1"># plt.figure()</span>
+        <span class="c1"># plt.plot(index_times, index_values, label=&#39;Original&#39;)</span>
+        <span class="c1"># plt.plot(index_times[subsetInds], clean_values[subsetInds], label=&#39;New&#39;)</span>
+        <span class="c1"># plt.legend(loc=&#39;best&#39;)</span>
+        <span class="k">return</span> <span class="n">clean_values</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">index_values</span></div>
+
+
+<div class="viewcode-block" id="F107filter">
+<a class="viewcode-back" href="../../../EUVpy.tools.processIndices.html#EUVpy.tools.processIndices.F107filter">[docs]</a>
+<span class="k">def</span> <span class="nf">F107filter</span><span class="p">(</span><span class="n">index_times</span><span class="p">,</span> <span class="n">index_values</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">81</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter F10.7 values like so:</span>
+<span class="sd">    1. Compute the running average and standard deviation.</span>
+<span class="sd">    2. Identify the locations of values OUTSIDE the running average +/- n*stddev.</span>
+<span class="sd">    3. For each datapoint identified in (2), replace it with the running average +/- n*stddev, depending on the sign.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    index_times : arraylike</span>
+<span class="sd">        An array or list of datetime values for each F10.7 value.</span>
+<span class="sd">    index_values : arraylike</span>
+<span class="sd">        An array or list of F10.7 values with the same shape as index_times.</span>
+<span class="sd">    window_length : int</span>
+<span class="sd">        The length of the running window over which to compute the running average and standard deviation. Default is 81.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        The factor by which the standard deviation will be multiplied to determine which values should be replaced.</span>
+<span class="sd">        Default is 2.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     filteredF107 : arraylike</span>
+<span class="sd">        The resulting filtered F10.7.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filteredF107</span> <span class="o">=</span> <span class="n">index_values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">rollingMeanF107</span> <span class="o">=</span> <span class="n">rollingAverage</span><span class="p">(</span><span class="n">index_values</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="n">window_length</span><span class="p">)</span>
+    <span class="n">rollingStdF107</span> <span class="o">=</span> <span class="n">rollingStd</span><span class="p">(</span><span class="n">index_values</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="n">window_length</span><span class="p">)</span>
+    <span class="n">upperStdBoundary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rollingMeanF107</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="n">rollingStdF107</span><span class="p">)</span>
+    <span class="n">lowerStdBoundary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">rollingMeanF107</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="n">rollingStdF107</span><span class="p">)</span>
+    <span class="c1"># Identify locations where F10.7 EXCEED the stddev threshold:</span>
+    <span class="n">badLocsUpper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">index_values</span> <span class="o">&gt;</span> <span class="n">upperStdBoundary</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">badTimesUpper</span> <span class="o">=</span> <span class="n">index_times</span><span class="p">[</span><span class="n">badLocsUpper</span><span class="p">]</span>
+    <span class="c1"># Identify locations where F10.7 FALLS BELOW the stddev threshold:</span>
+    <span class="n">badLocsLower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">index_values</span> <span class="o">&lt;</span> <span class="n">lowerStdBoundary</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">badTimesLower</span> <span class="o">=</span> <span class="n">index_times</span><span class="p">[</span><span class="n">badLocsLower</span><span class="p">]</span>
+    <span class="c1"># Plotting the detected anomalous data:</span>
+    <span class="c1"># import matplotlib.pyplot as plt</span>
+    <span class="c1"># plt.figure()</span>
+    <span class="c1"># plt.plot(index_times, index_values, label=&#39;Original&#39;)</span>
+    <span class="c1"># plt.fill_between(index_times, upperStdBoundary, lowerStdBoundary, label=&#39;Standard Deviation Boundary&#39;, alpha=0.5)</span>
+    <span class="c1"># plt.plot(index_times, rollingMeanF107, label=&#39;Rolling Mean&#39;)</span>
+    <span class="c1"># # Plot the bad locs for EXCESS error:</span>
+    <span class="c1"># for i in range(len(badTimesUpper)):</span>
+    <span class="c1">#     plt.axvline(x=badTimesUpper[i], color=&#39;k&#39;, linestyle=&#39;-&#39;)</span>
+    <span class="c1"># # Plot the bad locs for DEFECT error:</span>
+    <span class="c1"># for i in range(len(badTimesLower)):</span>
+    <span class="c1">#     plt.axvline(x=badTimesLower[i], color=&#39;k&#39;, linestyle=&#39;--&#39;)</span>
+    <span class="c1"># plt.legend(loc=&#39;best&#39;)</span>
+    <span class="c1"># IMPUTATION: Replace excesses with n*stddev</span>
+    <span class="n">filteredF107</span><span class="p">[</span><span class="n">badLocsUpper</span><span class="p">]</span> <span class="o">=</span> <span class="n">upperStdBoundary</span><span class="p">[</span><span class="n">badLocsUpper</span><span class="p">]</span>
+    <span class="c1"># IMPUTATION: Replace defecsts with n*stddev</span>
+    <span class="n">filteredF107</span><span class="p">[</span><span class="n">badLocsLower</span><span class="p">]</span> <span class="o">=</span> <span class="n">lowerStdBoundary</span><span class="p">[</span><span class="n">badLocsLower</span><span class="p">]</span>
+    <span class="c1"># Plot the resulting filtered data, along with the original data:</span>
+    <span class="c1"># plt.figure()</span>
+    <span class="c1"># plt.plot(index_times, index_values, label=&#39;Original&#39;)</span>
+    <span class="c1"># plt.plot(index_times, filteredF107, label=&#39;Filtered&#39;)</span>
+    <span class="c1"># plt.suptitle(&#39;Penticton F10.7 and Filtered Penticton F10.7 (81-day 2$\sigma$ criterion)&#39;)</span>
+    <span class="c1"># plt.xlabel(&#39;Time&#39;)</span>
+    <span class="c1"># plt.ylabel(&#39;F10.7 (sfu)&#39;)</span>
+    <span class="c1"># plt.legend(loc=&#39;best&#39;)</span>
+    <span class="k">return</span> <span class="n">filteredF107</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
+<span class="c1"># # Execution</span>
+<span class="c1"># if __name__==&quot;__main__&quot;:</span>
+<span class="c1">#     # PENTICTON DATA</span>
+<span class="c1">#     saveLoc = &#39;../solarIndices/F107/Penticton/&#39;</span>
+<span class="c1">#     fname = &#39;../solarIndices/F107/Penticton/F107_1947_1996.txt&#39;</span>
+<span class="c1">#     fname1 = &#39;../solarIndices/F107/Penticton/F107_1996_2007.txt&#39;</span>
+<span class="c1">#     fname2 = &#39;../solarIndices/F107/Penticton/F107_current.txt&#39;</span>
+<span class="c1">#     times, f107 = readF107(fname)</span>
+<span class="c1">#     times1, f1071 = readF107(fname1)</span>
+<span class="c1">#     times2, f1072 = readF107(fname2)</span>
+<span class="c1">#     # -------------------------------</span>
+<span class="c1">#     # Combine all of the outputs from the files above and view the results as a sanity check:</span>
+<span class="c1">#     allTimes = np.concatenate((times, times1, times2))</span>
+<span class="c1">#     allF107 = np.concatenate((f107, f1071, f1072))</span>
+<span class="c1">#     # Resample the times:</span>
+<span class="c1">#     uniformTimes, uniformF107 = uniformSample(allTimes, allF107, cadence=24)</span>
+<span class="c1">#     # Clean the data (through either gapification or imputation):</span>
+<span class="c1">#     cleanedTimes, cleanedF107 = imputeData(uniformTimes, uniformF107, method=&#39;interp&#39;, bad_values=0)</span>
+<span class="c1">#     # cleanedF107 = gapify(uniformF107, bad_value=0)</span>
+<span class="c1">#     # Filter the data:</span>
+<span class="c1">#     filteredF107 = F107filter(cleanedTimes, cleanedF107)</span>
+<span class="c1">#     # Compute the centered rolling 81-day average of F10.7:</span>
+<span class="c1">#     averagedF107 = rollingAverage(filteredF107, window_length=81)</span>
+<span class="c1">#     # Compute the 54-day average of F10.7 with a backwards window:</span>
+<span class="c1">#     backwardsAveragedF107 = rollingAverage(filteredF107, window_length=54, center=False)</span>
+<span class="c1">#     # Plot as a sanity-check:</span>
+<span class="c1">#     # import matplotlib; matplotlib.use(&#39;Qt5Agg&#39;); import matplotlib.pyplot as plt; plt.figure(); plt.plot(cleanedTimes, cleanedF107); plt.plot(cleanedTimes, averagedF107); plt.plot(cleanedTimes, backwardsAveragedF107); plt.show()</span>
+<span class="c1">#     # Save the data to pickle files:</span>
+<span class="c1">#     savePickle(cleanedTimes, saveLoc+&#39;F107times.pkl&#39;)</span>
+<span class="c1">#     savePickle(cleanedF107, saveLoc+&#39;F107vals.pkl&#39;)</span>
+<span class="c1">#     savePickle(backwardsAveragedF107, saveLoc+&#39;F107averageVals.pkl&#39;) # averagedF107</span>
+<span class="c1">#     # -------------------------------</span>
+<span class="c1">#     # Do all of the above with NASA OMNIWEB data:</span>
+<span class="c1">#     omniSaveloc = &#39;../solarIndices/F107/OMNIWeb/&#39;</span>
+<span class="c1">#     omniDataFile = &#39;../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.lst&#39;</span>
+<span class="c1">#     omniHeaderFile = &#39;../solarIndices/F107/OMNIWeb/omni2_daily_r1GBiifQTW.fmt&#39;</span>
+<span class="c1">#     omniTimes, omniLabels, omniData = readOMNI(omniDataFile, omniHeaderFile)</span>
+<span class="c1">#     omniF107 = np.squeeze(omniData)</span>
+<span class="c1">#     cleanOmniF107 = cleanF107(omniTimes, omniF107, bad_value=999.9)</span>
+<span class="c1">#     filteredOMNIF107 = F107filter(omniTimes, cleanOmniF107)</span>
+<span class="c1">#     averagedOmniData = rollingAverage(filteredOMNIF107, window_length=81)</span>
+<span class="c1">#     # Save the data to pickle files:</span>
+<span class="c1">#     savePickle(omniTimes, omniSaveloc + &#39;OMNIF107times.pkl&#39;)</span>
+<span class="c1">#     savePickle(filteredOMNIF107, omniSaveloc + &#39;OMNIF107vals.pkl&#39;)</span>
+<span class="c1">#     savePickle(averagedOmniData, omniSaveloc + &#39;OMNIF107averageVals.pkl&#39;)</span>
+<span class="c1">#     # -------------------------------</span>
+<span class="c1">#     sys.exit(0)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

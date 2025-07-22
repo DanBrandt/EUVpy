@@ -17,11 +17,17 @@ c = 299792458 # Speed of light in m s^-1
 def spectralIrradiance(photonFlux, wavelength):
     """
     Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.
-    :param: photonFlux: ndarray, float, or int
+
+    Parameters
+    ----------
+    photonFlux : numpy.ndarray, float, or int
         Photon flux in units of photons s^-1 m^-2. For a singular wavelength, units are photons m^-2
-    :param: wavelength: float
+    wavelength : float
         A specific wavelength in Angstroms.
-    :return: irradiance: ndarray or float
+
+    Returns
+    -------
+    irradiance : numpy.ndarray or float
         The corresponding spectral irradiance in units of W/m^2/nm.
     """
     photonEnergy = (h*c) / (wavelength*1e-10) # Convert the wavelength in the denominator to meters.
@@ -35,13 +41,19 @@ def spectralIrradiance(photonFlux, wavelength):
 def spectralFlux(irradiance, wavelength): #, dWavelength=10):
     """
     Convert the spectral irradiance to spectral flux, given a specific wavelength.
-    :param: irradiance: ndarray, float, or int
+
+    Parameters
+    ----------
+    irradiance : numpy.ndarray, float, or int
         [Solar] spectral irradiance for a specific wavelength, in W/m^2/nm.
-    :param: wavelength: float
+    wavelength : float
         A specific wavelength in Angstroms.
-    :param: dWavelength: float or int
+    dWavelength: float or int
         Wavelength bin width in Angstroms. Default is 1.
-    :return: photonFlux: ndarray or float
+
+    Returns
+    -------
+    photonFlux : numpy.ndarray or float
         The corresponding spectral flux in units of Watts.
     """
     photonEnergy = (h * c) / (wavelength * 1e-10)
