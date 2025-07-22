@@ -6,11 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.NEUVAC.neuvac &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -56,13 +52,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -107,7 +96,6 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level imports:</span>
-<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span><span class="p">,</span> <span class="n">minimize</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -116,25 +104,11 @@
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
-=======
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span><span class="p">,</span> <span class="n">minimize</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">os.path</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local imports:</span>
-<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy</span> <span class="kn">import</span> <span class="n">tools</span>
-=======
-<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">tools</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -216,7 +190,6 @@
 <span class="c1"># Irr_i(t) = A_i * (F107(t)**B_i) + C_i * (F107A(t)**D_i) + E_i * (F107A(t) - F107(t)) + F_i</span>
 <div class="viewcode-block" id="irrFunc">
 <a class="viewcode-back" href="../../../EUVpy.NEUVAC.neuvac.html#EUVpy.NEUVAC.neuvac.irrFunc">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">irrFunc</span><span class="p">(</span><span class="n">F107input</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parametric formula used to model solar irradiance a given wavelength band as a function of F10.7 and F10.7A.</span>
@@ -246,16 +219,12 @@
 <span class="sd">    irradiance : arraylike</span>
 <span class="sd">        The solar irradiance in a given wavelength band, in units of either W/m^2/nm or W/m^2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">irrFunc</span><span class="p">(</span><span class="n">F107input</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">F</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span> <span class="o">=</span> <span class="n">F107input</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="p">(</span><span class="n">F107</span> <span class="o">**</span> <span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="p">(</span><span class="n">F107A</span> <span class="o">**</span> <span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="n">E</span> <span class="o">*</span> <span class="p">(</span><span class="n">F107A</span> <span class="o">-</span> <span class="n">F107</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span></div>
 
 
 <div class="viewcode-block" id="neuvacEUV">
 <a class="viewcode-back" href="../../../EUVpy.NEUVAC.neuvac.html#EUVpy.NEUVAC.neuvac.neuvacEUV">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">neuvacEUV</span><span class="p">(</span><span class="n">f107</span><span class="p">,</span> <span class="n">f107a</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tableFile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Use a parametric model to compute solar flux in the 59 conventional wavelength bands used by Aether/GITM. Capable</span>
@@ -288,34 +257,6 @@
 <span class="sd">    savedPerts : ndarray</span>
 <span class="sd">        A nxm ndarray of the perturbations (time series of the NEUVAC+Perturbation - NEUVAC)</span>
 <span class="sd">    cc2 : numpy.ndarray</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">neuvacEUV</span><span class="p">(</span><span class="n">f107</span><span class="p">,</span> <span class="n">f107a</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tableFile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statsFiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Use a parametric model to compute solar flux in the 59 conventional wavelength bands used by Aether/GITM. Capable</span>
-<span class="sd">    of returning perturbed irradiance values that are perturbed according to the variations of in the intensity of each</span>
-<span class="sd">    bin</span>
-<span class="sd">    :param f107: ndarray</span>
-<span class="sd">        F10.7 values.</span>
-<span class="sd">    :param f107a: ndarray</span>
-<span class="sd">        81-day center-averaged F10.7 values; must be the same length as f107.</span>
-<span class="sd">    :param bands: str</span>
-<span class="sd">        If None or &#39;NEUVAC&#39;, returns irradiances in the GITM Bands. If &#39;EUVAC&#39;, returns them in the 37 bands used by</span>
-<span class="sd">        EUVAC. If &#39;SOLOMON&#39;, returns them in the 22 bands used by Solomon and Qian.</span>
-<span class="sd">    :param tableFile: str</span>
-<span class="sd">        Corresponds to the .txt file holding the NEUVAC coefficients most recently-generated by fitNeuvac.py. If</span>
-<span class="sd">        not given, simply uses the table file corresponding to the selected bin structure. Default is None.</span>
-<span class="sd">    :param statsFiles: list</span>
-<span class="sd">        A 2 element list where the first element is a file containing the 59x59 correlation matrix and the second</span>
-<span class="sd">        element is a file containing the 1x59 standard deviation values for NEUVAC. NOT REQUIRED.</span>
-<span class="sd">    :return euvIrradiance: ndarray</span>
-<span class="sd">        A nxm ndarray where n is the number of EUV irradiance values and m is the number of wavelength bands.</span>
-<span class="sd">    :return perturbedEuvIrradiance: ndarray</span>
-<span class="sd">        A nxm ndarray where n is the number of EUV irradiance values perturbed due to inherent uncertainty and m is the</span>
-<span class="sd">        number of wavelength bands.</span>
-<span class="sd">    :return savedPerts: ndarray</span>
-<span class="sd">        A nxm ndarray of the perturbations (time series of the NEUVAC+Perturbation - NEUVAC)</span>
-<span class="sd">    :return cc2: ndarray</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        A mxm ndarray of the correlation matrix between each wavelength&#39;s time-series of the NEUVAC+Perturbation -</span>
 <span class="sd">        NEUVAC.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -442,16 +383,11 @@
 
 <div class="viewcode-block" id="neuvacFit">
 <a class="viewcode-back" href="../../../EUVpy.NEUVAC.neuvac.html#EUVpy.NEUVAC.neuvac.neuvacFit">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">neuvacFit</span><span class="p">(</span><span class="n">f107Data</span><span class="p">,</span> <span class="n">irrTimes</span><span class="p">,</span> <span class="n">irrData</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">neuvacFit</span><span class="p">(</span><span class="n">f107Data</span><span class="p">,</span> <span class="n">irrTimes</span><span class="p">,</span> <span class="n">irrData</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constrain</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate entirely new empirical parametric fits between F10.7 data and solar EUV irradiance data, irrespective</span>
 <span class="sd">    of the number of wavelength bands the irradiance data is split into.</span>
 
-<<<<<<< HEAD
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    f107Data : list</span>
@@ -475,32 +411,15 @@
 <span class="sd">    fitParams : numpy.ndarray</span>
 <span class="sd">        An array of coefficients with which to compute the irradiance in each bin.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># ENFORCING MODEL RESULTS TO BE NONZERO:</span>
-    <span class="c1"># Objective (cost) function:</span>
-    <span class="k">def</span> <span class="nf">objFun</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
-=======
-<span class="sd">    :param list f107Data: A list where the first element is an arraylike of datetimes for each F10.7 value, the second element is an arraylike of F10.7 values, and the third element is an arraylike of centered running 81-day averaged F10.7 values.</span>
-<span class="sd">    :param arraylike irrTimes: An arraylike of datetimes for each solar EUV spectra in irrData.</span>
-<span class="sd">    :param ndarray irrData: An array of solar EUV irradiance measurements or estimates (from FISM, TIMED/SEE, etc.), arranged such that there is a single observation per row. A single observaton contains the entire EUV spectrum for a single day.</span>
-<span class="sd">    :param arraylike wavelengths: An array of wavelengths to which the irradiance data corresponds.</span>
-<span class="sd">    :param label: An optional argument specifying the label for the data the model is being constructed for. Default is None.</span>
-<span class="sd">    :param bool constraint: An optional argument that if True, constrains the fitted function to yield nonnegative outputs.</span>
-<span class="sd">    :param ndarray fitParams: An array of coefficients with which to compute the irradiance in each bin.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># ENFORCING MODEL RESULTS TO BE NONZERO:</span>
     <span class="c1"># Objective (cost) function:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">objFun</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
+    <span class="k">def</span> <span class="nf">objFun</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">variables</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">irrFunc</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="c1"># Constraint (model output must be nonnegative):</span>
-<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">constraint</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">variables</span><span class="p">):</span>
-=======
-    <span class="k">def</span><span class="w"> </span><span class="nf">constraint</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">variables</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="k">return</span> <span class="n">irrFunc</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">)</span>
 
     <span class="c1"># Isolate the valid times for performing the fit:</span>
@@ -591,16 +510,11 @@
 
 <div class="viewcode-block" id="gitmNEUVAC">
 <a class="viewcode-back" href="../../../EUVpy.NEUVAC.neuvac.html#EUVpy.NEUVAC.neuvac.gitmNEUVAC">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">gitmNEUVAC</span><span class="p">(</span><span class="n">f107times</span><span class="p">,</span> <span class="n">f107</span><span class="p">,</span> <span class="n">f107b</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">gitmNEUVAC</span><span class="p">(</span><span class="n">f107times</span><span class="p">,</span> <span class="n">f107</span><span class="p">,</span> <span class="n">f107b</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Write NEUVAC irradiances to a file for ingestion directly into the Global Ionosphere-Thermosphere Model. This code</span>
 <span class="sd">    writes the data to 59 wavelength bins.</span>
 
-<<<<<<< HEAD
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    f107times : arraylike</span>
@@ -614,33 +528,18 @@
 <span class="sd">    -------</span>
 <span class="sd">    outfile : string</span>
 <span class="sd">        The name of the output file.</span>
-=======
-<span class="sd">    :param arraylike f107times: The timestamps for F10.7 values. Individual values must be datetimes.</span>
-<span class="sd">    :param arraylike f107: The F10.7 values. Individual values must be floats.</span>
-<span class="sd">    :param arraylike f107b: The F10.7 values averaged in a 54-day backwards-looking window. Individual values must be floats.</span>
-<span class="sd">    :return outfile: The name of the output file.</span>
-<span class="sd">    :rtype: str</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Writing a GITM file with NEUVAC irradiances between &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">f107times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; and &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">f107times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
 
     <span class="n">neuvacIrr</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">neuvacEUV</span><span class="p">(</span><span class="n">f107</span><span class="p">,</span> <span class="n">f107b</span><span class="p">)</span>
 
-<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">numStr</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-=======
-    <span class="k">def</span><span class="w"> </span><span class="nf">numStr</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
 
-<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">safe_open_w</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-=======
-    <span class="k">def</span><span class="w"> </span><span class="nf">safe_open_w</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Open &quot;path&quot; for writing, creating any parent directories as needed.</span>
 <span class="sd">        (https://stackoverflow.com/questions/23793987/write-a-file-to-a-directory-that-doesnt-exist)</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -672,16 +571,11 @@
 
 <div class="viewcode-block" id="aetherFile">
 <a class="viewcode-back" href="../../../EUVpy.NEUVAC.neuvac.html#EUVpy.NEUVAC.neuvac.aetherFile">[docs]</a>
-<<<<<<< HEAD
-<span class="k">def</span> <span class="nf">aetherFile</span><span class="p">(</span><span class="n">tableFile</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/neuvac_table.txt&#39;</span><span class="p">))):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">aetherFile</span><span class="p">(</span><span class="n">tableFile</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/neuvac_table.txt&#39;</span><span class="p">))):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
+<span class="k">def</span> <span class="nf">aetherFile</span><span class="p">(</span><span class="n">tableFile</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;data/neuvac_table.txt&#39;</span><span class="p">))):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Take the NEUVAC coefficients in the 59 wavelength bins and put them into a .csv file in a format for use by the</span>
 <span class="sd">    Aether model.</span>
 
-<<<<<<< HEAD
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    tableFile : str</span>
@@ -693,13 +587,7 @@
 <span class="sd">    outfile : str</span>
 <span class="sd">        The location of the .csv file for use by the Aether.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-=======
-<span class="sd">    :param str tableFile: The location of the NEUVAC table file to convert. Default is the 59-bin table file in the EUVpy repo.</span>
-<span class="sd">    :return outfile: The location of the .csv file for use by the Aether.</span>
-<span class="sd">    :rtype: str</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="c1"># Open the table file and read in the data:</span>
     <span class="n">neuvacTable</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tableFile</span><span class="p">)</span> <span class="k">as</span> <span class="n">neuvacFile</span><span class="p">:</span>
@@ -754,12 +642,6 @@
     <span class="k">return</span> <span class="n">outfile</span></div>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
-<<<<<<< HEAD
-=======
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">aetherFile</span><span class="p">()</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </pre></div>
 
            </div>

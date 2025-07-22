@@ -6,11 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.spectralAnalysis &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -56,13 +52,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -103,13 +92,8 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level imports:</span>
-<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-=======
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -122,7 +106,6 @@
 <span class="c1"># Functions:</span>
 <div class="viewcode-block" id="spectralIrradiance">
 <a class="viewcode-back" href="../../../EUVpy.tools.spectralAnalysis.html#EUVpy.tools.spectralAnalysis.spectralIrradiance">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">spectralIrradiance</span><span class="p">(</span><span class="n">photonFlux</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.</span>
@@ -137,16 +120,6 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    irradiance : numpy.ndarray or float</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">spectralIrradiance</span><span class="p">(</span><span class="n">photonFlux</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert the photon flux to the corresponding spectral irradiance, given a specific wavelength.</span>
-<span class="sd">    :param: photonFlux: ndarray, float, or int</span>
-<span class="sd">        Photon flux in units of photons s^-1 m^-2. For a singular wavelength, units are photons m^-2</span>
-<span class="sd">    :param: wavelength: float</span>
-<span class="sd">        A specific wavelength in Angstroms.</span>
-<span class="sd">    :return: irradiance: ndarray or float</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The corresponding spectral irradiance in units of W/m^2/nm.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">photonEnergy</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelength</span><span class="o">*</span><span class="mf">1e-10</span><span class="p">)</span> <span class="c1"># Convert the wavelength in the denominator to meters.</span>
@@ -160,7 +133,6 @@
 
 <div class="viewcode-block" id="spectralFlux">
 <a class="viewcode-back" href="../../../EUVpy.tools.spectralAnalysis.html#EUVpy.tools.spectralAnalysis.spectralFlux">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">spectralFlux</span><span class="p">(</span><span class="n">irradiance</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span> <span class="c1">#, dWavelength=10):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert the spectral irradiance to spectral flux, given a specific wavelength.</span>
@@ -177,18 +149,6 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    photonFlux : numpy.ndarray or float</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">spectralFlux</span><span class="p">(</span><span class="n">irradiance</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span> <span class="c1">#, dWavelength=10):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert the spectral irradiance to spectral flux, given a specific wavelength.</span>
-<span class="sd">    :param: irradiance: ndarray, float, or int</span>
-<span class="sd">        [Solar] spectral irradiance for a specific wavelength, in W/m^2/nm.</span>
-<span class="sd">    :param: wavelength: float</span>
-<span class="sd">        A specific wavelength in Angstroms.</span>
-<span class="sd">    :param: dWavelength: float or int</span>
-<span class="sd">        Wavelength bin width in Angstroms. Default is 1.</span>
-<span class="sd">    :return: photonFlux: ndarray or float</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="sd">        The corresponding spectral flux in units of Watts.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">photonEnergy</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">wavelength</span> <span class="o">*</span> <span class="mf">1e-10</span><span class="p">)</span>

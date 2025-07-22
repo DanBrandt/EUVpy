@@ -7,11 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.HEUVAC.heuvac module &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -59,13 +55,6 @@
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -110,7 +99,6 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.HEUVAC.heuvac.getFlux">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.HEUVAC.heuvac.</span></span><span class="sig-name descname"><span class="pre">getFlux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">userFile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/HEUVAC/heuvac.html#getFlux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.HEUVAC.heuvac.getFlux" title="Link to this definition"></a></dt>
-<<<<<<< HEAD
 <dd><p>Read the output file from HEUVAC in the user-defined bins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -123,25 +111,6 @@
 <li><p><strong>irr</strong> (<em>numpy.ndarray</em>) – The HEUVAC irradiance in the user-defined bins (W/m2/nm).</p></li>
 </ul>
 </p>
-=======
-<dd><p>Read the output file from HEUVAC in the Torr bins.
-:param userFile: str</p>
-<blockquote>
-<div><p>The filename where the HEUVAC fluxes in the user-defined bins have been output.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Return wav<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray
-The wavelength bin centers for the Torr bins (Angstroms).</p>
-</dd>
-<dt class="field-even">Return flux<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-The HEUVAC flux in the user-defined bins (ph/cm2/s).</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>irr
-The HEUVAC irradiance in the user-defined bins (W/m2/nm).</p>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -149,7 +118,6 @@ The HEUVAC irradiance in the user-defined bins (W/m2/nm).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.HEUVAC.heuvac.getTorr">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.HEUVAC.heuvac.</span></span><span class="sig-name descname"><span class="pre">getTorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fluxFile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/HEUVAC/heuvac.html#getTorr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.HEUVAC.heuvac.getTorr" title="Link to this definition"></a></dt>
-<<<<<<< HEAD
 <dd><p>Helper function that reads the output file from HEUVAC in the Torr bins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -162,21 +130,6 @@ The HEUVAC irradiance in the user-defined bins (W/m2/nm).</p>
 <li><p><strong>irr</strong> (<em>numpy.ndarray</em>) – The HEUVAC irradiance in the Torr bins (W/m2/nm).</p></li>
 </ul>
 </p>
-=======
-<dd><p>Read the output file from HEUVAC in the Torr bins.
-:param fluxFile: str</p>
-<blockquote>
-<div><p>The filename where the HEUVAC fluxes in the Torr bins have been output.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Return wav<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray
-The wavelength bin centers for the Torr bins (Angstroms).</p>
-</dd>
-<dt class="field-even">Return flux<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-The HEUVAC flux in the Torr bins (W/m2/nm).</p>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -184,7 +137,6 @@ The HEUVAC flux in the Torr bins (W/m2/nm).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.HEUVAC.heuvac.heuvac">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.HEUVAC.heuvac.</span></span><span class="sig-name descname"><span class="pre">heuvac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F107A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statsFiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/HEUVAC/heuvac.html#heuvac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.HEUVAC.heuvac.heuvac" title="Link to this definition"></a></dt>
-<<<<<<< HEAD
 <dd><p>Main function for executing HEUVAC: Call the HEUVAC Fortran code for each individual F10.7, F10.7A pair. For more
 details on HEUVAC, please see Richards, et al. 2006 (doi:10.1016/j.asr.2005.06.031).</p>
 <dl class="field-list simple">
@@ -203,34 +155,6 @@ details on HEUVAC, please see Richards, et al. 2006 (doi:10.1016/j.asr.2005.06.0
 <li><p><strong>heuvacIrr</strong> (<em>numpy.ndarray</em>) – The solar EUV irradiance in different wavelength bins returend from HEUVAC.</p></li>
 </ul>
 </p>
-=======
-<dd><p>Call the HEUVAC Fortran code for each F10.7, F10.7A pair.
-:param F107: arraylike</p>
-<blockquote>
-<div><p>The values of [daily] F10.7.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>F107A</strong> – arraylike
-The values of 81-day averaged F10.7, centered on the current day.</p></li>
-<li><p><strong>torr</strong> – bool
-Controls whether or not the binned data returned is in the 37 standard Torr et al bins or in the high-resolution
-10 Angstrom-wide bins (the standard high resolution of HEUVAC). Default is True.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return heuvacWav<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-The bin center wavelengths for the HEUVAC data.</p>
-</dd>
-<dt class="field-odd">Return heuvacFlux<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray
-The solar EUV flux in different wavelength bins returned from HEUVAC.</p>
-</dd>
-<dt class="field-even">Return heuvacIrr<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-The solar EUV irradiance in different wavelength bins returend from HEUVAC.</p>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
@@ -238,7 +162,6 @@ The solar EUV irradiance in different wavelength bins returend from HEUVAC.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.empiricalModels.models.HEUVAC.heuvac.writeInputFile">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.empiricalModels.models.HEUVAC.heuvac.</span></span><span class="sig-name descname"><span class="pre">writeInputFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F107A</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/empiricalModels/models/HEUVAC/heuvac.html#writeInputFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.empiricalModels.models.HEUVAC.heuvac.writeInputFile" title="Link to this definition"></a></dt>
-<<<<<<< HEAD
 <dd><p>Helper function that writes the formatted input file that the HEUVAC model uses during execution. This function
 writes the input file to an internal location, and it does not return anything.</p>
 <dl class="field-list simple">
@@ -247,20 +170,6 @@ writes the input file to an internal location, and it does not return anything.<
 <li><p><strong>F107</strong> (<em>float</em>) – A single value of F10.7.</p></li>
 <li><p><strong>F107A</strong> (<em>float</em>) – A single value for the 81-day averaged F10.7, centered on the current day.</p></li>
 </ul>
-=======
-<dd><p>Write the formatted input file for running HEUVAC.
-:param F107: float</p>
-<blockquote>
-<div><p>A single value of F10.7.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>F107A</strong> – float
-A single value for the 81-day averaged F10.7, centered on the current day.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns nothing.</p>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>

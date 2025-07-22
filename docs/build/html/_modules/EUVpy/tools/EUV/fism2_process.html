@@ -6,11 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.EUV.fism2_process &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -56,13 +52,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -101,7 +90,6 @@
   <h1>Source code for EUVpy.tools.EUV.fism2_process</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 
-<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -109,15 +97,6 @@
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
-=======
-<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dates</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
 <span class="c1"># ----------------------------------------------------------------------</span>
 <span class="c1"># Function to parse input arguments</span>
@@ -125,11 +104,7 @@
 
 <div class="viewcode-block" id="parse_args_fism">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.parse_args_fism">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">parse_args_fism</span><span class="p">():</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">parse_args_fism</span><span class="p">():</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Download and process FISM data&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-start&#39;</span><span class="p">,</span> \
@@ -160,11 +135,7 @@
 
 <div class="viewcode-block" id="convert_ymdhm_to_dt">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_ymdhm_to_dt">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">convert_ymdhm_to_dt</span><span class="p">(</span><span class="n">ymdhm</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_ymdhm_to_dt</span><span class="p">(</span><span class="n">ymdhm</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">year</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
     <span class="n">mo</span> <span class="o">=</span> <span class="n">ymdhm</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
@@ -192,11 +163,7 @@
 
 <div class="viewcode-block" id="download_fism2">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.download_fism2">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">download_fism2</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">isFlare</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">download_fism2</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">isFlare</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">sStart</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;.000Z&#39;</span>
     <span class="n">sEnd</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;.000Z&#39;</span>
@@ -227,11 +194,7 @@
 
 <div class="viewcode-block" id="convert_time">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_time">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">convert_time</span><span class="p">(</span><span class="n">yearday</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_time</span><span class="p">(</span><span class="n">yearday</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">yearday</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
     <span class="n">base</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">doy</span> <span class="o">=</span> <span class="n">yearday</span> <span class="o">-</span> <span class="n">year</span> <span class="o">*</span> <span class="mf">1000.0</span>
@@ -246,11 +209,7 @@
 
 <div class="viewcode-block" id="convert_time_seconds">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.convert_time_seconds">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">convert_time_seconds</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_time_seconds</span><span class="p">(</span><span class="n">seconds</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="n">base</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span> <span class="o">=</span> <span class="n">seconds</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">time</span></div>
@@ -262,11 +221,7 @@
 
 <div class="viewcode-block" id="read_euv_csv_file">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.read_euv_csv_file">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">read_euv_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">read_euv_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">fpin</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
@@ -304,11 +259,7 @@
 
 <div class="viewcode-block" id="read_fism_csv_file">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.read_fism_csv_file">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">read_fism_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">read_fism_csv_file</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">fpin</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
@@ -385,11 +336,7 @@
 
 <div class="viewcode-block" id="rebin_fism">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.rebin_fism">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">rebin_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">rebin_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">shorts</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span>
     <span class="n">longs</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span>
@@ -433,11 +380,7 @@
 <span class="c1"># from scipy.interpolate import UnivariateSpline</span>
 <div class="viewcode-block" id="isolate_fism">
 <a class="viewcode-back" href="../../../../EUVpy.tools.EUV.fism2_process.html#EUVpy.tools.EUV.fism2_process.isolate_fism">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">isolate_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">isolate_fism</span><span class="p">(</span><span class="n">fism_waves</span><span class="p">,</span> <span class="n">fism_vals</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">):</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 
     <span class="n">shorts</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span>
     <span class="n">longs</span> <span class="o">=</span> <span class="n">wavelengths</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span>

@@ -6,11 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.empiricalModels.models.SOLOMON.solomon &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
 
   
@@ -56,13 +52,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3"><a class="reference internal" href="../../../../../EUVpy.tools.html">EUVpy.tools package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../EUVpy.tools.html#submodules">Submodules</a></li>
@@ -105,20 +94,12 @@
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Top-level imports:</span>
-<<<<<<< HEAD
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-=======
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <span class="c1"># Local imports:</span>
-<<<<<<< HEAD
 <span class="kn">from</span> <span class="nn">EUVpy.tools.spectralAnalysis</span> <span class="kn">import</span> <span class="n">spectralIrradiance</span>
-=======
-<span class="kn">from</span><span class="w"> </span><span class="nn">EUVpy.tools.spectralAnalysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectralIrradiance</span>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
@@ -185,7 +166,6 @@
 <span class="c1">#-----------------------------------------------------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="solomon">
 <a class="viewcode-back" href="../../../../../EUVpy.empiricalModels.models.SOLOMON.solomon.html#EUVpy.empiricalModels.models.SOLOMON.solomon.solomon">[docs]</a>
-<<<<<<< HEAD
 <span class="k">def</span> <span class="nf">solomon</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;HFG&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the solar EUV irradiance in 23 standard bands. Utilizes Equations 1-3 from Solomon and Qian 2005</span>
@@ -207,24 +187,7 @@
 <span class="sd">    solomonIrr : numpy.ndarray</span>
 <span class="sd">        Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-=======
-<span class="k">def</span><span class="w"> </span><span class="nf">solomon</span><span class="p">(</span><span class="n">F107</span><span class="p">,</span> <span class="n">F107A</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;HFG&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute the solar EUV irradiance in 23 standard bands.</span>
-<span class="sd">    :param F107: ndarray</span>
-<span class="sd">        Values of the F10.7 solar flux.</span>
-<span class="sd">    :param F107A: ndarray</span>
-<span class="sd">        Values of the 81-day averaged solar flux, centered on the present day.</span>
-<span class="sd">    :param model: str</span>
-<span class="sd">        Either &#39;HFG&#39; or &#39;EUVAC&#39;. Controls whether or not the empirical EUV data returned corresponds to the HFG model or</span>
-<span class="sd">        the EUVAC model.</span>
-<span class="sd">    :return solomonFlux: ndarray</span>
-<span class="sd">        Values of the solar radiant flux in 23 distinct wavelength bands. Units of photon/m^2/s</span>
-<span class="sd">    :return solomonIrr: ndarray</span>
-<span class="sd">        Values of the solar EUV irradiance in 23 distinct wavelength bands. Units of W/m^2</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
     <span class="c1"># Instantiate the output data:</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">F107</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">F107</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">F107</span><span class="p">])</span>

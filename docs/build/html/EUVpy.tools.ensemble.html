@@ -7,11 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EUVpy.tools.ensemble module &mdash; EUVpy 1 documentation</title>
-<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-=======
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -59,13 +55,6 @@
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
-=======
-<li class="toctree-l3"><a class="reference internal" href="EUVpy.experiments.html">EUVpy.experiments package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="EUVpy.experiments.html#submodules">Submodules</a></li>
-</ul>
-</li>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 <li class="toctree-l3 current"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
@@ -108,7 +97,6 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="EUVpy.tools.ensemble.irradiance_ensemble">
 <span class="sig-prename descclassname"><span class="pre">EUVpy.tools.ensemble.</span></span><span class="sig-name descname"><span class="pre">irradiance_ensemble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F107</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F107A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NEUVAC'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/ensemble.html#irradiance_ensemble"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.ensemble.irradiance_ensemble" title="Link to this definition"></a></dt>
-<<<<<<< HEAD
 <dd><p>Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the individual
 members, and the standard deviations of the ensemble.</p>
 <dl class="field-list simple">
@@ -118,28 +106,10 @@ members, and the standard deviations of the ensemble.</p>
 <li><p><strong>F107A</strong> (<em>float</em><em> or </em><em>numpy.ndarray</em>) – 81 day-averaged solar flux at 10.7, centered on the current day.</p></li>
 <li><p><strong>iterations</strong> (<em>int</em>) – The number of ensemble members.</p></li>
 <li><p><strong>model</strong> (<em>str</em>) – The model with which to run the ensemble. May be ‘NEUVAC’, ‘NEUVAC-E’, ‘EUVAC’, or ‘HEUVAC’. If the model is in
-=======
-<dd><p>Given F10.7 and F10.7A, run an ensemble of modeled EUV irradiances. Return the ensemble average, all the members,
-and the standard deviations of the ensemble.
-:param F107: float or ndarray</p>
-<blockquote>
-<div><p>Solar flux at 10.7 cm.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>F107A</strong> – float or ndarray
-81 day-averaged solar flux at 10.7, centered on the current day.</p></li>
-<li><p><strong>iterations</strong> – int
-The number of ensemble members.</p></li>
-<li><p><strong>model</strong> – str
-The model with which to run the ensemble. May be ‘NEUVAC’, ‘NEUVAC-E’, ‘EUVAC’, or ‘HEUVAC’. If the model is in
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 the STAN BANDS, valid arguments include ‘NEUVAC-S’, ‘EUVAC-S’, or ‘HFG’. ‘NEUVAC’ refers to the 59-band base
 model of NEUVAC, while ‘NEUVAC-E’ refers to the 37-band base model of NEUVAC.</p></li>
 </ul>
 </dd>
-<<<<<<< HEAD
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>ensemble</strong> (<em>numpy.ndarray</em>) – A 3D array where each 2D element is an ensemble.</p></li>
@@ -147,19 +117,6 @@ model of NEUVAC, while ‘NEUVAC-E’ refers to the 37-band base model of NEUVAC
 <li><p><strong>ensemble_stddev</strong> (<em>numpy.ndarray</em>) – A 2D array of the ensemble standard deviations.</p></li>
 </ul>
 </p>
-=======
-<dt class="field-even">Return ensemble<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-A 3D array where each 2D element is an ensemble.</p>
-</dd>
-<dt class="field-odd">Return ensemble_avg<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray
-A 2D array of the ensemble average of irradiances.</p>
-</dd>
-<dt class="field-even">Return ensemble_stddev<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray
-A 2D array of the ensemble standard deviations.</p>
->>>>>>> d1fd4f506d9c709e8a5788af361b8ce69dc9c163
 </dd>
 </dl>
 </dd></dl>
