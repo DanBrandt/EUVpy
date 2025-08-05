@@ -21,7 +21,6 @@ src/EUVpy/empiricalModels/models/HEUVAC/__init__.py
 src/EUVpy/empiricalModels/models/HEUVAC/heuvac.py
 src/EUVpy/empiricalModels/models/SOLOMON/__init__.py
 src/EUVpy/empiricalModels/models/SOLOMON/solomon.py
-src/EUVpy/experiments/__init__.py
 src/EUVpy/experiments/analyzeIrradiance.py
 src/EUVpy/experiments/fitNeuvac.py
 src/EUVpy/experiments/uncIrradiance.py
