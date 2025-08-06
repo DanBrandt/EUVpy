@@ -26,18 +26,17 @@ EUVpy contains modules for **4** different EUV irradiance models. These models i
 * NEUVAC
 * EUVAC
 * HEUVAC
-* SOLOMON
+* HFG (SOLOMON)
 
 **A note about running HEUVAC in particular:** The base code of HEUVAC is in Fortran, written by Dr. Phil Richards. To 
 ensure it runs properly, the following should be done *after* cloning EUVpy:
 > git submodule update --init --recursive --remote
 
-Then, navigate (via terminal) to the directory empiricalModels/models/HEUVAC and do the following:
+Then, within the package folder, simply do the following:
 
-> . compile.sh
+> . install_heuvac.sh
 
-This should only have to be done once. After this is completed, you can navigate back to the top directory and proceed 
-as normal, running HEUVAC simply by calling the wrapper function in the module heuvac.py. 
+This should only have to be done once. 
 
 We note that SOLOMON in the literature can either refer to the empirical model between F10.7 and 81 day-averaged F10.7 
 centered on the current day (hereafter F10.7A) and EUV irradiance in 22 overlapping bands as described by Solomon and
@@ -53,7 +52,6 @@ There are few folders in this package:
 _fitNeuvac.py_ s used for actually performing the NEUVAC fits between F10.7, F10.7A, and FISM2, while _uncNeuvac.py_ 
 contains code for computing the correlation matrix used to enable running NEUVAC ensembles, as well as generating plots 
 of the squared difference between NEUVAC and FISM2 in different bands.
-* **measurements**: Contains data from SDO/EVE and TIMED/SEE. Much of the data here isn't used at all.
 * **NEUVAC**: Contains the code for running NEUVAC.
 * **solarIndices**: Contains F10.7 solar index data, from both OMNIWeb and Penticton.
 * **tools**: Contains code for miscellaneous helper functions. In this folder appears the following:
@@ -63,41 +61,39 @@ of the squared difference between NEUVAC and FISM2 in different bands.
     * _spectralAnalysis.py_: Contains functions for converting between solar spectral irradiance and solar spectral flux.
     * _toolbox.py_: Contains miscellaneous helper functions that mainly focus on directory management, loading and saving data, statistics, and fitting.
 
+Each of the models in EUVpy requires F10.7 as an input. To grab F10.7 between any two dates, simply do the following:
+
+> from EUVpy.tools import processIndices
+> 
+> f107times, f107, f107a, f107b = processIndices.getCLSF107('YYYY-MM-DD', 'YYYY-MM-DD', truncate=False)
+
 To import any of the models, simply do as follows:
 
 <ins>NEUVAC</ins>
-> from NEUVAC import neuvac
+> from EUVpy.NEUVAC import neuvac
 > 
-> neuvacIrr, perturbedNeuvacIrr, _, _ = neuvac.neuvacEUV(F107, F107A, tableFile=neuvac_tableFile, statsFiles=['corMat.pkl', 'sigma_NEUVAC.pkl']
+> neuvacIrr, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='EUVAC')
 
 <ins>EUVAC</ins>
-> from empiricalModels.models.EUVAC import euvac
+> from EUVpy.empiricalModels.models.EUVAC import euvac
 > 
-> euvacFlux, euvacIrr, _, _, _ = euvac.euvac(F107, F107A)
+> euvacFlux, euvacIrr, _, _, _ = euvac.euvac(f107, f107a)
 
 <ins>HEUVAC</ins>
-> from empiricalModels.models.HEUVAC import heuvac
+> from EUVpy.empiricalModels.models.HEUVAC import heuvac
 > 
-> heuvac_wav, heuvacFlux, heuvacIrr, _, _, _ = heuvac.heuvac(F107, F107A, torr=True)
+> heuvac_wav, heuvacFlux, heuvacIrr, _, _, _ = heuvac.heuvac(f107, f107a, torr=True)
 
 <ins>SOLOMON</ins>
-> from empiricalModels.models.SOLOMON import solomon
+> from EUVpy.empiricalModels.models.SOLOMON import solomon
 > 
-> solomonFluxHFG, solomonIrrHFG = solomon.solomon(F107, F107A, model='HFG')
+> solomonFluxHFG, solomonIrrHFG = SOLOMON.solomon.solomon(f107, f107a, model='HFG')
 >
-> solomonFluxEUVAC, solomonIrrEUVAC = solomon.solomon(F107, F107A, model='EUVAC')
-
-Please note the following for the above:
-* neuvac_tableFile: Holds all the coefficients of the most recent fit of NEUVAC. The file is located here: /NEUVAC/neuvac_table.txt
-* corMat.pkl: Holds the normalized correlation matrix for all the NEUVAC bands. Located in the folder 'experiments'. This is similarly true for 'corMatEUVAC.pkl' and 'corMatHEUVAC.pkl'.
-* sigma_NEUVAC.pkl: Holds the normalized standard deviation of the residuals with respect to FISM2. Located in the folder 'experiments'. This is similarly true for 'sigma_EUVAC.pkl' and 'sigma_HEUVAC.pkl'.
-
-Running any of the EUV models is straightforward, as shown in the examples below.
+> solomonFluxEUVAC, solomonIrrEUVAC = SOLOMON.solomon.solomon(f107, f107a, model='EUVAC')
 
 # Examples
 
-We encourage you to peruse the examples folder as a guide for calling the different irradiance models and displaying 
-outputs.
+We encourage you to peruse the [examples](https://github.com/DanBrandt/EUVpy/blob/packaging/docs/source/examples.rst) in the documentation for guidelines on how to run each of the models.
 
 Due to the unique construction of NEUVAC, at present, we only recommend running ensembles for NEUVAC, and not any of the
 other models.
