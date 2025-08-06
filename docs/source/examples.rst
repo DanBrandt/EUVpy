@@ -12,6 +12,7 @@ terms of the 10.7 cm solar radio flux (F10.7), or a quantity derived from F10.7.
 aforementioned models, the user must first obtain F10.7 measurements. This can be done as follows:
 
 .. code-block:: python
+
     # Top level imports
     import numpy as np
     import matplotlib.pyplot as plt
@@ -41,6 +42,7 @@ aforementioned models, the user must first obtain F10.7 measurements. This can b
 After obtaining F10.7 data, the different models can then easily be executed:
 
 .. code-block:: python
+
     # Call the models in the EUVAC bins!
     neuvacIrr, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='EUVAC')
     euvacFlux, euvacIrr, _, _, _ = euvac.euvac(f107, f107a)
@@ -88,6 +90,7 @@ example, we start by obtaining F10.7 data. We will consider a longer stretch of 
 comparing EUVAC and NEUVAC:
 
 .. code-block:: python
+
     # Get some F10.7 data for the entirety of Solar Cycle 24:
     f107times, f107, f107a, f107b = processIndices.getCLSF107('2008-12-01', '2019-12-31', truncate=False)
 
@@ -120,6 +123,7 @@ To do so, we can simply consider some arbitrary values of F10.7, 81-day averaged
 backwards-looking window:
 
 .. code-block:: python
+
     # Sample values for F10.7, F10.7A, and F10.7B
     f107 = 120
     f107a = 85
@@ -130,6 +134,7 @@ be found in Figure 8 of `Nishimoto, et al. 2021 <https://link.springer.com/artic
 order to do that, we need to get the boundaries of the wavelength ranges. We can do that as follows:
 
 .. code-block:: python
+
     from EUVpy.tools import toolbox
     euvacTable = euvac.euvacTable
     leftsides = euvacTable[:, 1]
@@ -139,6 +144,7 @@ order to do that, we need to get the boundaries of the wavelength ranges. We can
 Let's compare the NEUVAC, EUVAC, and HEUVAC models:
 
 .. code-block:: python
+
     neuvacIrr, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='EUVAC')
     euvacFlux, euvacIrr, _, _, _ = euvac.euvac(f107, f107a)
     heuvac_wav, heuvacFlux, heuvacIrr, _, _, _ = heuvac.heuvac(f107, f107a, torr=True)
@@ -167,6 +173,7 @@ consists of a collection of spectra constituting a distribution of irradiance va
 such as distribution, we need to import the right module, and again start by obtaining F10.7 values:
 
 .. code-block:: python
+
     from EUVpy.tools import ensemble
 
     # Obtain F10.7 values over a 2-month period:
@@ -175,6 +182,7 @@ such as distribution, we need to import the right module, and again start by obt
 We now simply execute the following code. Note that the argument 'iterations' specifies the number of ensemble members:
 
 .. code-block:: python
+
     num_ensemble_members = 50
     ensemble_NeuvacIrr, ensemble_average_NeuvacIrr, ensemble_stddev_NeuvacIrr = ensemble.irradiance_ensemble(f107, f107b,
                                                                                                 iterations=num_ensemble_members,
@@ -183,6 +191,7 @@ We now simply execute the following code. Note that the argument 'iterations' sp
 Now we can look at the entire ensemble by plotting a time series of all of the ensemble members:
 
 .. code-block:: python
+
     # Plot the ensemble, with the confidence bands corresponding to the ensemble spread at 303.31 Angstroms:
     ind = 7
     plt.figure(figsize=(12,8))
@@ -220,6 +229,7 @@ is being run. To provide such a file contaning NEUVAC irradiances, we first simp
 simulation interval, and then execute a single function call:
 
 .. code-block:: python
+
     # Get some F10.7 during the 2015 St. Patrick's Day Geomagnetic Storm:
     f107times, f107, f107a, f107b = processIndices.getCLSF107('2015-03-16', '2015-03-26', truncate=False)
 
@@ -238,6 +248,7 @@ directly, but it requires a file with the coefficients for NEUVAC in order to do
 code is needed:
 
 .. code-block:: python
+
     out = neuvac.aetherFile()
 
 After running this code, a command-line printout should tell you where the resulting coefficents are located. They
