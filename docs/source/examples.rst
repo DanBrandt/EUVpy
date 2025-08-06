@@ -129,7 +129,7 @@ backwards-looking window:
     f107a = 85
     f107b = 87
 
-Generally speaking, it's most convenient to view solar spectra in something like a `stair plot'. An example of this can
+Generally speaking, it's most convenient to view solar spectra in something like a "stair plot". An example of this can
 be found in Figure 8 of `Nishimoto, et al. 2021 <https://link.springer.com/article/10.1186/s40623-021-01402-7>`_. In
 order to do that, we need to get the boundaries of the wavelength ranges. We can do that as follows:
 
