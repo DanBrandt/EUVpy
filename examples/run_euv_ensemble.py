@@ -6,8 +6,8 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 
 # Local imports
-from src.EUVpy.tools import processIndices
-from src.EUVpy.tools import ensemble
+from EUVpy.tools import processIndices
+from EUVpy.tools import ensemble
 
 # Global Plotting Settings:
 import matplotlib.pylab as pylab

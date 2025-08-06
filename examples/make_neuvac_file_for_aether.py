@@ -5,5 +5,4 @@
 from src.EUVpy.NEUVAC import neuvac
 
 # Convert the table file:
-tableFilename = '../NEUVAC/neuvac_table.txt'
-out = neuvac.aetherFile(tableFilename)
+out = neuvac.aetherFile()
