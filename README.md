@@ -102,7 +102,7 @@ outputs.
 Due to the unique construction of NEUVAC, at present, we only recommend running ensembles for NEUVAC, and not any of the
 other models.
 
-# Scientific Ethics
+# Code of Conduct
 In using this code, depending on the module used, proper citations should be given to the original authors responsible
 for developing each model or dataset:
 
