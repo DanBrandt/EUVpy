@@ -50,8 +50,8 @@ After obtaining F10.7 data, the different models can then easily be executed:
 
     # Call the models in the SOLOMON bins!
     neuvacIrrSolomon, _, _, _ = neuvac.neuvacEUV(f107, f107b, bands='SOLOMON')
-    solomonFluxHFG, solomonIrrHFG = SOLOMON.solomon.solomon(f107, f107a, model='HFG')
-    solomonFluxEUVAC, solomonIrrEUVAC = SOLOMON.solomon.solomon(f107, f107a, model='EUVAC')
+    solomonFluxHFG, solomonIrrHFG = solomon.solomon(f107, f107a, model='HFG')
+    solomonFluxEUVAC, solomonIrrEUVAC = solomon.solomon(f107, f107a, model='EUVAC')
 
     # Plotting:
     fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(12, 6))

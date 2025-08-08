@@ -1,7 +1,12 @@
 .idea/
 src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/*.o
 src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/*.exe
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/HEUVAC-scratch.TXT
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/Torr-37-bins.txt
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/XS-User-bins-10A.txt
+src/EUVpy/empiricalModels/models/HEUVAC/srcHeuvac/flux-User-bins-10A.txt
 src/EUVpy/empiricalModels/irradiances
+src/EUVpy.egg-info/PKG-INFO
 src/EUVpy/NEUVAC/irradiances/
 measurements
 src/EUVpy/solarIndices
