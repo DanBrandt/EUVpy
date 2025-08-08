@@ -93,7 +93,7 @@ To import any of the models, simply do as follows:
 
 # Examples
 
-We encourage you to peruse the [examples](https://github.com/DanBrandt/EUVpy/blob/packaging/docs/source/examples.rst) in the documentation for guidelines on how to run each of the models.
+We encourage you to peruse the [examples](https://github.com/DanBrandt/EUVpy/blob/main/docs/source/examples.rst) in the documentation for guidelines on how to run each of the models.
 
 Due to the unique construction of NEUVAC, at present, we only recommend running ensembles for NEUVAC, and not any of the
 other models.
