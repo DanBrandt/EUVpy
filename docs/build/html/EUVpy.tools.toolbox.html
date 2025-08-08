@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUVpy.tools.toolbox module &mdash; EUVpy 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="EUVpy.tools.spectralAnalysis module" href="EUVpy.tools.spectralAnalysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EUVpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="EUVpy.html">EUVpy package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="EUVpy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.NEUVAC.html">EUVpy.NEUVAC package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.NEUVAC.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.data.html">EUVpy.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EUVpy.empiricalModels.html">EUVpy.empiricalModels package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.empiricalModels.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="EUVpy.tools.html">EUVpy.tools package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="EUVpy.tools.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="EUVpy.tools.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EUVpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="EUVpy.html">EUVpy package</a></li>
+          <li class="breadcrumb-item"><a href="EUVpy.tools.html">EUVpy.tools package</a></li>
+      <li class="breadcrumb-item active">EUVpy.tools.toolbox module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/EUVpy.tools.toolbox.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-EUVpy.tools.toolbox">
+<span id="euvpy-tools-toolbox-module"></span><h1>EUVpy.tools.toolbox module<a class="headerlink" href="#module-EUVpy.tools.toolbox" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.band_info">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">band_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_boundaries_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_boundaries_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solomon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#band_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.band_info" title="Link to this definition"></a></dt>
+<dd><p>Given a two array-likes of wavelength bin boundaries, return the indices of those corresponding only to wavelength
+ranges, rather than individual lines, and also return the wavelength boundaries themselves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bin_boundaries_left</strong> (<em>arraylike</em>) – The left-sided wavelength band boundaries. May either be in nm or Angstroms.</p></li>
+<li><p><strong>bin_boundaries_right</strong> (<em>arraylike</em>) – The right-sided wavelength band boundaries. May either be in nm or Angstroms. Units should match those of
+bin_boundaries_left.</p></li>
+<li><p><strong>solomon</strong> (<em>boolean</em>) – If True, does the same thing, but accounts for overlapping bands in the solomon bins. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>sortInds</strong> (<em>arraylike</em>) – The indices of the wavelength ranges only.</p></li>
+<li><p><strong>xPosSorted</strong> (<em>arraylike</em>) – The values of the wavelength ranges themselves, for the purposes of making spectral stair plots.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.bestPolyfit">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">bestPolyfit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxOrder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#bestPolyfit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.bestPolyfit" title="Link to this definition"></a></dt>
+<dd><p>Given independent variable and dependent variable 1D data fit the data with polynomial functions of orders up to a
+user-defined limit set to ‘maxOrder’. For the best-fitting model, return the parameters for the polynomial (as a
+poly1d object) along with the associated Residual Sum of Squares.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xdata</strong> (<em>numpy.ndarray</em>) – 1D independent variable data.</p></li>
+<li><p><strong>ydata</strong> (<em>numpy.ndarray</em>) – 1D dependent variable data.</p></li>
+<li><p><strong>maxOrder</strong> (<em>int</em>) – A number below which (inclusive) to consider models to fit to the data. Default is 5.</p></li>
+<li><p><strong>func</strong> (<em>str</em>) – Specifies what function should be used for fitting. Valid strings are: ‘exp’, ‘linear’, ‘log’, and ‘cubic’. If
+this argument is passed, maxOrder is ignored.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>modelRes</strong> – A list where the first element are the model parameters, the second is the Residual Sum of Squares, and the
+third is the model order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.binCorrelation">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">binCorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydataEst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydataTrue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveLoc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titleStr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#binCorrelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.binCorrelation" title="Link to this definition"></a></dt>
+<dd><p>Given some 1D independent variable data, some 1D estimates of dependent variable data, 1D true values of dependent
+variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the squared
+difference in each bin. Then compute the correlation between the the squared difference and the binned xdata.
+Automatically saves a figure for the results at a user-defined location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xdata</strong> (<em>numpy.ndarray</em>) – 1D independent variable data.</p></li>
+<li><p><strong>ydataEst</strong> (<em>numpy.ndarray</em>) – 1D estimates of dependent variable data.</p></li>
+<li><p><strong>ydataEst</strong> – 1D actual values of dependent variable data.</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – The bin width for the independent variable data. Default is 10.</p></li>
+<li><p><strong>saveLoc</strong> (<em>str</em>) – A string for the location where the figure should be saved.</p></li>
+<li><p><strong>titleStr</strong> (<em>str</em>) – A string for the title of the figure to be generated. Assumes that a single number representing a figure number
+or wavelength is given.</p></li>
+<li><p><strong>root</strong> (<em>Bool</em>) – Controls whether the square root of the SQDF is taken. Default is False.</p></li>
+<li><p><strong>normalize</strong> (<em>Bool</em>) – Controls whether the SQDF is normalized (by dividing by the true data and multiplying by 100). Default is False.
+If True, ignores the value of ‘root’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>binCenters</strong> (<em>list</em>) – The bin centers for the dependent variable data.</p></li>
+<li><p><strong>SQDF</strong> (<em>list</em>) – The Squared Difference values for each bin.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.binRMSE">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">binRMSE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydataEst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydataTrue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveLoc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titleStr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#binRMSE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.binRMSE" title="Link to this definition"></a></dt>
+<dd><p>Given some 1D independent variable data, some 1D estimates of dependent variable data, 1D true values of dependent
+variable data, and a step size, divide the xdata into bins of width equal to the step size and compute the RMSE
+error in each bin. Then compute the correlation between the RMSE and the binned xdata. Automatically saves
+a figure for the results at a user-defined location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xdata</strong> (<em>numpy.ndarray</em>) – 1D independent variable data.</p></li>
+<li><p><strong>ydataEst</strong> (<em>numpy.ndarray</em>) – 1D estimates of dependent variable data.</p></li>
+<li><p><strong>ydataEst</strong> – 1D actual values of dependent variable data.</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – The bin width for the independent variable data. Default is 10.</p></li>
+<li><p><strong>saveLoc</strong> (<em>str</em>) – A string for the location where the figure should be saved.</p></li>
+<li><p><strong>titleStr</strong> (<em>str</em>) – A string for the title of the figure to be generated. Assumes that a single number representing a figure number
+or wavelength is given.</p></li>
+<li><p><strong>normalize</strong> (<em>Bool</em>) – Controls whether the RMSE is normalized or not. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>binCenters</strong> (<em>list</em>) – The bin centers for the dependent variable data.</p></li>
+<li><p><strong>RMSE</strong> (<em>list</em>) – The RMSE values for each bin.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.corrCol">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">corrCol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otherData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveLoc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#corrCol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.corrCol" title="Link to this definition"></a></dt>
+<dd><p>Given two sets of data, find the correlation between them. If the first set of data
+is multidimensional, correlate it with the second set by column. This function requires that
+‘otherData’ is 1D and equivalent to the lengths of the columns of ‘myData’. Otherwise, if ‘myData’
+is 1D, it must be the same length as ‘otherData’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>myData</strong> (<em>numpy.ndarray</em>) – The dependent variable data.</p></li>
+<li><p><strong>otherData</strong> (<em>numpy.ndarray</em>) – The independent variable data.</p></li>
+<li><p><strong>saveLoc</strong> (<em>str</em>) – A location where to save figures of the correlations. Optional argument. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>fitParams</strong> – A poly1d object for the fit of the data. The last element is Pearson’s R.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.find_exp">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">find_exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#find_exp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.find_exp" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number</strong> (<em>float</em>) – A float of any precision.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.find_nearest">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">find_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#find_nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.find_nearest" title="Link to this definition"></a></dt>
+<dd><p>Given an array, find the index and value of an item closest to a supplied value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – An array of values over which to search.</p></li>
+<li><p><strong>value</strong> (<em>float</em><em>, </em><em>int</em><em>, </em><em>str</em><em>, </em><em>datetime</em>) – A value for which the closest value will be searched for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>idx</strong> (<em>int</em>) – The index of the nearest value.</p></li>
+<li><p><strong>array[idx]</strong> (<em>float, int, str, datetime</em>) – The actual value.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.firstNonNan">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">firstNonNan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listfloats</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#firstNonNan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.firstNonNan" title="Link to this definition"></a></dt>
+<dd><p>Find the index of the first non-NaN value in a given sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>listfloats</strong> (<em>arraylike</em>) – A sequence of floats to search over.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>item</strong> (<em>float</em>) – The element that is the first non-NaN value.</p></li>
+<li><p><strong>idx</strong> (<em>int</em>) – The index corresponding to the first non-NaN value.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.forecast">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">forecast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trend_coefs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#forecast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.forecast" title="Link to this definition"></a></dt>
+<dd><p>Produce linear minimum MSE forecast [taken from statsmodels.tsa.vector_ar.var_model.py]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>ndarray</em>) – Input data. (k_ar x neqs)</p></li>
+<li><p><strong>coefs</strong> (<em>numpy.ndarray</em>) – Coefficients for the model. (k_ar x neqs x neqs)</p></li>
+<li><p><strong>trend_coefs</strong> (<em>ndarray</em><em> (</em><em>1 x neqs</em><em>) or </em><em>(</em><em>neqs</em><em>)</em>) – Coefficients for the trend component. (1 x neqs) or (neqs)</p></li>
+<li><p><strong>steps</strong> (<em>int</em>) – Number of forecasts to make.</p></li>
+<li><p><strong>exog</strong> (<em>numpy.ndarray</em>) – Exogeneous (external) covariates to use during forecasting. (trend_coefs.shape[1] x neqs)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>forecasts</strong> – Predictions. (steps x neqs)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Lütkepohl p. 37</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.forecastInversion">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">forecastInversion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forecastData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastDiff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#forecastInversion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.forecastInversion" title="Link to this definition"></a></dt>
+<dd><p>Designed to operate on the output of the statsmodels VAR package. Takes a forecast generated by a VAR model, and
+for each sample in the forecast, inverts the forecast to obtain the actual prediction. Essentially, this function
+takes forecasts generated for non-stationary data that has been transformed to stationary data, and inverts it
+in order to give the non-stationary forecast result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>forecastData</strong> (<em>numpy.ndarray</em>) – An n x m array of forecasts, where n is the number of forecasts and m is the variable.</p></li>
+<li><p><strong>history</strong> (<em>numpy.ndarray</em>) – A 2D array of training data which was used to generate the forecastData.</p></li>
+<li><p><strong>lastDiff</strong> (<em>numpy.ndarray</em>) – A 1 x m array of the most recent differences for all of the variables.</p></li>
+<li><p><strong>trend</strong> (<em>numpy.ndarray</em>) – An 2D array of historical trend data for the non-stationary version of the data.</p></li>
+<li><p><strong>window</strong> (<em>int</em>) – The window over which the historical trend was calculated (assumes some sort of centered average was done).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>invertedForecastDataNew</strong> – The inverted forecasted data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.fractionalDOY">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">fractionalDOY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myDatetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#fractionalDOY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.fractionalDOY" title="Link to this definition"></a></dt>
+<dd><p>Convert a generic datetime object into a float corresponding to the fractional day of the year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>myDatetime</strong> (<em>datetime.datetime</em>) – A datetime object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>fracDOY</strong> – A float corresponding to the fractional Day of the Year, with the decimal portion included to show contributions
+from the time of day in hours, minutes, and seconds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.gapify">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">gapify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeseries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#gapify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.gapify" title="Link to this definition"></a></dt>
+<dd><p>Take a timeseries and replace the bad values (signified by ‘bad_values’) with NaNs, unless otherwise desired.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamps</strong> (<em>arraylike</em>) – A 1D list or array of timestamps.</p></li>
+<li><p><strong>bad_values</strong> (<em>int</em><em> or </em><em>float</em>) – A float or int corresponding to the bad values to be ‘gapped out’. Default is 999.</p></li>
+<li><p><strong>replace_val</strong> (<em>int</em><em>, </em><em>float</em><em>, </em><em>NaN</em><em>, or </em><em>None</em>) – An int, float, NaN, or Nonetype describing what will replace the bad values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The gapified 1D data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>return gappedData:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.get_cc">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">get_cc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">array2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#get_cc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.get_cc" title="Link to this definition"></a></dt>
+<dd><p>Compute the cross-correlation of two 1D arrays of the same length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array1</strong> (<em>numpy.ndarray</em>) – A 1D array of length n.</p></li>
+<li><p><strong>array2</strong> (<em>numpy.ndarray</em>) – A 1D array of length n.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>c</strong> – The normalized correlation of the two arrays.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.imputeData">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">imputeData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#imputeData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.imputeData" title="Link to this definition"></a></dt>
+<dd><p>Given timeseries data, impute bad values and returned the cleaned data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamps</strong> (<em>arraylike</em>) – A 1D list or array of timestamps.</p></li>
+<li><p><strong>values</strong> (<em>arraylike</em>) – A 1D list or array of timeseries data.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – A string indicating the method to be used. If ‘mean’, ‘median’, ‘most_frequent’, or ‘constant’, uses the
+SimpleImputer routine from sklearn. If ‘gam’, uses a Generalized Additive Model to fill in the data. If ‘gpr’,
+use Gaussian Process Regression to perform imputation. Otherwise, cubic spline interpolation is used for
+imputation.</p></li>
+<li><p><strong>bad_values</strong> (<em>float</em><em>, </em><em>int</em><em>, or </em><em>NaN</em><em> (</em><em>type</em><em>)</em>) – The type of the data you wish to impute.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>cleanTimes</strong> (<em>numpy.ndarray</em>) – The timestamps corresponding to the cleaned data. This will differ from ‘timestamps’ if and only if some data
+are necessarily excluded by the chosen imputation method. For example, the edges of the data are often removed
+when the cubic spline interpolation is used for imputation, to avoid Runge’s phenomenon.</p></li>
+<li><p><strong>cleanData</strong> (<em>numpy.ndarray</em>) – The cleaned 1D timeseries.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.linear">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.linear" title="Link to this definition"></a></dt>
+<dd><p>A generic linear function for fitting lines with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>int</em><em>, </em><em>float</em><em>, or </em><em>arraylike</em>) – An independent variable.</p></li>
+<li><p><strong>a</strong> (<em>int</em><em> or </em><em>float</em>) – The first model parameter - the coefficient.</p></li>
+<li><p><strong>b</strong> (<em>int</em><em> or </em><em>float</em>) – The second model parameter - the intercept term.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>y</strong> – The dependent variable.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int, float, or arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.loadPickle">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">loadPickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickleFilename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#loadPickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.loadPickle" title="Link to this definition"></a></dt>
+<dd><p>Given the name of a (pre-existing) pickle file, load its contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pickleFilename</strong> (<em>str</em>) – A string with the location/name of the filename.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>var</strong> – The loaded data. The data type will correspond to whatever data was saved previously using savePickle.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.mape">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">mape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#mape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.mape" title="Link to this definition"></a></dt>
+<dd><p>Compute the mean absolute percentage error between two sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>arraylike</em>) – The modeled values.</p></li>
+<li><p><strong>y</strong> (<em>arraylike</em>) – The actual (true) values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mape</strong> – The mean absolute percentage error.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.mycorrelate2d">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">mycorrelate2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#mycorrelate2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.mycorrelate2d" title="Link to this definition"></a></dt>
+<dd><p>Compute the correlation matrix from 2D data, where each row is cross correlated with the others.
+This function handles NaN values by ignoring them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>numpy.ndarray</em>) – A 2D array of dimensions n x m.</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em>) – Determines whether the resulting correlation matrix is normalized. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ccm</strong> – The [normalized] cross-correlation matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.newbins">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">newbins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#newbins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.newbins" title="Link to this definition"></a></dt>
+<dd><p>Rebin data according to a user-defined binning scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>wavelengths</strong> (<em>arraylike</em>) – The wavelengths of the native data. Units should be in nm.</p></li>
+<li><p><strong>data</strong> (<em>arraylike</em>) – The native data to be rebinned. Assumes each row is an observation and each column is a bin.</p></li>
+<li><p><strong>bins</strong> (<em>dict</em>) – A dictionary containing the left-ward wavelength bin limits (first key) and the right-ward wavelength bin limits
+(right key). Units should be in Angstroms.</p></li>
+<li><p><strong>zero</strong> (<em>bool</em>) – Controls whether a wavelength bin is ‘zeroed’ out after it is considered. Default is False.</p></li>
+<li><p><strong>interpolation</strong> (<em>bool</em>) – Controls whether interpolation or 4-nm centered windowed averaging is used to handle singular emission
+lines. Default is False, corresponding to the windowed averaging.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>newWaves</strong> (<em>arraylike</em>) – The wavelength boundaries of the new binning scheme.</p></li>
+<li><p><strong>newData</strong> (<em>arraylike</em>) – The values of the rebinned data.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.normalize">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.normalize" title="Link to this definition"></a></dt>
+<dd><p>Normalize data with respect to the mean, along the axis specified by the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>myData</strong> (<em>numpy.ndarray</em>) – A 1d or 2d array of data.</p></li>
+<li><p><strong>axis</strong> (<em>int</em>) – The axis along which to perform normalization with respect to the mean. Default is -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>normedData</strong> – The normalized data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.openDir">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">openDir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#openDir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.openDir" title="Link to this definition"></a></dt>
+<dd><p>Create a directory, unless it already exists. Returns nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – A string that is the directory to be created, with respect to the current location.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.percDev">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">percDev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#percDev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.percDev" title="Link to this definition"></a></dt>
+<dd><p>Compute the percentage deviation (a.k.a. percentage error).</p>
+<p>:param : The observed value(s).
+:type : param x: float or arraylike
+:param : The true value(s).
+:type : param y: float or arraylike</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>percentDev</strong> – The percent deviation between the two arrays.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float or arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.plotHist">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">plotHist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveLoc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logScale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#plotHist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.plotHist" title="Link to this definition"></a></dt>
+<dd><p>Given data and bins, plot a histogram and fit a distribution to it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>arraylike</em>) – 1D data to make a histogram with.</p></li>
+<li><p><strong>bins</strong> (<em>arraylike</em>) – The bins with which to bin the data.</p></li>
+<li><p><strong>color</strong> (<em>str</em>) – The color of the histogram data that will be in the plot.</p></li>
+<li><p><strong>saveLoc</strong> (<em>str</em>) – A string containing the location with which to save the file.</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – A 3-element list containing string for the xlabel, ylabel, and the title.</p></li>
+<li><p><strong>logScale</strong> (<em>bool</em>) – If ‘x’, scales the x-axis on a log scale. If ‘y’, scales the y-axis on a log scale. If ‘both’, scales both.</p></li>
+<li><p><strong>density</strong> (<em>bool</em>) – If True, computes the density curve of the histogram. If False, simply fits a skew normal distribution to the
+data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>fig</strong> – A figure object containing the histogram.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.readCLS">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">readCLS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#readCLS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.readCLS" title="Link to this definition"></a></dt>
+<dd><p>Load in flare-corrected, Sun-Earth distance adjusted flux values recorded by the Collecte Localisation Satellites
+(CLS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The location of the data file.</p></li>
+<li><p><strong>times</strong> (<em>list</em>) – The datetimes for each data value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data</strong> – The solar flux data for F30, F15, F10.7, F8, and F3.2.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.readFISM2">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">readFISM2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#readFISM2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.readFISM2" title="Link to this definition"></a></dt>
+<dd><p>Given a FISM2 netcdf file, read it in and output a .dat file with the same format as the .dat files here:
+<a class="reference external" href="https://github.com/aaronjridley/GITM/tree/master/srcData/FISM">https://github.com/aaronjridley/GITM/tree/master/srcData/FISM</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The location of the FISM2 file to read in.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.rebin">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">rebin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#rebin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.rebin" title="Link to this definition"></a></dt>
+<dd><p>Rebin 2D [irradiance/flux] data, where each row is a complete spectrum, and each column is a specific wavelength
+bin. Do the rebinning according to a desired resolution, and restrict the returned information to wavelength
+boundaries set by the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavelengths</strong> (<em>arraylike</em>) – A list of wavelengths at which each irradiance value is taken.</p></li>
+<li><p><strong>data</strong> (<em>numpy.ndarray</em>) – A 2D array of spectrum data (irradiances or fluxes).</p></li>
+<li><p><strong>resolution</strong> (<em>float</em><em> or </em><em>dict</em>) – The desired spectral resolution of the rebinned data. Units must be in nanometers. If argument is a dict, the
+key ‘short’ should contain wavelength boundaries for the beginning of bins, and the key ‘long’ should contain
+wavelength boundaries for the ending of bins. These boundaries should be in Angstroms.</p></li>
+<li><p><strong>limits</strong> (<em>list</em>) – A list of two elements, where the first is a lower limit for wavelengths and the second is an upper limit for
+wavelengths, both in units of nanometers.</p></li>
+<li><p><strong>factor</strong> (<em>int</em>) – A factor by which to upsample the data before performing rebinning. Tends to make the binning much more
+accurate, due to the use of integrals. Default is None.</p></li>
+<li><p><strong>zero</strong> (<em>bool</em>) – Controls whether singular lines are set to a value of zero after they are extracted. Default is True.</p></li>
+<li><p><strong>unc</strong> (<em>bool</em>) – Indicates whether or not uncertainties are being rebinned. If so, they will be combined in each bin using an
+interpolation method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>newWaves</strong> (<em>numpy.ndarray</em>) – The centers of the wavelength bins corresponding to the rebinned data.</p></li>
+<li><p><strong>newData</strong> (<em>numpy.ndarray</em>) – The rebinned data as a 2D array, arranged like the input data but at the new wavelength resolution.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.rollingAverage">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">rollingAverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">impute_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#rollingAverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.rollingAverage" title="Link to this definition"></a></dt>
+<dd><p>Using pandas, compute a rolling average of over ‘data’ using a window length of ‘windowlength’. Sets the leading and
+trailing windows to the values of the original data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>myData</strong> (<em>arraylike</em>) – The data over which to compute the rolling average.</p></li>
+<li><p><strong>window_length</strong> (<em>int</em>) – The size of the window over which to average.</p></li>
+<li><p><strong>impute_edges</strong> (<em>bool</em>) – A boolean determining whether the edges will be interpolated. Default is True.</p></li>
+<li><p><strong>center</strong> (<em>bool</em>) – A boolean determining whether the centered average will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>rolled</strong> – The rolling averaged data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.rollingStd">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">rollingStd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#rollingStd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.rollingStd" title="Link to this definition"></a></dt>
+<dd><p>Given some data, compute the rolling standard deviation. If the data is two dimensional, compute the rolling
+standard deviation along a specific axis of the data (specified by the user).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>myData</strong> (<em>arraylike</em>) – The data over which to compute the rolling average.</p></li>
+<li><p><strong>window_length</strong> (<em>int</em>) – The size of the window over which to average. Default is 2.</p></li>
+<li><p><strong>axis</strong> (<em>int</em>) – For 2D data, the axis along which to compute the rolling standard deviation. Defaults is -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>stdData</strong> – The rolling standard deviation values of the data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.round_mult">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">round_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'down'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#round_mult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.round_mult" title="Link to this definition"></a></dt>
+<dd><p>Round a number to the nearest integer multiple of a given divisor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num</strong> (<em>int</em><em> or </em><em>float</em>) – The number to round down.</p></li>
+<li><p><strong>divisor</strong> (<em>int</em><em> or </em><em>float</em>) – The number which the result must be an integer multiple of.</p></li>
+<li><p><strong>direction</strong> (<em>str</em>) – Either ‘down’ or ‘up’. Specifies whether rounding should be done up or down/</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>rounded</strong> – The resulting number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.savePickle">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">savePickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickleFilename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#savePickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.savePickle" title="Link to this definition"></a></dt>
+<dd><p>Given some data (a list, dict, or array), save it is a pickle file with a user-supplied name. Returns nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>any</em>) – A variable referring to data to be saved as a pickle.</p></li>
+<li><p><strong>pickleFilename</strong> (<em>str</em>) – A string with which to name the pickle file to be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.solomonRebin">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">solomonRebin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solomonIrr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#solomonRebin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.solomonRebin" title="Link to this definition"></a></dt>
+<dd><p>Given some irradiance in the Solomon Bins, do a simple rebinning procedure to simply sum the irradiance in the
+overlapping bins, so that the resulting spectra can be plotted rather easily.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>solomonIrr</strong> (<em>numpyn.ndarray</em>) – An array of irradiance in the Solomon Bins. Rows are observations and columns are wavelength bins.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>solomonIrr_for_plotting</strong> – The rebinned irradiance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.squareDiff">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">squareDiff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#squareDiff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.squareDiff" title="Link to this definition"></a></dt>
+<dd><p>Compute the difference squared between two arrays or lists (of the same length).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>arraylike</em>) – A sequence for which to compute the difference with another.</p></li>
+<li><p><strong>y</strong> (<em>arraylike</em>) – The second sequence, which will be compared with the first.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sqdf</strong> – The squared difference between the two arrays.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>arraylike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.stringList">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">stringList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">myList</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#stringList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.stringList" title="Link to this definition"></a></dt>
+<dd><p>Convert a list of numbers into a single string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>myList</strong> (<em>list</em>) – A list of numbers.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>myStr</strong> – The string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.uniformSample">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">uniformSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cadence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#uniformSample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.uniformSample" title="Link to this definition"></a></dt>
+<dd><p>Given some data with associated time stamps, resample the data so that the data have the time resolution equal to
+the given cadence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xdata</strong> (<em>arraylike</em>) – A list of time stamps.</p></li>
+<li><p><strong>ydata</strong> (<em>arraylike</em>) – A list of data/values associated with the time stamps.</p></li>
+<li><p><strong>cadence</strong> (<em>int</em>) – An integer denoting (in hours) the desired time cadence of the data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>uniformXdata</strong> (<em>numpy.ndarray</em>) – A uniformly-sampled array of datetimes.</p></li>
+<li><p><strong>uniformYdata</strong> (<em>numpy.ndarray</em>) – A uniformly-sampled array of corresponding data/values.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EUVpy.tools.toolbox.urlObtain">
+<span class="sig-prename descclassname"><span class="pre">EUVpy.tools.toolbox.</span></span><span class="sig-name descname"><span class="pre">urlObtain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EUVpy/tools/toolbox.html#urlObtain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#EUVpy.tools.toolbox.urlObtain" title="Link to this definition"></a></dt>
+<dd><p>Download a file from a URL. If the file already exists, don’t download it; just print the location of the existing
+file. Returns nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL where the file is to be downloaded from.</p></li>
+<li><p><strong>fname</strong> (<em>str</em>) – The filename which the downloaded file will be saved to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="EUVpy.tools.spectralAnalysis.html" class="btn btn-neutral float-left" title="EUVpy.tools.spectralAnalysis module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
