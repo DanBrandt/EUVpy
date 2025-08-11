@@ -129,7 +129,8 @@ setup(
         "myst_parser",
         "sphinx_rtd_theme",
         "pytest",
-        "pyqt5"
+        "pyqt5",
+        "jupyterlab"
     ],  # Optional
 
     # List additional groups of dependencies here (e.g. development
