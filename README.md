@@ -4,22 +4,73 @@
 
 # Overview
 `EUVpy` is a Python module that contains the NEUVAC empirical model of solar EUV irradiance for use primarily in thermosphere-ionosphere models. 
-Conceptual development was carried out by Dr. Aaron J. Ridley and analysis and contributions were made by Dr. Daniel A. Brandt.
+Conceptual development was carried out by Dr. Aaron J. Ridley and analysis and contributions were made by Dr. Daniel A. Brandt and Dr. Joseph Paki.
 
 `EUVpy` also contains code for running, comparing, and analyzing the performance of NEUVAC in comparison to other 
 empirical models such as EUVAC, HEUVAC, HFG, and FISM2. As such, the package includes access to EUVAC, HEUVAC, and HFG,
 and allows the user to download the F10.7 index at will.
 
 # Installation
-`EUVpy` should run without much difficulty, but to be safe, one should install gfortran:
-* `gfortran` (`$sudo apt-get install gfortran`)
 
-You can obtain `EUVpy` with a simple git clone command, and the relevant modules 
-may then be loaded as usual.
+You can obtain `EUVpy` with a simple git clone command. In the terminal, execute the following command:
 
-If running it proves difficult, then you may wish to install the modules in the 
-`requirements.txt` file. In Linux, this may be done with the command:
-> pip install -r requirements.txt
+> git clone https://github.com/DanBrandt/EUVpy.git
+
+The EUVpy package provides access to the HEUVAC model, which is written in Fortran and requires gfortran to be installed. To 
+install gfortran (if you don't already have it), open a terminal and execute the following command:
+
+> sudo apt-get install gfortran
+
+Now, enter into the package folder and run the following command in order to compile the Fortran code that HEUVAC 
+alone depends upon:
+
+> cd EUVpy\
+> . install_heuvac.sh
+
+If this step gives you trouble, try executing the following code **first**, and then retry the above commands.
+
+> git submodule update --init --recursive --remote
+
+After HEUVAC is compiled once, you should never have to compile it again.
+
+Now you are in a position to install the rest of the EUVpy package. Before doing this, you will first want to initialize a Python virtual environment.
+
+> cd ~/.virtualenvs\
+> python**3.x** -m venv myVenv\
+> pip install --upgrade pip\
+> pip install wheel\
+> source myVenv/bin/activate
+
+Above, 'python**3.x**' refers to whatever version of Python 3 you have installed. EUVpy works with any version of Python 3.
+You may now use one of two ways to install EUVpy. You can install from the cloned repo directly, or you can install from PyPI.
+
+## Installing from the Cloned Repository
+
+Navigate back to the package folder:
+
+> cd\
+> cd myDirectory/EUVpy
+
+After this is done, simply execute the following command:
+
+> pip install .
+
+## Installing from PyPI
+
+A simpler way to install also involves just entering the following in the terminal:
+
+> pip install EUVpy
+
+### Unit Testing
+
+**Note: this section only applies if you installed from the cloned repo.** 
+
+Just to make sure everything installed correctly, while in the package folder, run the following command in the terminal.
+
+> pytest
+
+If all of the tests pass, you should be good to go! If you find an issue at this step (or any other) please don't hesitate
+to reach out!
 
 # Usage
 EUVpy contains modules for **4** different EUV irradiance models. These models include:
@@ -27,16 +78,6 @@ EUVpy contains modules for **4** different EUV irradiance models. These models i
 * EUVAC
 * HEUVAC
 * HFG (SOLOMON)
-
-**A note about running HEUVAC in particular:** The base code of HEUVAC is in Fortran, written by Dr. Phil Richards. To 
-ensure it runs properly, the following should be done *after* cloning EUVpy:
-> git submodule update --init --recursive --remote
-
-Then, within the package folder, simply do the following:
-
-> . install_heuvac.sh
-
-This should only have to be done once. 
 
 We note that SOLOMON in the literature can either refer to the empirical model between F10.7 and 81 day-averaged F10.7 
 centered on the current day (hereafter F10.7A) and EUV irradiance in 22 overlapping bands as described by Solomon and
@@ -93,7 +134,9 @@ To import any of the models, simply do as follows:
 
 # Examples
 
-We encourage you to peruse the [examples](https://github.com/DanBrandt/EUVpy/blob/main/docs/source/examples.rst) in the documentation for guidelines on how to run each of the models.
+There is a [Python notebook](https://github.com/DanBrandt/EUVpy/blob/main/examples/euvpy_examples.ipynb) you can walk through in order to get familiar with the basic functionality of EUVpy.
+
+We encourage you to peruse [more examples](https://github.com/DanBrandt/EUVpy/blob/main/docs/source/examples.rst) in the documentation for guidelines on how to run each of the models.
 
 Due to the unique construction of NEUVAC, at present, we only recommend running ensembles for NEUVAC, and not any of the
 other models.
