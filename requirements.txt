@@ -2,9 +2,8 @@ numpy>=1.25,<2
 csaps==1.2.0
 matplotlib==3.7.5
 netCDF4==1.7.1.post2
-numpy==1.24.4
 pandas==2.2.2
-pygam==0.9.1
+pygam
 scikit_learn==1.5.1
 scipy==1.14.1
 seaborn==0.13.2
