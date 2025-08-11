@@ -42,6 +42,12 @@ language = 'en'
 html_theme = 'alabaster'
 html_static_path = ['_static']
 
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
+    '.md': 'markdown',
+}
+
 # -- Options for todo extension ----------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/todo.html#configuration
 
