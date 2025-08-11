@@ -15,7 +15,7 @@
 
 # pip3 install -r ./sphinx_requirements.txt
 # variables
-author="Michigan Tech Research Institute"
+author="Daniel Brandt"
 release=1
 version=1.0.0
 currentdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" # Find current directory

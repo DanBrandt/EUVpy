@@ -13,8 +13,8 @@ sys.path.insert(0, '/home/daabrand/Projects/EUVpy/src')
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'EUVpy'
-copyright = '2025, Michigan Tech Research Institute'
-author = 'Michigan Tech Research Institute'
+copyright = '2025, Daniel Brandt'
+author = 'Daniel Brandt'
 
 version = '1.0.0'
 release = '1'
