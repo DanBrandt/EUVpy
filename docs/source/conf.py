@@ -48,7 +48,7 @@ source_suffix = {
     '.md': 'markdown',
 }
 
-autodoc_mock_imports = ["h5py"]
+autodoc_mock_imports = ["h5py", "netCDF4"]
 
 # -- Options for todo extension ----------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/todo.html#configuration
