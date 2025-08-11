@@ -48,6 +48,8 @@ source_suffix = {
     '.md': 'markdown',
 }
 
+autodoc_mock_imports = ["h5py"]
+
 # -- Options for todo extension ----------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/todo.html#configuration
 
