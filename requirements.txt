@@ -8,6 +8,7 @@ scikit_learn==1.5.1
 scipy==1.14.1
 seaborn==0.13.2
 tqdm==4.66.4
-myst-parser>=3.0.1
+myst-parser
 sphinx>=2
-h5py>=3
+h5py>=3.9.0
+netCDF4>=1.6.5
