@@ -10,3 +10,4 @@ seaborn==0.13.2
 tqdm==4.66.4
 myst-parser>=3.0.1
 Sphinx>=2
+h5py>=3
