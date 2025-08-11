@@ -61,6 +61,15 @@ A simpler way to install also involves just entering the following in the termin
 
 > pip install EUVpy
 
+**Note:** If you choose this route, you'll have to install HEUVAC differently than described above. You will have to 
+navigate the directory containing the HEUVAC files, and execute the following command, as follows:
+
+> cd src/EUVpy/empiricalModels/models/HEUVAC/srcHEUVAC
+> . compile.sh
+
+You can then return to the top package directory. This should only have to be done once. 
+This approach will be replaced with a user-friendly console script in the next release of this package.
+
 ### Unit Testing
 
 **Note: this section only applies if you installed from the cloned repo.** 
